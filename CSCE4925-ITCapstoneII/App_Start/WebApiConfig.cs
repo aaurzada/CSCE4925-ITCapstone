@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace CSCE4925_ITCapstoneII
+namespace SQLSolutions
 {
     public static class WebApiConfig
     {

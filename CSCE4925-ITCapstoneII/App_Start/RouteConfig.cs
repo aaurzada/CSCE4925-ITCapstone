@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CSCE4925_ITCapstoneII
+namespace SQLSolutions
 {
     public class RouteConfig
     {
