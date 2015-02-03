@@ -7,5 +7,6 @@ namespace SQLSolutions.Models
 {
     public class User
     {
+        //test test test
     }
 }
