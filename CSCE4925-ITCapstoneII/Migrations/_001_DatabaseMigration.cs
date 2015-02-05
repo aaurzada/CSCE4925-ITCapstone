@@ -29,11 +29,9 @@ namespace SQLSolutions.Migrations
             //Defines book table
             Create.Table("book")
                 //internal book ID number
-                .WithColumn("idNum").AsInt32().Identity().PrimaryKey()
+                .WithColumn("assetNum").AsInt16().Identity().PrimaryKey()
                 //Book's ISBN number
                 .WithColumn("isbn").AsCustom("INT(13)")
-                //books internal copy number
-                .WithColumn("copyNum").AsInt16()
                 //Course section book is used in
                 .WithColumn("courseSection").AsString()
                 //Year book was published
