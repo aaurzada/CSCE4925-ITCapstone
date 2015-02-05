@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SQLSolutions.Models
 {
-    public class Book//test for katerina 12
+    public class Book
     {
         public virtual int idNum { get; set; }
         public virtual string isbn { get; set; }
