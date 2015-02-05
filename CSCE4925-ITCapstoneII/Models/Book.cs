@@ -18,5 +18,6 @@ namespace SQLSolutions.Models
         public virtual int isRequired { get; set; }
         //add author
         //add title
+        //
     }
 }
