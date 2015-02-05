@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 namespace SQLSolutions.Models
-{
+{//test
     public class User
     {
         //user idNum {primary key}
