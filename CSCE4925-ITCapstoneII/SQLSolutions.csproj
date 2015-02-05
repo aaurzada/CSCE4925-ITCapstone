@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
