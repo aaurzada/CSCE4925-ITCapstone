@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -19,6 +20,18 @@ namespace SQLSolutions
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            
+            Database.Configure();
+        }
+
+        protected void Application_BeginRequest()
+        {
+            Database.OpenSession();
+        }
+
+        protected void Application_EndRequest()
+        {
+            Database.CloseSession();
         }
     }
 }
