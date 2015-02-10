@@ -32,12 +32,16 @@ namespace SQLSolutions.Migrations
                 .WithColumn("assetNum").AsInt16().Identity().PrimaryKey()
                 //Book's ISBN number
                 .WithColumn("isbn").AsCustom("INT(13)")
+                //Book's title
+                .WithColumn("title").AsString()
+                //Book's author
+                .WithColumn("author").AsString()
                 //Course section book is used in
                 .WithColumn("courseSection").AsString()
                 //Year book was published
                 .WithColumn("year").AsCustom("INT(4)")
                 //Edition of book
-                .WithColumn("Edition").AsString()
+                .WithColumn("edition").AsString()
                 //Flag for if book is required for class
                 .WithColumn("isRequired").AsBoolean();
 
@@ -48,7 +52,7 @@ namespace SQLSolutions.Migrations
                 //ID number of user who checked out book
                 .WithColumn("user_idNum").AsInt32().ForeignKey("user", "idNum").OnDelete(Rule.Cascade)
                 //Checked out book's internal ID number
-                .WithColumn("book_idNum").AsInt32().ForeignKey("book", "idNum").OnDelete(Rule.Cascade)
+                .WithColumn("book_assetNum").AsInt16().ForeignKey("book", "assetNum").OnDelete(Rule.Cascade)
                 //Date book was checked out
                 .WithColumn("checkoutDate").AsDate()
                 //Date book is due
