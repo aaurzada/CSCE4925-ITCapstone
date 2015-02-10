@@ -9,12 +9,19 @@ namespace SQLSolutions.Models
 {
     public class Book
     {
-        public virtual int idNum { get; set; }
+        //asset number which uniquely identifies books with same isbn num
+        [Required]
+        public virtual int assetNum { get; set; }
+        //isbn number which uniquely defines a book 
+        [Required]
         public virtual string isbn { get; set; }
-        public virtual int copyNum { get; set; }
+        [Required]
         public virtual int courseSection { get; set; }
+        [Required]
         public virtual int year { get; set; }
+        [Required]
         public virtual int edition { get; set; }
+        [Required]
         public virtual int isRequired { get; set; }
         //add author
         //add title
