@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SQLSolutions.Models
 {
-    public class Transaction//
+    public class Transaction
     {
         //id of the transaction {primary key}
         public virtual int idNum { get; set; }
