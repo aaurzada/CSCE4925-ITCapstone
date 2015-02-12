@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SQLSolutions.Controllers
+namespace SQLSolutions.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class CatalogController : Controller
     {
-        // GET: Home
+        // GET: Admin/Catalog
         public ActionResult Index()
         {
             return View();
         }
- 
     }
 }
