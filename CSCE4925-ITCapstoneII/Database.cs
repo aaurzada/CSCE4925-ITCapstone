@@ -28,12 +28,12 @@ namespace SQLSolutions
             config.Configure();
 
             //add mappings
-            var Mapper = new ModelMapper();
-            Mapper.AddMapping<UserMap>();
-            Mapper.AddMapping<BookMap>();
-            Mapper.AddMapping<TransactionMap>();
+            var mapper = new ModelMapper();
+            mapper.AddMapping<UserMap>();
+            mapper.AddMapping<BookMap>();
+            mapper.AddMapping<TransactionMap>();
 
-            config.AddMapping(Mapper.CompileMappingForAllExplicitlyAddedEntities());
+            config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
             //create session factory
             _sessionFactory = config.BuildSessionFactory();
