@@ -203,13 +203,10 @@
     <Content Include="Tools\RollbackDb-Dev.bat" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\user\userView.cshtml" />
-    <Content Include="Views\user\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Views\book\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
