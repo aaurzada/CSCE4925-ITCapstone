@@ -49,7 +49,7 @@ namespace SQLSolutions
             var session = HttpContext.Current.Items[SessionKey] as ISession;
             if (session != null)
                 session.Close();
-
+            //comment
             HttpContext.Current.Items.Remove(SessionKey);
         }
     }
