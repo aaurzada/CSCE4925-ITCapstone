@@ -15,8 +15,7 @@ namespace SQLSolutions.Models
     {
         //user idNum {primary key
         public virtual int IdNum { get; set; }
-        //user euid for log in purposes...must be a required field
-        [Required(ErrorMessage="Please enter your euid", AllowEmptyStrings=false)]
+       
         public virtual String Euid { get; set; }
         //first name
         public virtual String FirstName { get; set; }
