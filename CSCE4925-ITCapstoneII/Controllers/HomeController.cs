@@ -26,19 +26,23 @@ namespace SQLSolutions.Controllers
                     Session["user"] = Login.euid; //session created 
                     Session["admin"] = true;
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "Home"); //non admin
+                    return RedirectToAction("Index", "Home"); //admin page displayed
                 }
                 else if (Login.IsValid(Login.euid, Login.password) == "nonAdmin")
                 {
                     Session["user"] = Login.euid; //session created 
                     Session["admin"] = false;
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "Home"); //non admin
+                    return RedirectToAction("Index", "Home"); //non admin page displayed
+                }
+                else if (Login.IsValid(Login.euid, Login.password) == "notExists")
+                {
+
+                    ModelState.AddModelError("", "This account does not exist.");
                 }
                 else
                 {
-
-                    ModelState.AddModelError("", "Login data is incorrect!");
+                    ModelState.AddModelError("", "The password entered is incorrect.");
                 }
             }
             return View(Login);
