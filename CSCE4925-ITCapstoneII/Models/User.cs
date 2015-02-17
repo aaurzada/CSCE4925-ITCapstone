@@ -13,7 +13,7 @@ namespace SQLSolutions.Models
 {
     public class User
     {
-        //user idNum {primary key
+        //user idNum primary key
         public virtual int IdNum { get; set; }
         //user euid for log in purposes...must be a required field
         [Required(ErrorMessage="Please enter your euid", AllowEmptyStrings=false)]
