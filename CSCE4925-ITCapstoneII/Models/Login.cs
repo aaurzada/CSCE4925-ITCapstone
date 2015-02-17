@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using NHibernate.Linq;
 
+
+//Spencer:
+//Display should not be performed through this controller
+//Also, data should be entered and submitted through a form in the Views, not through the controller here
 namespace SQLSolutions.Models
 {
     public class Login
@@ -22,7 +27,7 @@ namespace SQLSolutions.Models
         {
             bool accountExists = false;
             //check if euid is valid in user table
-            if (Database.Session.Query<User>().Any(u => u.euid == _username))
+            if (Database.Session.Query<User>().Any(u => u.Euid == _username))
             {
                 accountExists = true;
             }
