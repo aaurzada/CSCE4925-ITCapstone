@@ -26,6 +26,7 @@ namespace SQLSolutions.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
