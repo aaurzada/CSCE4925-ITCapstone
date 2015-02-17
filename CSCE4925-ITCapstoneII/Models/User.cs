@@ -14,14 +14,18 @@ namespace SQLSolutions.Models
     public class User
     {
         //user idNum primary key
+        [Display(Name = "ID") ]
         public virtual int IdNum { get; set; }
-       
+        [Display(Name = "EUID")]
         public virtual String Euid { get; set; }
         //first name
+        [Display(Name = "First Name")]
         public virtual String FirstName { get; set; }
         //last name
+        [Display(Name = "Last Name")]
         public virtual String LastName { get; set; }
         //email
+        [Display(Name = "Email")]
         public virtual String Email { get; set; }
     }
 
