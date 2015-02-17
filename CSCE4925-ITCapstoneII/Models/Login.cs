@@ -20,8 +20,18 @@ namespace SQLSolutions.Models
 
         public bool IsValid(string _username, string _password)
         {
+            bool accountExists = false;
             //check if euid is valid in user table
+            if (Database.Session.Query<User>().Any(u => u.euid == _username))
+            {
+                accountExists = true;
+            }
             //check if euid and password valid in UNT auth
+            if (accountExists == true) //if account exists then check password validity through UNT auth
+            {
+                //send _username and _password
+            }
+            //else return false;
             return true; //just for now
         }
     }
