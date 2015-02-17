@@ -26,7 +26,7 @@ namespace SQLSolutions.Controllers
                     Session["user"] = Login.euid; //session created 
                     Session["admin"] = true;
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "Home"); //admin page displayed
+                    return RedirectToAction("Index", "User"); //admin page displayed
                 }
                 else if (Login.IsValid(Login.euid, Login.password) == "nonAdmin")
                 {

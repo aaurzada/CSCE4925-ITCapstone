@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using NHibernate.Linq;
 
 namespace SQLSolutions.Models
 {
@@ -23,7 +24,8 @@ namespace SQLSolutions.Models
             bool accountExists = false; //bool if account exists in user table initialized to false
             bool isAdmin = false; //bool if account is admin in user table initialized to false
             //check if euid is valid in user table
-            if (Database.Session.Query<User>().Any(u => u.euid == _username))
+      
+            if (Database.Session.Query<User>().Any(u => u.Euid == _username))
             { 
                 //check if user is admin in user table
                 isAdmin = true;
