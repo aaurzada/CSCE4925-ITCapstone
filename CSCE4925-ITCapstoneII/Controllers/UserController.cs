@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NHibernate.Linq;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Controllers
@@ -10,11 +11,16 @@ namespace SQLSolutions.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string searchUser)
         {
-            //var userList = from u in u
-            //    select u;
-            return View();
+            var userList = Database.Session.Query<User>().ToList();
+
+            //search user by last name and first name
+            if (!string.IsNullOrEmpty(searchUser))
+            {
+                userList = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList();
+            }
+            return View(userList);
         }
 
         // GET: User/Details/5
@@ -26,6 +32,7 @@ namespace SQLSolutions.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -46,25 +53,26 @@ namespace SQLSolutions.Controllers
         }
 
         // GET: User/Edit/5
+        //get the is of the user and display user information for edit
         public ActionResult Edit(int id)
         {
-            return View();
+            var editUser = Database.Session.Get<User>(id);
+            if (editUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(editUser);
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, User user)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                
             }
-            catch
-            {
                 return View();
-            }
         }
 
         // GET: User/Delete/5
