@@ -9,20 +9,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<form method="GET">
+@*<form method="POST">
 
     <input type="search" name="searchUser" />
     <input type="submit" value="Search" />
 
 
-</form>
-@*@using (Html.BeginForm())
+</form>*@
+@using (Html.BeginForm())
     {
         <p>
             Search Name @Html.TextBox("searchUser")
             <input type="submit" value="Search"/>
         </p>
-    }*@
+    }
 <table class="table">
     <tr>
         <th>

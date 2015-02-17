@@ -22,7 +22,7 @@ namespace SQLSolutions.Models
         {
             bool accountExists = false;
             //check if euid is valid in user table
-            if (Database.Session.Query<User>().Any(u => u.euid == _username))
+            //if (Database.Session.Query<User>().Any(u => u.euid == _username))
             {
                 accountExists = true;
             }
