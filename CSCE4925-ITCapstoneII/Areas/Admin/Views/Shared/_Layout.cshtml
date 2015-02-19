@@ -35,9 +35,9 @@
             <li class="@SelectedTabClass("users")">
                 @Html.ActionLink("Users", "Index", "Users", new { area = "admin" }, new { })
             </li>
-            <li class="pull-right">
+            @*<li class="pull-right">
                 @Html.RouteLink("Back to Website", "Home")
-            </li>
+            </li>*@
         </ul>
 
         @RenderBody()

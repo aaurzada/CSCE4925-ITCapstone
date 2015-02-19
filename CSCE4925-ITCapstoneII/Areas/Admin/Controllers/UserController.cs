@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Linq;
 using SQLSolutions.Models;
 
@@ -26,9 +28,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            //var user = Database.Session.Get<User>(id);
-            var userBooks = Database.Session.Query<Transaction>().Where(t => t.UserIdNum == id).ToList();
-            return View(userBooks);
+            
+            
+            return View();
         }
 
         // GET: User/Create
