@@ -27,7 +27,7 @@ namespace SQLSolutions.Controllers
                 if (user.IsValid(user.euid, user.password) == "admin") //given by view and sent to model IsValid function to check against user table and UNT auth
                 {
                     Session["user"] = user.euid; //session created 
-                    Session["admin"] = true;//
+                    Session["admin"] = true;////
                     //check if admin and display pages accordingly
                     return RedirectToAction("Index", "User", new { area = "Admin" });//admin page displayed
                 }
