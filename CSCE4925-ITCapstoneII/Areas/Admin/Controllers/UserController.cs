@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using SQLSolutions.Areas.Admin.ViewModels;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
@@ -13,17 +14,18 @@ namespace SQLSolutions.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index(string searchUser)
+        public ActionResult Index (string searchUser)
         {
-            var userList = Database.Session.Query<User>().ToList();
-
+            //var userList = Database.Session.Query<User>().ToList();
+            //new UserIndex {Users = Database.Session.Query<User>().ToList()};
             //search user by last name and first name
             //check if user typed something in the search box
-            if (!string.IsNullOrEmpty(searchUser))
-            {
-                userList = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList();
-            }
-            return View(userList);
+            //if (!string.IsNullOrEmpty(searchUser))
+            //{
+            //    Users = Database.Session.Query<UserIndex>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList();
+            //}
+            return View(new UserIndex 
+             {  Users = Database.Session.Query<User>().ToList() });
         }
 
         // GET: User/Details/5
