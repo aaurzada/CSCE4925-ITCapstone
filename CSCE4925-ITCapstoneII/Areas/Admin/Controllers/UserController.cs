@@ -29,7 +29,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             
-            
             return View();
         }
 

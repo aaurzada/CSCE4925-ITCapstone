@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SQLSolutions.Models.User>
+@*@model SQLSolutions.Areas.Admin.ViewModels.UserIndex*@
 
 @{
     ViewBag.Title = "Index";
@@ -48,9 +49,10 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdNum }) |
-            @Html.ActionLink("Details", "Details", new { id = item.IdNum }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdNum })
+            @*TODO: these should be a hrefs, not action links.  We need to link to the views, not the controllers*@
+            @Html.ActionLink("Edit", "Edit", new {id = item.IdNum}) |
+            @Html.ActionLink("Details", "Details", new {id = item.IdNum}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.IdNum})
         </td>
     </tr>
 }
