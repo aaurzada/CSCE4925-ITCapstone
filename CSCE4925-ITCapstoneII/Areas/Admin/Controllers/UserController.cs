@@ -28,8 +28,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            
-            
+           
             return View();
         }
 

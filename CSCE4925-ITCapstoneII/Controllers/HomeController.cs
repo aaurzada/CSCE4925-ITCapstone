@@ -29,7 +29,7 @@ namespace SQLSolutions.Controllers
                     Session["user"] = user.euid; //session created 
                     Session["admin"] = true;
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "User"); //admin page displayed
+                    return RedirectToAction("Index", "User", new { area = "Admin" });//admin page displayed
                 }
                 else if (user.IsValid(user.euid, user.password) == "nonAdmin")
                 {
