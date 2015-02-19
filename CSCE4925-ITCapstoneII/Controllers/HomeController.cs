@@ -11,31 +11,34 @@ namespace SQLSolutions.Controllers
     {
         // GET: Home
 
+   
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.Login Login)
+        public ActionResult Index(Models.Login user)
         {
-            if (ModelState.IsValid) //check if input is valid
+            if (ModelState.IsValid)
             {
-                if (Login.IsValid(Login.euid, Login.password) == "admin") //given by view and sent to model IsValid function to check against user table and UNT auth
+                if (user.IsValid(user.euid, user.password) == "admin") //given by view and sent to model IsValid function to check against user table and UNT auth
                 {
-                    Session["user"] = Login.euid; //session created 
+                    Session["user"] = user.euid; //session created 
                     Session["admin"] = true;
                     //check if admin and display pages accordingly
                     return RedirectToAction("Index", "User"); //admin page displayed
                 }
-                else if (Login.IsValid(Login.euid, Login.password) == "nonAdmin")
+                else if (user.IsValid(user.euid, user.password) == "nonAdmin")
                 {
-                    Session["user"] = Login.euid; //session created 
+                    Session["user"] = user.euid; //session created 
                     Session["admin"] = false;
                     //check if admin and display pages accordingly
                     return RedirectToAction("Index", "Home"); //non admin page displayed
                 }
-                else if (Login.IsValid(Login.euid, Login.password) == "notExists")
+                else if (user.IsValid(user.euid, user.password) == "notExists")
                 {
 
                     ModelState.AddModelError("", "This account does not exist.");
@@ -45,7 +48,7 @@ namespace SQLSolutions.Controllers
                     ModelState.AddModelError("", "The password entered is incorrect.");
                 }
             }
-            return View(Login);
+            return View(user);
         }
     }
 }

@@ -21,18 +21,21 @@ namespace SQLSolutions.Models
 
         public String IsValid(string _username, string _password)
         {
-            bool accountExists = false; //bool if account exists in user table initialized to false
-            bool isAdmin = false; //bool if account is admin in user table initialized to false
+            bool accountExists = true; //bool if account exists in user table initialized to false
+            bool isAdmin = true; //bool if account is admin in user table initialized to false
             //check if euid is valid in user table
-            //if (Database.Session.Query<User>().Any(u => u.euid == _username))
-            {
-                //check if user is admin in user table
+       
+            var queryEuid = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.Euid).SingleOrDefault<String>();
+            //--- ACCOUNT EXISTS IN OUR User TABLE---
+            if (queryEuid != null)
+            { 
+                //check if queryEuid is admin in User table 
                 isAdmin = true;
 
-                accountExists = true;
+                accountExists = true; //account exists in User table
                
             }
-            //---check if euid and password valid in UNT auth---
+            //---CHECK EUID AND PASSWORD VALID IN UNT AUTH---
             if (accountExists == true && isAdmin == true) //if account exists then check password validity through UNT auth
             {
                 //send _username and _password to UNT auth
@@ -48,7 +51,7 @@ namespace SQLSolutions.Models
                 return "nonAdmin";
             }
             else
-                return "notExists"; //just for now
+                return "notExists"; 
         }
     }
 }

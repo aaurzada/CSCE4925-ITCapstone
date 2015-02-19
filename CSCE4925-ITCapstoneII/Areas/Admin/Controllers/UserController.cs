@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Linq;
 using SQLSolutions.Models;
 
-namespace SQLSolutions.Controllers
+namespace SQLSolutions.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
@@ -26,6 +28,8 @@ namespace SQLSolutions.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
+            
+            
             return View();
         }
 
@@ -70,9 +74,9 @@ namespace SQLSolutions.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
             }
-                return View();
+            return View();
         }
 
         // GET: User/Delete/5
