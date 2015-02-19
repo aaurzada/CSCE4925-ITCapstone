@@ -21,8 +21,8 @@ namespace SQLSolutions.Models
 
         public String IsValid(string _username, string _password)
         {
-            bool accountExists = true; //bool if account exists in user table initialized to false
-            bool isAdmin = true; //bool if account is admin in user table initialized to false
+            bool accountExists = false; //bool if account exists in user table initialized to false
+            bool isAdmin = false; //bool if account is admin in user table initialized to false
             //check if euid is valid in user table
        
             var queryEuid = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.Euid).SingleOrDefault<String>();
@@ -30,7 +30,7 @@ namespace SQLSolutions.Models
             if (queryEuid != null)
             { 
                 //check if queryEuid is admin in User table 
-                isAdmin = true;
+                isAdmin = true; //will only be set to true if isAdmin = 1 in user table
 
                 accountExists = true; //account exists in User table
                

@@ -18,6 +18,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             var userList = Database.Session.Query<User>().ToList();
 
             //search user by last name and first name
+            //check if user typed something in the search box
             if (!string.IsNullOrEmpty(searchUser))
             {
                 userList = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList();
@@ -28,7 +29,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            
+           
             return View();
         }
 
