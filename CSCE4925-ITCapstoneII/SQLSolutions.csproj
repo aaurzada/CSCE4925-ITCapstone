@@ -21,7 +21,6 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>c380299a</NuGetPackageImportStamp>
-    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -44,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="FluentMigrator">
       <HintPath>..\packages\FluentMigrator.1.4.0.0\lib\40\FluentMigrator.dll</HintPath>
@@ -63,9 +62,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -134,19 +134,20 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebGrease">
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\SelectedTabAttribute.cs" />
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
     <Compile Include="Models\Book.cs" />
@@ -159,25 +160,31 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Content\Styles\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Styles\bootstrap-theme.css.map" />
     <Content Include="Content\Styles\bootstrap.css.map" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Catalog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -186,6 +193,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -211,7 +219,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
