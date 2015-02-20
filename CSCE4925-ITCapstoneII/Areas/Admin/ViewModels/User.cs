@@ -15,17 +15,36 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
     public class UserNew
     {
+        [Required]
+        public int IdNum { get; set; }
+
+        [Required]
+        public string Euid { get; set; }
+
         [Required, MaxLength(128)]
-        public string Username { get; set; }
+        public string FirstName { get; set; }
+
+        [Required, MaxLength(128)]
+        public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
     }
 
     public class UserEdit
     {
+        [Required]
+        public int IdNum { get; set; }
+
+        [Required]
+        public string Euid { get; set; }
+
         [Required, MaxLength(128)]
-        public string Username { get; set; }
+        public string FirstName { get; set; }
+
+        [Required, MaxLength(128)]
+        public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
