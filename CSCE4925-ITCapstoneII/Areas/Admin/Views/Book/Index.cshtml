@@ -1,0 +1,87 @@
+﻿@model SQLSolutions.Areas.Admin.ViewModels.BookIndex
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*search bar*@
+<form method="GET">
+    <div class="input-group">
+        <input type="text" class="form-control" name="searchBook"/>
+        <span>
+            <button class="btn btn-default" type="button">
+                Search By Name
+            </button>
+        </span>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("AssetNum")
+        </th>
+        <th>
+            @Html.DisplayName("ISBN")
+        </th>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Author")
+        </th>
+        <th>
+            @Html.DisplayName("CourseSection")
+        </th>
+        <th>
+            @Html.DisplayName("Year")
+        </th>
+        <th>
+            @Html.DisplayName("Edition")
+        </th>
+        <th>
+            @Html.DisplayName("Required")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Books) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isbn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseSection)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Year)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRequired)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

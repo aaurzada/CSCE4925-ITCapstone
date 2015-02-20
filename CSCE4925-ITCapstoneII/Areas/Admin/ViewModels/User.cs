@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using SQLSolutions.Models;
 
-//TODO: add the rest of the needed fields from User table
+
 namespace SQLSolutions.Areas.Admin.ViewModels
 {
     public class UserIndex
