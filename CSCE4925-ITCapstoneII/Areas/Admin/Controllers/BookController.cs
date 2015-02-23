@@ -15,12 +15,14 @@ namespace SQLSolutions.Areas.Admin.Controllers
         public ActionResult Index(string searchBook)
         {
             var bookList = new BookIndex { Books = Database.Session.Query<Book>().ToList() };
-           
+           //searh book by title, ISBN, AssetNumber, course section, author
             if (!string.IsNullOrEmpty(searchBook))
             {
                 bookList = new BookIndex
                 {
-                    Books = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook)).ToList()
+                    Books = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook)
+                        || b.Isbn.Contains(searchBook) || b.Author.Contains(searchBook)
+                        || b.AssetNum.ToString().Contains(searchBook) || b.CourseSection.ToString().Contains(searchBook)).ToList()
                 };
             }
             
@@ -36,67 +38,108 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: Admin/Book/Create
         public ActionResult Create()
         {
-            return View();
+            return View( new BookNew {});
         }
 
         // POST: Admin/Book/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BookNew form)
         {
-            try
+            if (Database.Session.Query<Book>().Any(b => b.AssetNum == form.AssetNum))
+                ModelState.AddModelError("AssetNum", "Asset Number must be unique");
+            
+            //check if Model complient with requirements
+            if (!ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return View(form);
             }
-            catch
+            //create new user entity
+            var book = new Book
             {
-                return View();
-            }
+                AssetNum = form.AssetNum,
+                Isbn = form.Isbn,
+                Title = form.Title,
+                Author = form.Author,
+                CourseSection = form.CourseSection,
+                Year = form.Year,
+                Edition = form.Edition,
+                IsRequired = form.IsRequired
+            };
+            //save user to the database
+            Database.Session.Save(book);
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Book/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var bookEdit = Database.Session.Get<Book>(id);
+            if (bookEdit == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View( new BookEdit
+            {
+                AssetNum = bookEdit.AssetNum,
+                Isbn = bookEdit.Isbn,
+                Title = bookEdit.Title,
+                Author = bookEdit.Author,
+                CourseSection = bookEdit.CourseSection,
+                Year = bookEdit.Year,
+                Edition = bookEdit.Edition,
+                IsRequired = bookEdit.IsRequired
+            });
         }
 
         // POST: Admin/Book/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, BookEdit form)
         {
-            try
+            var bookEdit = Database.Session.Get<Book>(id);
+            if (bookEdit == null)
             {
-                // TODO: Add update logic here
+                return HttpNotFound();
+            }
+            if (Database.Session.Query<Book>().Any(b => b.AssetNum == form.AssetNum && b.AssetNum != id))
+                ModelState.AddModelError("AssetNum", "Asset Number must be unique");
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            bookEdit.AssetNum = form.AssetNum;
+            bookEdit.Isbn = form.Isbn;
+            bookEdit.Title = form.Title;
+            bookEdit.Author = form.Author;
+            bookEdit.CourseSection = form.CourseSection;
+            bookEdit.Year = form.Year;
+            bookEdit.Edition = form.Edition;
+            bookEdit.IsRequired = form.IsRequired;
+
+            Database.Session.Update(bookEdit);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Book/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: Admin/Book/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
+            var bookDelete = Database.Session.Get<Book>(id);
+            if (bookDelete == null)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
-            catch
-            {
-                return View();
-            }
+            //delete book from the database
+            Database.Session.Delete(bookDelete);
+            return RedirectToAction("Index");
         }
     }
 }

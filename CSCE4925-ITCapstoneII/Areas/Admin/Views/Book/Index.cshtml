@@ -4,11 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of Books</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+
+<div class="btn-toolbar">
+    <a href="@Url.Action("Create")" class="btn btn-sm btn-primary">
+        <i class="glyphicon glyphicon-plus"></i>
+        Add New Book
+    </a>
+</div>
+
 @*search bar*@
 <form method="GET">
     <div class="input-group">
@@ -68,7 +76,7 @@
             @Html.DisplayFor(modelItem => item.CourseSection)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.Year)*@
+            @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Edition)
@@ -77,9 +85,26 @@
             @Html.DisplayFor(modelItem => item.IsRequired)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            <div class="btn-group">
+                <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit
+                </a>
+
+                <a href="@Url.Action("Details", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
+                    <i class="glyphicon "></i>
+                    Details
+                </a>
+                @*call java script file (farms.js) from the scripts floder to display pop-up window*@
+                <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
+                   data-post="Are you shure you want to delete @item.Title for the @item.CourseSection course?">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                </a>
+            </div>
         </td>
     </tr>
 }
