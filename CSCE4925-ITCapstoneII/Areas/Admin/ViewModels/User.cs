@@ -49,4 +49,13 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
+
+    public class UserDetails
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        //public IEnumerable<Book> UserBooks { get; set; }
+        public IEnumerable<Transaction> UserTransactions { get; set; }
+
+    }
 }

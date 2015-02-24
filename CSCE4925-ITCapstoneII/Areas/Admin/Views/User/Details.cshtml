@@ -1,0 +1,69 @@
+﻿@model SQLSolutions.Areas.Admin.ViewModels.UserDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Books")
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Asset Number</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Course</th>
+                    <th>Due Date</th>
+                </tr>
+                 @foreach (var item in Model.UserTransactions)
+                   {
+                       <tr>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.IdNum)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.UserIdNum)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.BookAssetNumber)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.CheckoutDate)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.DueDate)
+                           </td>
+                       </tr>
+                    }
+
+    </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
