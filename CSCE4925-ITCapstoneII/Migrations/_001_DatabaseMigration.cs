@@ -50,7 +50,7 @@ namespace SQLSolutions.Migrations
                 //transaction's internal ID number
                 .WithColumn("idNum").AsInt32().Identity().PrimaryKey()
                 //ID number of user who checked out book
-                .WithColumn("user_idNum").AsInt32().ForeignKey("user", "idNum").OnDelete(Rule.Cascade)
+                .WithColumn("user_euid").AsString().ForeignKey("user", "euid").OnDelete(Rule.Cascade)
                 //Checked out book's internal ID number
                 .WithColumn("book_assetNum").AsInt16().ForeignKey("book", "assetNum").OnDelete(Rule.Cascade)
                 //Date book was checked out
