@@ -30,8 +30,17 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-           
-            return View();
+            var userDetail = Database.Session.Get<User>(id);
+            if (userDetail == null)
+            {
+                return HttpNotFound();
+            }
+            var transDetail = new UserDetails
+            {
+                UserTransactions = Database.Session.Query<Transaction>().ToList()
+            };
+            return View(transDetail);
+
         }
 
         // GET: User/Create
