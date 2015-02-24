@@ -1,37 +1,55 @@
-﻿@*@model IEnumerable<SQLSolutions.Models.User>*@
-@model SQLSolutions.Areas.Admin.ViewModels.UserIndex
+﻿@model SQLSolutions.Areas.Admin.ViewModels.UserIndex
 
 @{
     ViewBag.Title = "Index";
-    
 }
 
-<h2>Index</h2>
+<h2>Users</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+<div class="btn-toolbar">
+    <a href="@Url.Action("Create")" class="btn btn-sm btn-primary">
+        <i class="glyphicon glyphicon-plus"></i>
+        Add User
+    </a>
+</div>
+
+
+<form method="POST">
+    <div class="input-group">
+        <input type="text" class="form-control" name="searchUser"/>
+        <span>
+            <button class="btn btn-default" type="button">
+                Search By Name
+            </button>
+        </span>
+    </div>
+    @*<input type="search" name="searchUser"/>
+    <input type="submit" value="Search By Name"/>*@
+</form>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdNum)
+           @Html.DisplayName("ID")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Euid)
+            @Html.DisplayName("EUID")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName("First Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName("Last Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayName("Email")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Users) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.IdNum)
@@ -49,10 +67,26 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @*TODO: these should be a hrefs, not action links.  We need to link to the views, not the controllers*@
-            @Html.ActionLink("Edit", "Edit", new {id = item.IdNum}) |
-            @Html.ActionLink("Details", "Details", new {id = item.IdNum}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.IdNum})
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            <div class="btn-group">
+                <a href="@Url.Action("Edit", new {id = item.IdNum})" class="btn btn-xs btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit
+                </a>
+
+                <a href="@Url.Action("Details", new {id = item.IdNum})" class="btn btn-xs btn-primary">
+                    <i class="glyphicon "></i>
+                    Details
+                </a>
+                 @*call java script file (farms.js) from the scripts floder to display pop-up window*@
+                <a href="@Url.Action("Delete", new {id = item.IdNum})" class="btn btn-xs btn-danger"
+                   data-post="Are you shure you want to delete @item.FirstName @item.LastName account?">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                </a>
+            </div>
         </td>
     </tr>
 }
