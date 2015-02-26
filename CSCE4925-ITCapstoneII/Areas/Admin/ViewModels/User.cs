@@ -19,7 +19,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [Required]
         //only 8 numbers are allowed, no less, no more
         [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
-        public int IdNum { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(6)]
@@ -43,7 +43,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     public class UserEdit
     {
         [Required]
-        public int IdNum { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Euid { get; set; }
