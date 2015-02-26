@@ -55,8 +55,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
         public ActionResult Create(UserNew form)
         {
            //check if user ID and Euid already exists in the database
-            if(Database.Session.Query<User>().Any(u => u.Id == form.Id))
-                ModelState.AddModelError("Id", "ID must be unique");
+            if(Database.Session.Query<User>().Any(u => u.IdNum == form.IdNum))
+                ModelState.AddModelError("IdNum", "ID must be unique");
             if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid))
                 ModelState.AddModelError("Euid", "Euid must be unique");
             //check if Model complient with requirements
@@ -67,7 +67,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //create new user entity
             var user = new User
             {
-                Id = form.Id,
+                IdNum = form.IdNum,
                 Euid = form.Euid,
                 FirstName = form.FirstName,
                 LastName = form.LastName,
@@ -89,7 +89,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             }
             return View(new UserEdit
             {
-                Id = editUser.Id,
+                IdNum = editUser.IdNum,
                 Euid = editUser.Euid,
                 FirstName = editUser.FirstName,
                 LastName = editUser.LastName,
@@ -108,9 +108,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
             }
             //check if user ID and Euid already exists in the database and if this user is a
             //different that is trying to update the filed
-            if (Database.Session.Query<User>().Any(u => u.Id == form.Id && u.Id != id))
-                ModelState.AddModelError("Id", "ID must be unique");
-            if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid && e.Id != id))
+            if (Database.Session.Query<User>().Any(u => u.IdNum == form.IdNum && u.IdNum != id))
+                ModelState.AddModelError("IdNum", "ID must be unique");
+            if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid && e.IdNum != id))
                 ModelState.AddModelError("Euid", "Euid must be unique");
             //check if Model complient with requirements
             if (!ModelState.IsValid)
@@ -118,7 +118,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 return View(form);
             }
             //update fields
-            editUser.Id = form.Id;
+            editUser.IdNum = form.IdNum;
             editUser.Euid = form.Euid;
             editUser.FirstName = form.FirstName;
             editUser.LastName = form.LastName;
