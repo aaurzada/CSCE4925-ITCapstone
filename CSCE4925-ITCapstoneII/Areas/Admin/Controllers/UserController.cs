@@ -28,7 +28,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             var userDetail = Database.Session.Get<User>(id);
             if (userDetail == null)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using FluentMigrator.Infrastructure;
 using SQLSolutions.Models;
 
 
@@ -16,15 +17,22 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     public class UserNew
     {
         [Required]
+        //only 8 numbers are allowed, no less, no more
+        [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
         public int IdNum { get; set; }
 
         [Required]
+        [StringLength(6)]
+        [RegularExpression(@"^[a-z0-9'''-'\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
         public string Euid { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required]
+        //make sure that only upper and lower characters are allowed
+        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required]
+        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
