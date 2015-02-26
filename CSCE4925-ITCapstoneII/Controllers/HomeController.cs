@@ -1,4 +1,5 @@
-﻿using SQLSolutions.Models;
+﻿using SQLSolutions.Infrastructure;
+using SQLSolutions.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,21 @@ using System.Web.Mvc;
 
 namespace SQLSolutions.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController:Controller
     {
         // GET: Home
 
    
 
         [HttpGet]
+        [RequireHttps]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [RequireHttps]
         public ActionResult Index(Models.Login user)
         {
             if (ModelState.IsValid)
