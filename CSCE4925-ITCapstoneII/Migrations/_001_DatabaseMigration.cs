@@ -17,7 +17,7 @@ namespace SQLSolutions.Migrations
             //TODO: why is user idnum auto-incrementing
             Create.Table("user")
                 //User's school ID number
-                .WithColumn("idNum").AsInt32().Identity().PrimaryKey()
+                .WithColumn("id").AsInt32().Identity().PrimaryKey()
                 //User's EUID
                 .WithColumn("euid").AsString()
                 //User's first name
@@ -49,9 +49,9 @@ namespace SQLSolutions.Migrations
             //Defines transaction table
             Create.Table("transaction")
                 //transaction's internal ID number
-                .WithColumn("idNum").AsInt32().Identity().PrimaryKey()
+                .WithColumn("id").AsInt32().Identity().PrimaryKey()
                 //ID number of user who checked out book
-                .WithColumn("user_euid").AsInt32().ForeignKey("user", "euid").OnDelete(Rule.Cascade)
+                .WithColumn("user_id").AsInt32().ForeignKey("user", "id").OnDelete(Rule.Cascade)
                 //Checked out book's internal ID number
                 .WithColumn("book_assetNum").AsInt16().ForeignKey("book", "assetNum").OnDelete(Rule.Cascade)
                 //Date book was checked out
