@@ -15,7 +15,7 @@ namespace SQLSolutions.Models
     {
         //user idNum primary key
         //[Display(Name = "ID") ]
-        public virtual int IdNum { get; set; }
+        public virtual int Id { get; set; }
         //[Display(Name = "EUID")]
         public virtual String Euid { get; set; }
         //first name
@@ -36,9 +36,9 @@ namespace SQLSolutions.Models
         {
             Table("user");
 
-            Id(x => x.IdNum, x => x.Generator(Generators.Assigned));
+            Id(x => x.Id, x => x.Generator(Generators.Assigned));
 
-            Property(x => x.IdNum, x => x.NotNullable(true));
+            Property(x => x.Id, x => x.NotNullable(true));
             Property(x => x.Euid, x => x.NotNullable(true));
             Property(x => x.FirstName, x => x.NotNullable(true));
             Property(x => x.LastName, x => x.NotNullable(true));
