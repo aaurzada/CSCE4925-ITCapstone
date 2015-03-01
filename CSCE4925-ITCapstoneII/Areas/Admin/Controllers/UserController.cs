@@ -7,6 +7,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Migrations;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
@@ -28,16 +29,18 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             var userDetail = Database.Session.Get<User>(id);
             if (userDetail == null)
             {
                 return HttpNotFound();
             }
+
+
             var transDetail = new UserDetails
             {
-                UserTransactions = Database.Session.Query<Transaction>().ToList()
+                UserTransactions = Database.Session.Query<Transaction>().Where(t => t.BookAssetNumber == id).ToList()
             };
             return View(transDetail);
 
@@ -55,8 +58,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
         public ActionResult Create(UserNew form)
         {
            //check if user ID and Euid already exists in the database
-            if(Database.Session.Query<User>().Any(u => u.IdNum == form.IdNum))
-                ModelState.AddModelError("IdNum", "ID must be unique");
+            if(Database.Session.Query<User>().Any(u => u.Id == form.Id))
+                ModelState.AddModelError("Id", "ID must be unique");
             if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid))
                 ModelState.AddModelError("Euid", "Euid must be unique");
             //check if Model complient with requirements
@@ -67,7 +70,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //create new user entity
             var user = new User
             {
-                IdNum = form.IdNum,
+                Id = form.Id,
                 Euid = form.Euid,
                 FirstName = form.FirstName,
                 LastName = form.LastName,
@@ -89,7 +92,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             }
             return View(new UserEdit
             {
-                IdNum = editUser.IdNum,
+                Id = editUser.Id,
                 Euid = editUser.Euid,
                 FirstName = editUser.FirstName,
                 LastName = editUser.LastName,
@@ -108,9 +111,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
             }
             //check if user ID and Euid already exists in the database and if this user is a
             //different that is trying to update the filed
-            if (Database.Session.Query<User>().Any(u => u.IdNum == form.IdNum && u.IdNum != id))
-                ModelState.AddModelError("IdNum", "ID must be unique");
-            if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid && e.IdNum != id))
+            if (Database.Session.Query<User>().Any(u => u.Id == form.Id && u.Id != id))
+                ModelState.AddModelError("Id", "ID must be unique");
+            if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid && e.Id != id))
                 ModelState.AddModelError("Euid", "Euid must be unique");
             //check if Model complient with requirements
             if (!ModelState.IsValid)
@@ -118,7 +121,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 return View(form);
             }
             //update fields
-            editUser.IdNum = form.IdNum;
+            editUser.Id = form.Id;
             editUser.Euid = form.Euid;
             editUser.FirstName = form.FirstName;
             editUser.LastName = form.LastName;

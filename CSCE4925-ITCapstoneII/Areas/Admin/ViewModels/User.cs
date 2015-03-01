@@ -62,7 +62,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public IEnumerable<Book> UserBooks { get; set; }
+        public IEnumerable<Book> UserBooks { get; set; }
         public IEnumerable<Transaction> UserTransactions { get; set; }
 
     }
