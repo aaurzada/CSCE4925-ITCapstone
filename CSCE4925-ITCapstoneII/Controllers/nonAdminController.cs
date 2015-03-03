@@ -23,7 +23,7 @@ namespace SQLSolutions.Controllers
             try
             {
                 //searh book by title, ISBN, AssetNumber, course section, author
-                var bookList = Database.Session.Query<Transaction>().Where(b => (b.user_id== ((string)Session["user"]))).ToList();// && b.DueDate != null);
+                var bookList = Database.Session.Query<Transaction>().Where(b => (b.UserId== ((string)Session["user"]))).ToList();// && b.DueDate != null);
                 return View(bookList);
             }
             catch
