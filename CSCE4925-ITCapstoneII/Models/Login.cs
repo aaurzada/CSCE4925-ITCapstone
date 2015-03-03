@@ -30,7 +30,7 @@ namespace SQLSolutions.Models
             if (queryEuid != null)
             { 
                 //check if queryEuid is admin in User table 
-                isAdmin = true; //will only be set to true if isAdmin = 1 in user table
+                isAdmin = false; //will only be set to true if isAdmin = 1 in user table
 
                 accountExists = true; //account exists in User table
                
