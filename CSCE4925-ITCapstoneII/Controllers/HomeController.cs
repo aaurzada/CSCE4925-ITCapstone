@@ -15,14 +15,14 @@ namespace SQLSolutions.Controllers
    
 
         [HttpGet]
-        [RequireHttps]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        [RequireHttps]
+        [AllowAnonymous]
         public ActionResult Index(Models.Login user)
         {
             if (ModelState.IsValid)
@@ -30,7 +30,7 @@ namespace SQLSolutions.Controllers
                 if (user.IsValid(user.euid, user.password) == "admin") //given by view and sent to model IsValid function to check against user table and UNT auth
                 {
                     Session["user"] = user.euid; //session created 
-                    Session["admin"] = true;////
+                  
                     //check if admin and display pages accordingly
                     return RedirectToAction("Index", "User", new { area = "Admin" });//admin page displayed
                 }
@@ -39,7 +39,7 @@ namespace SQLSolutions.Controllers
                     Session["user"] = user.euid; //session created 
                     Session["admin"] = false;
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "Home"); //non admin page displayed
+                    return RedirectToAction("Index", "nonAdmin"); //non admin page displayed
                 }
                 else if (user.IsValid(user.euid, user.password) == "notExists")
                 {

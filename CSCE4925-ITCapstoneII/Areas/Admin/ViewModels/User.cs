@@ -18,7 +18,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     {
         [Required]
         //only 8 numbers are allowed, no less, no more
-        [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
+        //[RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
         public int Id { get; set; }
 
         [Required]
@@ -58,11 +58,11 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Email { get; set; }
     }
 
-    public class UserDetails
+    public class UserDetails:Book
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public IEnumerable<Book> UserBooks { get; set; }
+        public IEnumerable<Book> UserBooks { get; set; }
         public IEnumerable<Transaction> UserTransactions { get; set; }
 
     }

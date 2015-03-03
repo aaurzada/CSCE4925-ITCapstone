@@ -1,0 +1,45 @@
+﻿@model List<SQLSolutions.Models.Transaction>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("")
+        </th>
+        <th>
+            @Html.DisplayName("Asset Number")
+        </th>
+        <th>
+            @Html.DisplayName("Check Out Date")
+        </th>
+        <th>
+            @Html.DisplayName("Due Date")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @try
+{
+        foreach (var item in Model)
+    {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.book_assetNum)</td>
+                <td> @Html.DisplayFor(modelItem => item.checkoutDate) </td>
+                <td> @Html.DisplayFor(modelItem => item.dueDate)</td>
+            </tr>
+    }
+}
+catch
+{
+    <tr>
+        <td>"No books currently checked out!"</td>
+    </tr>
+}
+</table>

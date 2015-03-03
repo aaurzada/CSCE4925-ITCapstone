@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Migrations;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
@@ -28,16 +30,20 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             var userDetail = Database.Session.Get<User>(id);
             if (userDetail == null)
             {
                 return HttpNotFound();
             }
+
+            
+              Database.Session.CreateSQLQuery("SELECT BookAssetNumber, UserId  FROM Transaction t, Book b, User u" +
+                                                "WHERE u.Id = t.UserId");
             var transDetail = new UserDetails
             {
-                UserTransactions = Database.Session.Query<Transaction>().ToList()
+                UserTransactions = Database.Session.Query<Transaction>().Where(t => t.UserId == id).ToList()
             };
             return View(transDetail);
 

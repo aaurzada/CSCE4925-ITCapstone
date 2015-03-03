@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using NHibernate.Bytecode.CodeDom;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
@@ -13,7 +16,7 @@ namespace SQLSolutions.Models
         //id of the transaction {primary key}
         public virtual int Id { get; set; }
         //foreign key of user id 
-        public virtual string  UserEuid { get; set; }
+        public virtual string  UserId { get; set; }
         //foreign key of book id
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
@@ -30,9 +33,9 @@ namespace SQLSolutions.Models
             Id(x => x.Id, x => x.Generator(Generators.Identity));
 
             Property(x => x.Id, x => x.NotNullable(true));
-            Property(x => x.UserEuid, x =>
+            Property(x => x.UserId, x =>
             {
-                x.Column("user_euid");
+                x.Column("user_id");
                 x.NotNullable(true);
             });
             Property(x => x.BookAssetNumber, x =>
