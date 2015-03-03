@@ -16,8 +16,7 @@ namespace SQLSolutions.Models
         //id of the transaction {primary key}
         public virtual int Id { get; set; }
         //foreign key of user id 
-        //public virtual string  UserEuid { get; set; }
-        public virtual int UserId { get; set; }
+        public virtual string  UserId { get; set; }
         //foreign key of book id
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
@@ -34,7 +33,6 @@ namespace SQLSolutions.Models
             Id(x => x.Id, x => x.Generator(Generators.Identity));
 
             Property(x => x.Id, x => x.NotNullable(true));
-            //Property(x => x.UserEuid, x =>
             Property(x => x.UserId, x =>
             {
                 x.Column("user_id");
