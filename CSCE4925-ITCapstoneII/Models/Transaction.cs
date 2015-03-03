@@ -1,25 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using SQLSolutions.Models;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
 //mapping between C# Transaction class and MySQL "transaction" table
 namespace SQLSolutions.Models
 {
+    public class TransIndex
+    {
+        public IEnumerable<Transaction> Transactions { get; set; }
+    }
+
     public class Transaction
     {
         //id of the transaction {primary key}
         public virtual int IdNum { get; set; }
         //foreign key of user id 
-        public virtual int UserEuid { get; set; }
+        public virtual String UserEuid { get; set; }
         //foreign key of book id
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
-        public virtual DateTime CheckoutDate { get; set; }
+        public virtual DateTime CheckoutDate { get; set; } //can be null
         //date book is due
-        public virtual DateTime DueDate { get; set; }
+        public virtual DateTime DueDate { get; set; } //can be null
 
     }
 
