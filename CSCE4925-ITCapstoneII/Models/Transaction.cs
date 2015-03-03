@@ -16,7 +16,7 @@ namespace SQLSolutions.Models
         //id of the transaction {primary key}
         public virtual int Id { get; set; }
         //foreign key of user id 
-        public virtual string  UserId { get; set; }
+        public virtual int  UserId { get; set; }
         //foreign key of book id
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
