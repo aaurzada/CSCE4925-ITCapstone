@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,10 +38,12 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-
+            
+            Database.Session.CreateSQLQuery("SELECT BookAssetNumber, UserId  FROM Transaction t, Book b, User u" +
+                                                "WHERE u.Id = t.UserId");
             var transDetail = new UserDetails
             {
-                UserTransactions = Database.Session.Query<Transaction>().Where(t => t.BookAssetNumber == id).ToList()
+                UserTransactions = Database.Session.Query<Transaction>().Where(t => t.UserId == id).ToList()
             };
             return View(transDetail);
 

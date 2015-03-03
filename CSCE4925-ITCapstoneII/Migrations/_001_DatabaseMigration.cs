@@ -14,7 +14,6 @@ namespace SQLSolutions.Migrations
         public override void Up()
         {
             //Defines user table
-            //TODO: why is user idnum auto-incrementing
             Create.Table("user")
                 //User's school ID number
                 .WithColumn("id").AsInt32().Identity().PrimaryKey()
