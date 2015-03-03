@@ -28,7 +28,7 @@ namespace SQLSolutions.Models
 
     public class TransactionMap : ClassMapping<Transaction>
     {
-        public TransactionMap() 
+        public TransactionMap()
         {
             Id(x => x.Id, x => x.Generator(Generators.Identity));
 
