@@ -14,15 +14,15 @@ namespace SQLSolutions.Models
     public class Transaction
     {
         //id of the transaction {primary key}
-        public virtual int id { get; set; }
+        public virtual int Id { get; set; }
         //foreign key of user id 
-        public virtual string  user_id { get; set; }
+        public virtual string  UserId { get; set; }
         //foreign key of book id
-        public virtual int book_assetNum { get; set; }
+        public virtual int BookAssetNumber { get; set; }
         //date book was checked out
-        public virtual DateTime checkoutDate { get; set; }
+        public virtual DateTime CheckoutDate { get; set; }
         //date book is due
-        public virtual DateTime dueDate { get; set; }
+        public virtual DateTime DueDate { get; set; }
 
     }
 
@@ -30,22 +30,22 @@ namespace SQLSolutions.Models
     {
         public TransactionMap()
         {
-            Id(x => x.id, x => x.Generator(Generators.Identity));
+            Id(x => x.Id, x => x.Generator(Generators.Identity));
 
-            Property(x => x.id, x => x.NotNullable(true));
-            Property(x => x.user_id, x =>
+            Property(x => x.Id, x => x.NotNullable(true));
+            Property(x => x.UserId, x =>
             {
-                x.Column("user_euid");
+                x.Column("user_id");
                 x.NotNullable(true);
             });
-            Property(x => x.book_assetNum, x =>
+            Property(x => x.BookAssetNumber, x =>
             {
                 //override column name to book_assetnum
                 x.Column("book_assetnum");
                 x.NotNullable(true);
             });
-            Property(x => x.checkoutDate, x => x.NotNullable(true));
-            Property(x => x.dueDate, x => x.NotNullable(true));
+            Property(x => x.CheckoutDate, x => x.NotNullable(true));
+            Property(x => x.DueDate, x => x.NotNullable(true));
         }
     }
 }

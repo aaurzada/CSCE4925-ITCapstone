@@ -31,9 +31,9 @@
 </form>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
            @Html.DisplayName("ID")
-        </th>
+        </th>*@
         <th>
             @Html.DisplayName("EUID")
         </th>
@@ -51,9 +51,9 @@
 
 @foreach (var item in Model.Users) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Euid)
         </td>
