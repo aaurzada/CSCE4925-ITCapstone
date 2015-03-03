@@ -157,7 +157,6 @@
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Infrastructure\UseSSLAttribute.cs" />
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
-    <Compile Include="Migrations\_002_RolesTable.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
