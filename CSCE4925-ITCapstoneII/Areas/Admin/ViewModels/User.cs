@@ -58,7 +58,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Email { get; set; }
     }
 
-    public class UserDetails
+    public class UserDetails:Book
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

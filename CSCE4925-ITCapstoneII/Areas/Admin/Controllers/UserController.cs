@@ -39,7 +39,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             }
 
             
-            Database.Session.CreateSQLQuery("SELECT BookAssetNumber, UserId  FROM Transaction t, Book b, User u" +
+              Database.Session.CreateSQLQuery("SELECT BookAssetNumber, UserId  FROM Transaction t, Book b, User u" +
                                                 "WHERE u.Id = t.UserId");
             var transDetail = new UserDetails
             {

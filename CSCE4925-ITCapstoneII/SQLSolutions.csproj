@@ -153,7 +153,6 @@
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
     <Compile Include="Areas\Admin\ViewModels\User.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\nonAdminController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -162,10 +161,10 @@
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Infrastructure\UseSSLAttribute.cs" />
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
-    <Compile Include="Migrations\_002_RolesTable.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\ldapConnect.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\RolesUser.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,7 +265,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44300/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>https://localhost:44300</IISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44300/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
