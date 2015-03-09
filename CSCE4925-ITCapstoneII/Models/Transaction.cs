@@ -7,16 +7,20 @@ using System.Web;
 using NHibernate.Bytecode.CodeDom;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-
 //mapping between C# Transaction class and MySQL "transaction" table
 namespace SQLSolutions.Models
 {
-    public class Transaction
+    public class TransIndex
+    {
+        public IEnumerable<Transaction> Transactions { get; set; }
+    }
+
+    public class Transaction:Book
     {
         //id of the transaction {primary key}
         public virtual int Id { get; set; }
         //foreign key of user id 
-        public virtual string  UserId { get; set; }
+        public virtual int  UserId { get; set; }
         //foreign key of book id
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
@@ -37,7 +41,7 @@ namespace SQLSolutions.Models
             {
                 x.Column("user_id");
                 x.NotNullable(true);
-            });
+            });//
             Property(x => x.BookAssetNumber, x =>
             {
                 //override column name to book_assetnum
