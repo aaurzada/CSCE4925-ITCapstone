@@ -11,7 +11,7 @@ namespace SQLSolutions.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/admin/styles")
-                .Include("~/content/styles/boostrap.css")
+                .Include("~/content/styles/bootstrap.css")
                 .Include("~/content/styles/admin.css"));
 
             bundles.Add(new StyleBundle("~/styles")

@@ -161,6 +161,7 @@
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Infrastructure\UseSSLAttribute.cs" />
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
+    <Compile Include="Migrations\_002_RolesTable.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -174,10 +175,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Admin\Scripts\Forms.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Styles\admin.css" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Content\Styles\bootstrap-theme.css" />
