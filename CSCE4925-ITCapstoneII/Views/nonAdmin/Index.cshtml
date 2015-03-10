@@ -1,8 +1,8 @@
-﻿@model List<SQLSolutions.Models.Transaction>
+﻿@model SQLSolutions.Models.TransIndex
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "index";
 }
 
 <h2>User Index</h2>
@@ -10,7 +10,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("")
+            @Html.DisplayName("Book Title")
         </th>
         <th>
             @Html.DisplayName("Asset Number")
@@ -26,20 +26,24 @@
     </tr>
 
     @try
-{
-        foreach (var item in Model)
     {
+        foreach (var item in Model.Transactions)
+        {
             <tr>
-                <td> @Html.DisplayFor(modelItem => item.book_assetNum)</td>
-                <td> @Html.DisplayFor(modelItem => item.checkoutDate) </td>
-                <td> @Html.DisplayFor(modelItem => item.dueDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.AssetNum)</td>
+                <td> @Html.DisplayFor(modelItem => item.CheckoutDate) </td>
+                <td> @Html.DisplayFor(modelItem => item.DueDate) </td>
+                
+            
             </tr>
+        }
     }
-}
-catch
-{
-    <tr>
-        <td>"No books currently checked out!"</td>
-    </tr>
-}
+    catch
+    {
+        <tr>
+
+            <td>No books currently checked out!</td>
+        </tr>
+    }
 </table>
