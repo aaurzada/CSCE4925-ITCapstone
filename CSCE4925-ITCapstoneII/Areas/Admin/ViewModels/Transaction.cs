@@ -7,4 +7,5 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     {
         public IEnumerable<Transaction> Transactions { get; set; }
     }
+
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using FluentMigrator.Infrastructure;
 using SQLSolutions.Models;
 
@@ -16,7 +18,8 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
     public class UserNew
     {
-        [Required]
+        
+        [HiddenInput(DisplayValue = false)]
         //only 8 numbers are allowed, no less, no more
         //[RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
         public int Id { get; set; }
@@ -58,12 +61,26 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Email { get; set; }
     }
 
-    public class UserDetails:Book
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public IEnumerable<Book> UserBooks { get; set; }
-        public IEnumerable<Transaction> UserTransactions { get; set; }
 
+    public class UserDetailsList
+    {
+        public IEnumerable<UserDetails> UserBooks { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+    }
+
+    public class UserDetails
+    {
+       
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int CourseSection { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat (DataFormatString = "{0:dd.MMMM.yyyy}")]
+        public DateTime CheckoutDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MMMM.yyyy}")]
+        public DateTime DueDate { get; set; }
     }
 }
