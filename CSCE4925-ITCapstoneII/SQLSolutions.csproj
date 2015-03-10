@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Transaction.cs" />
     <Compile Include="Areas\Admin\ViewModels\User.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database.cs" />

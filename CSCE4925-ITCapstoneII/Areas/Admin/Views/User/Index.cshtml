@@ -21,7 +21,8 @@
     <div class="input-group">
         <input type="text" class="form-control" name="searchUser"/>
         <span>
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-sm btn-default" type="button">
+                <i class="glyphicon glyphicon-search"></i>
                 Search By Name
             </button>
         </span>
@@ -51,9 +52,7 @@
 
 @foreach (var item in Model.Users) {
     <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>*@
+
         <td>
             @Html.DisplayFor(modelItem => item.Euid)
         </td>
