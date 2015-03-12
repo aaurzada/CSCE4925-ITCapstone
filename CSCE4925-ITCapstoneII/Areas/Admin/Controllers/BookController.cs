@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
     [AllowAnonymous]
+    [SelectedTab("catalog")]
     public class BookController : Controller
     {
         // GET: Admin/Book

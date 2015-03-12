@@ -11,13 +11,14 @@ using NHibernate.Criterion;
 using NHibernate.Linq;
 using NHibernate.Mapping;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
 using SQLSolutions.Migrations;
 using SQLSolutions.Models;
 
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
-   
+    [SelectedTab("users")]
     public class UserController : Controller
     {
         // GET: User
