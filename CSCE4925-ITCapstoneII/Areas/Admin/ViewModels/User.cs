@@ -20,8 +20,6 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     {
         
         [HiddenInput(DisplayValue = false)]
-        //only 8 numbers are allowed, no less, no more
-        //[RegularExpression(@"^[0-9]{8}$", ErrorMessage = "ID should contain 8 numbers")]
         public int Id { get; set; }
 
         [Required]

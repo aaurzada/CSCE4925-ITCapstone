@@ -17,7 +17,7 @@ using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+   
     public class UserController : Controller
     {
         // GET: User
