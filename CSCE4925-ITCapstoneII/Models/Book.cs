@@ -30,7 +30,6 @@ namespace SQLSolutions.Models
 
             Id(x => x.AssetNum, x => x.Generator(Generators.Assigned));
 
-            //Property(x => x.AssetNum, x => x.NotNullable(true));
             Property(x => x.Isbn, x => x.NotNullable(true));
             Property(x => x.Title, x => x.NotNullable(true));
             Property(x => x.Author, x => x.NotNullable(true));

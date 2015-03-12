@@ -38,7 +38,6 @@ namespace SQLSolutions.Models
 
             Id(x => x.Id, x => x.Generator(Generators.Assigned));
 
-            Property(x => x.Id, x => x.NotNullable(true));
             Property(x => x.Euid, x => x.NotNullable(true));
             Property(x => x.FirstName, x => x.NotNullable(true));
             Property(x => x.LastName, x => x.NotNullable(true));
