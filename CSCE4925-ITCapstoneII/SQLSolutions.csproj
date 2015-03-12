@@ -148,7 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TransactionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
     <Compile Include="Areas\Admin\ViewModels\Transaction.cs" />
@@ -164,6 +164,7 @@
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
     <Compile Include="Migrations\_002_RolesTable.cs" />
     <Compile Include="Migrations\_003_UpdateBookTable.cs" />
+    <Compile Include="Migrations\_004_UpdateISBNType.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -194,7 +195,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Catalog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Index.cshtml" />
