@@ -73,7 +73,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
        
         public string Title { get; set; }
         public string Author { get; set; }
-        public int CourseSection { get; set; }
+        public string CourseSection { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat (DataFormatString = "{0:dd.MMMM.yyyy}")]
         public DateTime CheckoutDate { get; set; }

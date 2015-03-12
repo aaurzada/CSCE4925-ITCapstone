@@ -24,13 +24,13 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [Required]
         public  string Author { get; set; }
         [Required]
-        public  int CourseSection { get; set; }
+        public  string CourseSection { get; set; }
         [Required]
         public int Year { get; set; }
         [Required]
-        public int Edition { get; set; }
+        public string Edition { get; set; }
         [Required]
-        public int IsRequired { get; set; }
+        public bool IsRequired { get; set; }
     }
 
     public class BookEdit
@@ -44,12 +44,12 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [Required]
         public string Author { get; set; }
         [Required]
-        public int CourseSection { get; set; }
+        public string CourseSection { get; set; }
         [Required]
         public int Year { get; set; }
         [Required]
-        public int Edition { get; set; }
+        public string Edition { get; set; }
         [Required]
-        public int IsRequired { get; set; }
+        public bool IsRequired { get; set; }
     }
 }

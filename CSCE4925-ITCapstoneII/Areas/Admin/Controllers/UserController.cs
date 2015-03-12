@@ -31,8 +31,10 @@ namespace SQLSolutions.Areas.Admin.Controllers
             {
                 userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList() };
             }
+
             return View(userList);
         }
+       
 
         // GET: User/Details/5
         public ActionResult Details(int id)

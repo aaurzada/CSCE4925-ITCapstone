@@ -11,7 +11,6 @@ using NHibernate.Mapping.ByCode.Conformist;
 namespace SQLSolutions.Models
 {
    
-
     public class Transaction
     {
         //id of the transaction {primary key}
