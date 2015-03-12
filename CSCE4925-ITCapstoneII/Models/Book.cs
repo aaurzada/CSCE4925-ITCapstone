@@ -16,10 +16,10 @@ namespace SQLSolutions.Models
         public virtual string Isbn { get; set; }
         public virtual string Title { get; set; }
         public virtual string Author { get; set; }
-        public virtual int CourseSection { get; set; }
+        public virtual string CourseSection { get; set; }
         public virtual int Year { get; set; }
-        public virtual int Edition { get; set; }
-        public virtual int IsRequired { get; set; }
+        public virtual string Edition { get; set; }
+        public virtual bool IsRequired { get; set; }
     }
 
     public class BookMap : ClassMapping<Book>
