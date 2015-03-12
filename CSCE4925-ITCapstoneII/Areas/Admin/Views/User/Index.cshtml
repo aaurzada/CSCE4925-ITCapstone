@@ -18,14 +18,17 @@
 
 
 <form method="POST">
-    <div class="input-group">
-        <input type="text" class="form-control" name="searchUser"/>
-        <span>
-            <button class="btn btn-sm btn-default" type="button">
-                <i class="glyphicon glyphicon-search"></i>
-                Search By Name
-            </button>
-        </span>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        Search
+                    </button>
+                </span>
+                <input type="text" class="form-control" name="searchUser" />
+            </div>
+        </div>
     </div>
     @*<input type="search" name="searchUser"/>
     <input type="submit" value="Search By Name"/>*@
