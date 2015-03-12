@@ -18,7 +18,7 @@ namespace SQLSolutions.Models
         public virtual string Author { get; set; }
         public virtual string CourseSection { get; set; }
         public virtual int Year { get; set; }
-        public virtual string Edition { get; set; }
+        public virtual int Edition { get; set; }
         public virtual bool IsRequired { get; set; }
     }
 
@@ -30,7 +30,6 @@ namespace SQLSolutions.Models
 
             Id(x => x.AssetNum, x => x.Generator(Generators.Assigned));
 
-            Property(x => x.AssetNum, x => x.NotNullable(true));
             Property(x => x.Isbn, x => x.NotNullable(true));
             Property(x => x.Title, x => x.NotNullable(true));
             Property(x => x.Author, x => x.NotNullable(true));
