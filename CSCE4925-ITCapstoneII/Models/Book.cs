@@ -12,13 +12,14 @@ namespace SQLSolutions.Models
 {
     public class Book
     {
+        // ? - Make integers nullable, to remove 0 from diplaying in the testbox
         public virtual int AssetNum { get; set; }
         public virtual string Isbn { get; set; }
         public virtual string Title { get; set; }
         public virtual string Author { get; set; }
         public virtual string CourseSection { get; set; }
-        public virtual int Year { get; set; }
-        public virtual int Edition { get; set; }
+        public virtual int ? Year { get; set; }
+        public virtual int ? Edition { get; set; }
         public virtual bool IsRequired { get; set; }
     }
 
@@ -29,6 +30,7 @@ namespace SQLSolutions.Models
             Table("book");
 
             Id(x => x.AssetNum, x => x.Generator(Generators.Assigned));
+
 
             Property(x => x.Isbn, x => x.NotNullable(true));
             Property(x => x.Title, x => x.NotNullable(true));
