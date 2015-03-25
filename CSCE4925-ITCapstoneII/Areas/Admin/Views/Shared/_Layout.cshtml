@@ -1,18 +1,19 @@
 ﻿@using System.Web.Optimization
-@using System.Web.Mvc
+@using System.Web.Mvc;
+@using SQLSolutions.Infrastructure;
 
 @{
     Layout = null;
 }
 
 @*Invokes helper class from Infrastructure/SelectedTabAttributes.cs to highlight the currently active tab*@ 
-@helper SelectedTabClass(string tabName)
+@*@helper SelectedTabClass(string tabName)
 {
     if (tabName == ViewBag.SelectedTab)
     {
         @: active
     }
-}
+}*@
 
 <!Doctype html>
 
@@ -78,7 +79,7 @@
                 <div class="navbar-left">
                     <ul class="menu nav navbar-nav">
                         <li class="leaf"@*"first leaf active"*@>
-                            <a class="active" href="/">
+                            <a class="leaf" href="/">
                                 Checkout
                             </a>
                         <li>
@@ -87,10 +88,10 @@
                                 Check-in
                             </a>
                         </li>
-                        <li class="leaf">
+                        <li class="@Html.IsActive("Book", "Index")">
                             @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
                         </li>
-                        <li class="leaf">
+                        <li class="@Html.IsActive("User", "Index")">
                             @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
                         </li>
                         <li class="leaf">

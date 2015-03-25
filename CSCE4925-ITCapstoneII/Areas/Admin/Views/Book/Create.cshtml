@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AssetNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AssetNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AssetNum, new { htmlAttributes = new { @class = "form-control", @Value="", @placeholder="Four digit asset number"} })
                 @Html.ValidationMessageFor(model => model.AssetNum, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Isbn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Isbn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Isbn, new { htmlAttributes = new { @class = "form-control", @placeholder="ISBN-13 number" } })
                 @Html.ValidationMessageFor(model => model.Isbn, "", new { @class = "text-danger" })
             </div>
         </div>

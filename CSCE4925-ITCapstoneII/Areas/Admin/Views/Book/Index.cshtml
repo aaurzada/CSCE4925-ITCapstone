@@ -10,12 +10,6 @@
         @Html.ActionLink("Create New", "Create")
     </p>*@
 
-<div class="btn-toolbar">
-    <a href="@Url.Action("Create")" class="btn btn-sm btn-primary">
-        <i class="glyphicon glyphicon-plus"></i>
-        Add New Book
-    </a>
-</div>
 
 @*search bar*@
 <form method="GET">
@@ -29,6 +23,12 @@
                     </button>
                 </span>
             </div>
+        </div>
+        <div class="btn-toolbar-right" id="btn-add-book">
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>
+                Add New Book
+            </a>
         </div>
     </div>
     @*<input type="search" name="searchBook" />
@@ -101,10 +101,10 @@
                         Edit
                     </a>
 
-                    <a href="@Url.Action("Details", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
-                        <i class="glyphicon "></i>
-                        Details
-                    </a>
+                    @*<a href="@Url.Action("Details", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
+                            <i class="glyphicon "></i>
+                            Details
+                        </a>*@
                     @*call java script file (farms.js) from the scripts floder to display pop-up window*@
                     <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
                        data-post="Are you shure you want to delete @item.Title for the @item.CourseSection course?">

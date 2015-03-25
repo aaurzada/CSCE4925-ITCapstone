@@ -18,7 +18,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         
 
         [Required]
-        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^[0-9]{4}$", ErrorMessage = "Please enter valid Asset Number")]
         public int AssetNum { get; set; }
         [Required]
         [RegularExpression(@"^[0-9]{13}$", ErrorMessage = "Please enter valid ISBN13 Number")]
@@ -27,10 +27,10 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Title { get; set; }
         [Required]
         //restrict to only upper and lower characters, only 80 chars allowed
-        [RegularExpression(@"^[a-zA-Z''\s]{1,80}", ErrorMessage = "Please enter valid First and Last name")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,100}", ErrorMessage = "Please enter valid First and Last name")]
         public string Author { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z0-9'''-'\s]{1,80}", ErrorMessage = "Please enter valid Course Number")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public  string CourseSection { get; set; }
         [Required]
         [RegularExpression(@"^[0-9]{4}$", ErrorMessage = "Please enter valid year")]
@@ -57,10 +57,11 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //restrict to only upper and lower characters, 80 chars allows
-        [RegularExpression(@"^[a-zA-Z''\s]{1,80}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,100}", ErrorMessage = "Please use letters only")]
         public string Author { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-zA-Z0-9]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public string CourseSection { get; set; }
 
         [Required]

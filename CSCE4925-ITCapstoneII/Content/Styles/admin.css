@@ -74,6 +74,16 @@ color: inherit;
      border-color: #3A6226;
      color: #FFF;
 }
+.btn-toolbar-right  {
+    float: right !important;
+    
+}
+#btn-add-book {
+    margin-right: 50px;
+}
+#btn-add-usr {
+    margin-right: 200px;
+}
 .pull-right {
     float: right !important;
 }
@@ -82,6 +92,7 @@ color: inherit;
 .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
 }
+
 
 /*header*/
 
@@ -197,7 +208,7 @@ li.leaf {
     display: block;
 }
 
-#main-nav a:hover, #main-nav a:active, #main-nav a.active, #main-nav a:focus {
+#main-nav a:hover, #main-nav a:active, #main-nav a:focus {
     background-color: #00788A;
     color: #FFF;
 }
@@ -213,6 +224,14 @@ li.leaf {
     line-height: 20px;
 }
 
+/*#main-nav li:hover, #main-nav li:active, #main-nav li:focus {
+    background-color: #00788A;
+    color: #FFF;
+}*/
+.active {
+    background-color: #00788A !important;
+    color: #FFF !important;
+}
 .nav > li > a {
     position: relative;
     display: block;

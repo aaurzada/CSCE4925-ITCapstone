@@ -23,18 +23,17 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
 
         [Required]
-        [StringLength(6)]
-        [RegularExpression(@"^[a-z0-9'''-'\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
         public string Euid { get; set; }
 
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
 
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
@@ -48,18 +47,17 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
 
         [Required]
-        [StringLength(6)]
-        [RegularExpression(@"^[a-z0-9'''-'\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
         public string Euid { get; set; }
 
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
 
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
