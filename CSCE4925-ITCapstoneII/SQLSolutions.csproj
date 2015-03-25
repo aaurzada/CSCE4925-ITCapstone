@@ -163,9 +163,16 @@
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Infrastructure\UseSSLAttribute.cs" />
     <Compile Include="Migrations\_001_DatabaseMigration.cs" />
-    <Compile Include="Migrations\_002_RolesTable.cs" />
-    <Compile Include="Migrations\_003_UpdateBookTable.cs" />
+    <Compile Include="Migrations\_002_RolesTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Migrations\_003_UpdateBookTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\_004_UpdateISBNType.cs" />
+    <Compile Include="Migrations\_005_AlterBookAndTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
