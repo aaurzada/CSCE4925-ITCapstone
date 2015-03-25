@@ -28,11 +28,12 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Euid { get; set; }
 
         [Required]
-        //make sure that only upper and lower characters are allowed
+        //restrict to only upper and lower characters
         [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
 
         [Required]
+        //restrict to only upper and lower characters
         [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
 
@@ -43,23 +44,29 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
     public class UserEdit
     {
-        [Required]
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         [Required]
+        [StringLength(6)]
+        [RegularExpression(@"^[a-z0-9'''-'\s]{6}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
         public string Euid { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required]
+        //restrict to only upper and lower characters
+        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required]
+        //restrict to only upper and lower characters
+        [RegularExpression(@"^[a-zA-Z'''-'\s]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
 
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
 
-
+    //display user's first and last name and list of books borrowed by the user
     public class UserDetailsList
     {
         public IEnumerable<UserDetails> UserBooks { get; set; }
@@ -68,6 +75,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string LastName { get; set; }
     }
 
+    //fields for the book details and due dates
     public class UserDetails
     {
        

@@ -6,9 +6,6 @@
 
 <h2>Users</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
 <div class="btn-toolbar">
     <a href="@Url.Action("Create")" class="btn btn-sm btn-primary">
         <i class="glyphicon glyphicon-plus"></i>
@@ -21,23 +18,23 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
+                <input type="text" class="form-control" name="searchUser" />
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
                         Search
                     </button>
                 </span>
-                <input type="text" class="form-control" name="searchUser" />
             </div>
         </div>
     </div>
     @*<input type="search" name="searchUser"/>
-    <input type="submit" value="Search By Name"/>*@
+        <input type="submit" value="Search By Name"/>*@
 </form>
 <table class="table">
     <tr>
         @*<th>
-           @Html.DisplayName("ID")
-        </th>*@
+               @Html.DisplayName("ID")
+            </th>*@
         <th>
             @Html.DisplayName("EUID")
         </th>
@@ -53,44 +50,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.Users) {
-    <tr>
+    @foreach (var item in Model.Users)
+    {
+        <tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Euid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            <div class="btn-group">
-                <a href="@Url.Action("Edit", new {id = item.Id})" class="btn btn-xs btn-primary">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Edit
-                </a>
+            <td>
+                @Html.DisplayFor(modelItem => item.Euid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a href="@Url.Action("Edit", new {id = item.Id})" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
 
-                <a href="@Url.Action("Details", new {id = item.Id})" class="btn btn-xs btn-primary">
-                    <i class="glyphicon "></i>
-                    Details
-                </a>
-                 @*call java script file (farms.js) from the scripts floder to display pop-up window*@
-                <a href="@Url.Action("Delete", new {id = item.Id})" class="btn btn-xs btn-danger"
-                   data-post="Are you shure you want to delete @item.FirstName @item.LastName account?">
-                    <i class="glyphicon glyphicon-remove"></i>
-                    Delete
-                </a>
-            </div>
-        </td>
-    </tr>
-}
+                    <a href="@Url.Action("Details", new {id = item.Id})" class="btn btn-xs btn-primary">
+                        <i class="glyphicon "></i>
+                        Details
+                    </a>
+                    @*call java script file (farms.js) from the scripts floder to display pop-up window*@
+                    <a href="@Url.Action("Delete", new {id = item.Id})" class="btn btn-xs btn-danger"
+                       data-post="Are you shure you want to delete @item.FirstName @item.LastName account?">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>
