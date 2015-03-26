@@ -18,7 +18,7 @@ using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
-    [SelectedTab("users")]
+    [SelectedTab("User Records")]
     public class UserController : Controller
     {
         // GET: User
@@ -38,6 +38,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
        
 
         // GET: User/Details/5
+        [SelectedTab("User Records")]
         public ActionResult Details(int id)
         {
             //get user id
@@ -75,6 +76,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: User/Create
+        [SelectedTab("User Records")]
         public ActionResult Create()
         {
 
@@ -83,7 +85,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // POST: User/Create
         [HttpPost]
-        [AllowAnonymous]
+        [SelectedTab("User Records")]
         public ActionResult Create(UserNew form)
         {
             //check if user ID and Euid already exists in the database
@@ -112,6 +114,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // GET: User/Edit/5
         //get the is of the user and display user information for edit
+        [SelectedTab("User Records")]
         public ActionResult Edit(int id)
         {
             var editUser = Database.Session.Load<User>(id);
@@ -131,6 +134,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
+        [SelectedTab("User Records")]
         public ActionResult Edit(int id, UserEdit form)
         {
             var editUser = Database.Session.Get<User>(id);

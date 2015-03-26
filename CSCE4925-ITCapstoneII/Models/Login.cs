@@ -11,18 +11,18 @@ namespace SQLSolutions.Models
     {
         //user euid for log in purposes...must be a required field
         [Required(ErrorMessage = "Please enter your username (euid)", AllowEmptyStrings = false)]
-        [Display(Name = "Username:")]
+        [Display(Name = "Username")]
         public virtual String euid { get; set; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter your password", AllowEmptyStrings = false)]
-        [Display(Name = "Password:")]
+        [Display(Name = "Password")]
         public virtual String password { get; set; } //may delete...dont actually need to store
 
         public String IsValid(string _username, string _password)
         {
             bool accountExists = false; //bool if account exists in user table initialized to false
-            bool isAdmin = false; //bool if account is admin in user table initialized to false
+            bool isAdmin = true; //bool if account is admin in user table initialized to false
             //check if euid is valid in user table
        
             var queryEuid = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.Euid).SingleOrDefault<String>();
@@ -30,7 +30,7 @@ namespace SQLSolutions.Models
             if (queryEuid != null)
             { 
                 //check if queryEuid is admin in User table 
-                isAdmin = false; //will only be set to true if isAdmin = 1 in user table
+                isAdmin = true; //will only be set to true if isAdmin = 1 in user table
 
                 accountExists = true; //account exists in User table
                

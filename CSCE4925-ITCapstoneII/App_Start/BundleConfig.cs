@@ -16,7 +16,7 @@ namespace SQLSolutions.App_Start
 
             bundles.Add(new StyleBundle("~/styles")
                 .Include("~/content/styles/bootstrap.css")
-                .Include("~/content/styles/site.css"));
+                .Include("~/content/styles/Site.css"));
 
             bundles.Add(new ScriptBundle("~/admin/scripts")
                 .Include("~/scripts/jquery-2.1.3.js")

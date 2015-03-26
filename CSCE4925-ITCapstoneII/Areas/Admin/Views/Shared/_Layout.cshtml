@@ -7,13 +7,13 @@
 }
 
 @*Invokes helper class from Infrastructure/SelectedTabAttributes.cs to highlight the currently active tab*@ 
-@*@helper SelectedTabClass(string tabName)
+@helper SelectedTabClass(string tabName)
 {
     if (tabName == ViewBag.SelectedTab)
     {
         @: active
     }
-}*@
+}
 
 <!Doctype html>
 
@@ -88,10 +88,10 @@
                                 Check-in
                             </a>
                         </li>
-                        <li class="@Html.IsActive("Book", "Index")">
+                        <li class="@SelectedTabClass("Catalog Management")">
                             @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
                         </li>
-                        <li class="@Html.IsActive("User", "Index")">
+                        <li class="@SelectedTabClass("User Records")">
                             @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
                         </li>
                         <li class="leaf">
