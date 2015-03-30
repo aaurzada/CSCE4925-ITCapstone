@@ -63,6 +63,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                 DueDate = transaction.DueDate,
                                 CheckoutDate = transaction.CheckoutDate
 
+
                             }).ToList();
             //convert userDetails entity to IEnumerable and pass it to the view
             var result = new UserDetailsList

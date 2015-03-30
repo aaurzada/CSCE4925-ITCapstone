@@ -14,6 +14,13 @@
 
         </ul>
     </div>
+    @*@using (Html.BeginForm())
+    {
+        <text>Available Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.isAvail))
+        <text>Checked-out Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.notAvail))
+        <input type="submit" value ="Filter"/> 
+    }*@
+
 
 </p>
 

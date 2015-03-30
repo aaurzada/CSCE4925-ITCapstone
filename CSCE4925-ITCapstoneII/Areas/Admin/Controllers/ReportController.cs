@@ -14,17 +14,16 @@ namespace SQLSolutions.Areas.Admin.Controllers
     {
         // GET: Admin/Report
         [SelectedTab("Reports")]
-        public ActionResult IndexBookReport(bool avail)
+        public ActionResult IndexBookReport()
         {
-            var bookList = new ReportBookList() { Books = Database.Session.Query<Book>().ToList() };
-            //ViewBag.isAvail = Database.Session.Query<Book>().Where(b => )
-            //{
-            //    bookList = new ReportBookList()
-            //    {
-            //        Books = Database.Session.Query<Book>().ToList()
-                        
-            //    };
-            //}
+
+            var bookList = new ReportBookList() {Books = Database.Session.Query<Book>().ToList()};
+            //ViewBag.isAvail = (from book in Database.Session.Query<Book>() select book.InStock).Distinct();
+            //var bookList = new ReportBookList() { Books = from b in Database.Session.Query<Book>() orderby b.AssetNum 
+            //                                              where b.InStock == avail
+            //                                              where b.InStock == !avail
+            //                                              select b
+            //};
             
             return View(bookList);
         }

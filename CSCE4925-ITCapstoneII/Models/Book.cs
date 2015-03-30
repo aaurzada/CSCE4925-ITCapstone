@@ -21,6 +21,7 @@ namespace SQLSolutions.Models
         public virtual int ? Year { get; set; }
         public virtual int ? Edition { get; set; }
         public virtual bool IsRequired { get; set; }
+        public virtual bool InStock { get; set; }
     }
 
     public class BookMap : ClassMapping<Book>
@@ -39,6 +40,8 @@ namespace SQLSolutions.Models
             Property(x => x.Year, x => x.NotNullable(true));
             Property(x => x.Edition, x => x.NotNullable(true));
             Property(x => x.IsRequired, x => x.NotNullable(true));
+            Property(x => x.InStock, x => x.NotNullable(true));
+
 
         }
     }

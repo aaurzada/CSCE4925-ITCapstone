@@ -24,6 +24,8 @@ namespace SQLSolutions.Models
         //date book is due
         public virtual DateTime DueDate { get; set; }
 
+        public virtual DateTime CheckInDate { get; set; }
+
     }
 
     public class TransactionMap : ClassMapping<Transaction>
@@ -46,6 +48,7 @@ namespace SQLSolutions.Models
             });
             Property(x => x.CheckoutDate, x => x.NotNullable(true));
             Property(x => x.DueDate, x => x.NotNullable(true));
+            Property(x => x.CheckInDate, x => x.NotNullable(true));
         }
     }
 }
