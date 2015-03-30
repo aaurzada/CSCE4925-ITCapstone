@@ -18,25 +18,30 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         
 
         [Required]
-        [RegularExpression(@"^[0-9]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        //Restrict to 4 numbers only
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
         public int AssetNum { get; set; }
         [Required]
-        [RegularExpression(@"^[0-9]{13}$", ErrorMessage = "Please enter valid ISBN13 Number")]
+        //Restrict to 13 numbers only
+        [RegularExpression(@"^[0-9\s]{13}$", ErrorMessage = "Please enter valid ISBN13 Number")]
         public string Isbn { get; set; }
         [Required, MaxLength(128)]
         public string Title { get; set; }
         [Required]
-        //restrict to only upper and lower characters, only 80 chars allowed
+        //restrict to only upper and lower characters, only 100 chars allowed
         [RegularExpression(@"^[a-zA-Z''\s]{1,100}", ErrorMessage = "Please enter valid First and Last name")]
         public string Author { get; set; }
         [Required]
+        //Restrict to 15 characters
         [RegularExpression(@"^[a-zA-Z0-9\s]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public  string CourseSection { get; set; }
         [Required]
-        [RegularExpression(@"^[0-9]{4}$", ErrorMessage = "Please enter valid year")]
+        //Restrict to 4 numbers
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid year")]
         public int ? Year { get; set; }
         [Required]
-        [RegularExpression(@"^[0-9]{1,4}$", ErrorMessage = "Please enter valid edition")]
+        //Restrict to 1-4 numbers
+        [RegularExpression(@"^[0-9\s]{1,4}$", ErrorMessage = "Please enter valid edition")]
         public int ? Edition { get; set; }
         [Required]
         public bool IsRequired { get; set; }
@@ -45,11 +50,11 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     public class BookEdit
     {
         [Required]
-        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^[0-9\s]{6}$", ErrorMessage = "Please enter valid Asset Number")]
         public int AssetNum { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0-9]{13}$", ErrorMessage = "Please enter valid ISBN13 Number")]
+        [RegularExpression(@"^[0-9\s]{13}$", ErrorMessage = "Please enter valid ISBN13 Number")]
         public string Isbn { get; set; }
 
         [Required, MaxLength(128)]
@@ -61,16 +66,16 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Author { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-Z0-9]{1,15}", ErrorMessage = "Please enter valid Course Number")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public string CourseSection { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0-9]{4}$", ErrorMessage = "Please enter valid year. Example: 2015")]
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid year. Example: 2015")]
         public int ? Year { get; set; }
 
         [Required]
         //should input minimum 1 number, max 4 numbers
-        [RegularExpression(@"^[0-9]{1,4}$", ErrorMessage = "Please enter valid edition")]
+        [RegularExpression(@"^[0-9\s]{1,4}$", ErrorMessage = "Please enter valid edition")]
         public int ? Edition { get; set; }
 
         [Required]

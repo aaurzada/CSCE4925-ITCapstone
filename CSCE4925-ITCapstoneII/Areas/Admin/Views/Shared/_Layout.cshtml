@@ -80,24 +80,18 @@
                     <ul class="menu nav navbar-nav">
                         <li class="leaf"@*"first leaf active"*@>
                             <a class="leaf" href="/">
-                                Checkout
+                                Checkout/Check-in
                             </a>
                         <li>
-                        <li class="leaf">
-                            <a title="" href="/Checkin">
-                                Check-in
-                            </a>
-                        </li>
+                 
                         <li class="@SelectedTabClass("Catalog Management")">
                             @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
                         </li>
                         <li class="@SelectedTabClass("User Records")">
                             @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
                         </li>
-                        <li class="leaf">
-                            <a title="" href="/Reports">
-                                Reports
-                            </a>
+                        <li class="@SelectedTabClass("Reports")">
+                            @Html.ActionLink("Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })
                         </li>
                     </ul>
                 </div>

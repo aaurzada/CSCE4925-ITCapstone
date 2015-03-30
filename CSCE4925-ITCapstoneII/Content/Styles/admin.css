@@ -224,10 +224,6 @@ li.leaf {
     line-height: 20px;
 }
 
-/*#main-nav li:hover, #main-nav li:active, #main-nav li:focus {
-    background-color: #00788A;
-    color: #FFF;
-}*/
 .active {
     background-color: #00788A !important;
     color: #FFF !important;
@@ -247,6 +243,23 @@ li.leaf {
     margin-right: -30px;
 }
 
+/*.nav-tabs > li:active {
+    color: #FFF;
+    background-color: #05352B;
+    border-color: #021411;
+}
+
+.nav-tabs > li > a{
+    
+    background-color: #096451;
+    border-color: #074D3E;
+    color: #FFF !important;
+}
+.nav-tabs > li > a:hover{
+    color: #FFF;
+    background-color: #05352B;
+    border-color: #021411;
+}*/
 
 /*end nav bar*/
 
@@ -263,7 +276,7 @@ li.leaf {
     padding-left: 30px;
     padding-right: 30px;
     width: 100%;
-    /*height: 500px;*/
+    min-height: 400px;
 }
 
 #site-content .row {

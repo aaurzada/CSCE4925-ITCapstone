@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NHibernate.Linq;
+using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
+using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
     public class ReportController : Controller
     {
         // GET: Admin/Report
-        public ActionResult Index()
+        [SelectedTab("Reports")]
+        public ActionResult IndexBookReport(bool avail)
         {
-            return View();
+            var bookList = new ReportBookList() { Books = Database.Session.Query<Book>().ToList() };
+            //ViewBag.isAvail = Database.Session.Query<Book>().Where(b => )
+            //{
+            //    bookList = new ReportBookList()
+            //    {
+            //        Books = Database.Session.Query<Book>().ToList()
+                        
+            //    };
+            //}
+            
+            return View(bookList);
         }
 
         // GET: Admin/Report/Details/5

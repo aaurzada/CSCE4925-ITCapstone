@@ -30,7 +30,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //check if user typed something in the search box
             if (!string.IsNullOrEmpty(searchUser))
             {
-                userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList() };
+                userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) 
+                    || u.FirstName.Contains(searchUser)).ToList() };
             }
 
             return View(userList);
