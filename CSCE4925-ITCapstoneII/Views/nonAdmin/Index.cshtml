@@ -1,4 +1,4 @@
-﻿@model SQLSolutions.Models.TransIndex
+﻿@model SQLSolutions.ViewModel.transactionDetailsList
 
 
 @{
@@ -7,13 +7,16 @@
 
 <h2>User Index</h2>
 
-<table class="table">
+<table class="table"> @*table will display book info and checkout/duedate info to current user*@
     <tr>
         <th>
             @Html.DisplayName("Book Title")
         </th>
         <th>
-            @Html.DisplayName("Asset Number")
+            @Html.DisplayName("Author")
+        </th>
+        <th>
+            @Html.DisplayName("Course Section")
         </th>
         <th>
             @Html.DisplayName("Check Out Date")
@@ -25,25 +28,25 @@
         <th></th>
     </tr>
 
-    @try
-    {
-        foreach (var item in Model.Transactions)
+        @try
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                <td>@Html.DisplayFor(modelItem => item.AssetNum)</td>
-                <td> @Html.DisplayFor(modelItem => item.CheckoutDate) </td>
-                <td> @Html.DisplayFor(modelItem => item.DueDate) </td>
-                
-            
-            </tr>
-        }
-    }
-    catch
-    {
-        <tr>
+            foreach (var item in Model.UserBooks) //display all checked out books of current user
+            {
+                int daysLeft = (item.DueDate - DateTime.Today).Days;
+                <tr style="@(daysLeft <= 0 ? "Background-color:red" : "")"> @*Any books passed due, highlight in red*@
+                <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                <td> @Html.DisplayFor(modelItem => item.Author) </td>
+                <td> @Html.DisplayFor(modelItem => item.CourseSection)</td>
+                <td> @Html.DisplayFor(modelItem => item.CheckoutDate)</td>
+                <td> @Html.DisplayFor(modelItem => item.DueDate)</td>
+                </tr>
 
-            <td>No books currently checked out!</td>
-        </tr>
-    }
-</table>
+            }
+        }
+        catch //if query/connection fails then display connection failure
+        {
+           <tr>
+           <td>Connection failed.</td>
+           </tr>
+        }
+        </table>

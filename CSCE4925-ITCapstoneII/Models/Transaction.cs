@@ -10,12 +10,9 @@ using NHibernate.Mapping.ByCode.Conformist;
 //mapping between C# Transaction class and MySQL "transaction" table
 namespace SQLSolutions.Models
 {
-    public class TransIndex
-    {
-        public IEnumerable<Transaction> Transactions { get; set; }
-    }
 
-    public class Transaction:Book
+
+    public class Transaction
     {
         //id of the transaction {primary key}
         public virtual int Id { get; set; }
