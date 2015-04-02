@@ -45,6 +45,8 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int ? Edition { get; set; }
         [Required]
         public bool IsRequired { get; set; }
+
+        public bool InStock { get; set; }
     }
 
     public class BookEdit
@@ -80,5 +82,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         public bool IsRequired { get; set; }
+
+        public bool InStock { get; set; }
     }
 }

@@ -1,25 +1,25 @@
-﻿@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
+﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
 
 
-<h2>Book Report</h2>
+<h2>Book Reports</h2>
 <p>
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            Filter
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Checked-in Books</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Checked-out Books</a></li>
 
-        </ul>
-    </div>
-    @*@using (Html.BeginForm())
+    @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Get))
     {
-        <text>Available Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.isAvail))
-        <text>Checked-out Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.notAvail))
-        <input type="submit" value ="Filter"/> 
-    }*@
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
+            </div>
+            <span>
+                <button class="btn btn-default" type="submit">
+                    Filter
+                </button>
+            </span>
+        </div>
+    }
 
 
 </p>
@@ -50,6 +50,9 @@
         <th>
             @Html.DisplayName("Required")
         </th>
+        <th>
+            @Html.DisplayName("Available")
+        </th>
         <th></th>
     </tr>
 
@@ -79,6 +82,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsRequired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStock)
             </td>
 
         </tr>

@@ -68,7 +68,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 CourseSection = form.CourseSection,
                 Year = form.Year,
                 Edition = form.Edition,
-                IsRequired = form.IsRequired
+                IsRequired = form.IsRequired,
+                InStock = form.InStock
             };
             //save user to the database
             Database.Session.Save(book);
@@ -94,7 +95,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 CourseSection = bookEdit.CourseSection,
                 Year = bookEdit.Year,
                 Edition = bookEdit.Edition,
-                IsRequired = bookEdit.IsRequired
+                IsRequired = bookEdit.IsRequired,
+                InStock = bookEdit.InStock
             });
         }
 
@@ -123,6 +125,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             bookEdit.Year = form.Year;
             bookEdit.Edition = form.Edition;
             bookEdit.IsRequired = form.IsRequired;
+            bookEdit.InStock = form.InStock;
 
             Database.Session.Update(bookEdit);
 
