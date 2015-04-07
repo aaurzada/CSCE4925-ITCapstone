@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AssetNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AssetNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AssetNum, new { htmlAttributes = new { @class = "form-control", @Value="", @placeholder="Four digit asset number"} })
                 @Html.ValidationMessageFor(model => model.AssetNum, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Isbn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Isbn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Isbn, new { htmlAttributes = new { @class = "form-control", @placeholder="ISBN-13 number" } })
                 @Html.ValidationMessageFor(model => model.Isbn, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,14 +73,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IsRequired, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IsRequired, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.IsRequired, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsRequired, "", new { @class = "text-danger" })*@
+                @Html.CheckBoxFor(model => model.IsRequired)
                 @Html.ValidationMessageFor(model => model.IsRequired, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add Book" class="btn btn-default" />
             </div>
         </div>
     </div>

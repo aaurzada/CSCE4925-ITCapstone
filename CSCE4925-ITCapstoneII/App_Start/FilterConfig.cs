@@ -9,8 +9,7 @@ namespace SQLSolutions
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new System.Web.Mvc.AuthorizeAttribute());
-            filters.Add(new RequireHttpsAttribute());
+            filters.Add(new TransactionFilter());
         }
     }
 }

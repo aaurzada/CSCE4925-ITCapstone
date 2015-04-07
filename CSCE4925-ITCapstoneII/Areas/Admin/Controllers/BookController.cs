@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
+    [AllowAnonymous]
+    [SelectedTab("Catalog Management")]
     public class BookController : Controller
     {
         // GET: Admin/Book
@@ -36,6 +39,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: Admin/Book/Create
+        [SelectedTab("Catalog Management")]
         public ActionResult Create()
         {
             return View( new BookNew {});
@@ -43,6 +47,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // POST: Admin/Book/Create
         [HttpPost]
+        [SelectedTab("Catalog Management")]
         public ActionResult Create(BookNew form)
         {
             if (Database.Session.Query<Book>().Any(b => b.AssetNum == form.AssetNum))
@@ -71,6 +76,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         }
 
         // GET: Admin/Book/Edit/5
+        [SelectedTab("Catalog Management")]
         public ActionResult Edit(int id)
         {
             var bookEdit = Database.Session.Get<Book>(id);
@@ -94,6 +100,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // POST: Admin/Book/Edit/5
         [HttpPost]
+        [SelectedTab("Catalog Management")]
         public ActionResult Edit(int id, BookEdit form)
         {
             var bookEdit = Database.Session.Get<Book>(id);

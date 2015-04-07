@@ -1,5 +1,6 @@
 ﻿@using System.Web.Optimization
-@using System.Web.Mvc
+@using System.Web.Mvc;
+@using SQLSolutions.Infrastructure;
 
 @{
     Layout = null;
@@ -16,7 +17,7 @@
 
 <!Doctype html>
 
-<html>
+@*<html>
 <head>
     <title>Library Admin</title>
 
@@ -27,15 +28,15 @@
     <div class="container">
         <ul class="nav nav-pills">
             <li class="@SelectedTabClass("catalog")">
-                @Html.ActionLink("Catalog", "Index", "Catalog", new { area = "admin" }, new { })
+                @Html.ActionLink("Catalog", "Index", "Book", new { area = "admin" }, new { })
             </li>
             <li class="@SelectedTabClass("users")">
-                @Html.ActionLink("Users", "Index", "Users", new { area = "admin" }, new { })
+                @Html.ActionLink("Users", "Index", "User", new { area = "admin" }, new { })
             </li>
             @*<li class="pull-right">
                 @Html.RouteLink("Back to Website", "Home")
             </li>*@
-        </ul>
+@*</ul>
 
         @RenderBody()
     </div>
@@ -43,4 +44,88 @@
     @Scripts.Render("~/admin/scripts")
     @RenderSection("Scripts", false)
 </body>
+</html>*@
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>CSCE Library</title>
+
+    @Styles.Render("~/admin/styles")
+ 
+</head>
+<body>
+    <header id="heading" class="hidden-print">
+        <div id="branding" class="header-main container hidden-xs" role="banner">
+
+            <h1 id="site-name" class="logo col-sm-8">
+                <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
+            </h1>
+            <div id="UNT" class=" col-sm-4">
+                <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
+                    <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
+                </a>
+
+            </div>
+        </div>
+    </header>
+    <nav id="main-nav" class="navigation" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"></button>
+            </div>
+            <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
+                <div class="navbar-left">
+                    <ul class="menu nav navbar-nav">
+                        <li class="leaf"@*"first leaf active"*@>
+                            <a class="leaf" href="/">
+                                Checkout/Check-in
+                            </a>
+                        <li>
+                 
+                        <li class="@SelectedTabClass("Catalog Management")">
+                            @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
+                        </li>
+                        <li class="@SelectedTabClass("User Records")">
+                            @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
+                        </li>
+                        <li class="@SelectedTabClass("Reports")">
+                            @Html.ActionLink("Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-right">
+                    <ul class="menu nav navbar-nav secondary">
+                        <li class="first leaf">
+                            <a title="" href="/Logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+    </nav>
+    <div class="main-container container">
+        <div id="site-content-region" class="row">
+            <div class="col-sm-12">
+                @RenderBody()
+
+
+
+            </div>
+        </div>
+    </div>
+<footer id="main-footer">
+        <div id="footer-content">
+            <div class="container">
+                SQL Solutions
+            </div>
+        </div>
+    </footer>
+</body>
+@Scripts.Render("~/admin/scripts")
+@RenderSection("Scripts", false)
 </html>

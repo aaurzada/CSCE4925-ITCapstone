@@ -1,6 +1,10 @@
 ﻿@using System.Web.Optimization
+@using SQLSolutions.Infrastructure;
+
 <!DOCTYPE html>
-<html>
+
+
+@*<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,4 +41,91 @@
     @Scripts.Render("~/scripts")
     @RenderSection("Scripts", false)
 </body>
+</html>*@
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>CSCE Library</title>
+
+    @Styles.Render("~/styles")
+
+</head>
+<body>
+<header id="heading" class="hidden-print">
+    <div id="branding" class="header-main container hidden-xs" role="banner">
+
+        <h1 id="site-name" class="logo col-sm-8">
+            <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
+        </h1>
+        <div id="UNT" class=" col-sm-4">
+            <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
+                <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
+            </a>
+
+        </div>
+    </div>
+</header>
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    <nav id="main-nav" class="navigation" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"></button>
+            </div>
+            <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
+                <div class="navbar-left">
+                    <ul class="menu nav navbar-nav">
+                        <li class="leaf" @*"first leaf active"*@>
+                        <a class="leaf" href="/">
+                            Home
+                        </a>
+                        <li>
+                        <li class="leaf">
+                            <a title="" href="/Checkin">
+                                Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-right">
+                    <ul class="menu nav navbar-nav secondary">
+                        <li class="first leaf">
+                            <a title="" href="/Logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+    </nav>
+}
+else
+{
+    <nav id="main-nav" class="navigation" role="navigation" visibility ="false">
+        </nav>
+        }
+        <div class="main-container container">
+            <div id="site-content-region" class="row">
+                <div class="col-sm-12">
+                    @RenderBody()
+
+
+
+                </div>
+            </div>
+        </div>
+        <footer id="main-footer">
+            <div id="footer-content">
+                <div class="container">
+                    SQL Solutions
+                </div>
+            </div>
+        </footer>
+</body>
+@Scripts.Render("~/scripts")
+@RenderSection("Scripts", false)
 </html>

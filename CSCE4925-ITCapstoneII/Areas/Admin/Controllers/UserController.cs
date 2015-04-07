@@ -3,65 +3,95 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using NHibernate;
+using NHibernate.Context;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using NHibernate.Mapping;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
 using SQLSolutions.Migrations;
 using SQLSolutions.Models;
 
+
 namespace SQLSolutions.Areas.Admin.Controllers
 {
+    [SelectedTab("User Records")]
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index (string searchUser)
+        public ActionResult Index(string searchUser)
         {
             //var userList = Database.Session.Query<User>().ToList();
-             var userList = new UserIndex {Users = Database.Session.Query<User>().ToList()};
+            var userList = new UserIndex { Users = Database.Session.Query<User>().ToList() };
             //search user by last name and first name
             //check if user typed something in the search box
-             if (!string.IsNullOrEmpty(searchUser))
-             {
-                 userList = new UserIndex {Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) || u.FirstName.Contains(searchUser)).ToList()};
-             }
+            if (!string.IsNullOrEmpty(searchUser))
+            {
+                userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) 
+                    || u.FirstName.Contains(searchUser)).ToList() };
+            }
+
             return View(userList);
         }
+       
 
         // GET: User/Details/5
+        [SelectedTab("User Records")]
         public ActionResult Details(int id)
         {
-            var userDetail = Database.Session.Get<User>(id);
-            if (userDetail == null)
+            //get user id
+            var user = Database.Session.Get<User>(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
+            //query Book, Transaction tables to retrieve data about books borrowed by the user
+            //and get DueDates and CheckoutDates and return UserDetails entity defined in ViewModels
+            var userBook = (from book in Database.Session.Query<Book>()
+                            join transaction in Database.Session.Query<Transaction>() 
+                            on book.AssetNum equals transaction.BookAssetNumber
+                            where transaction.UserId == id
+                            select new UserDetails
+                            {
 
-            
-              Database.Session.CreateSQLQuery("SELECT BookAssetNumber, UserId  FROM Transaction t, Book b, User u" +
-                                                "WHERE u.Id = t.UserId");
-            var transDetail = new UserDetails
+                                Title = book.Title,
+                                Author = book.Author,
+                                CourseSection = book.CourseSection,
+                                DueDate = transaction.DueDate,
+                                CheckoutDate = transaction.CheckoutDate
+
+
+                            }).ToList();
+            //convert userDetails entity to IEnumerable and pass it to the view
+            var result = new UserDetailsList
             {
-                UserTransactions = Database.Session.Query<Transaction>().Where(t => t.UserId == id).ToList()
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserBooks = userBook
             };
-            return View(transDetail);
+
+            return View(result);
 
         }
 
         // GET: User/Create
+        [SelectedTab("User Records")]
         public ActionResult Create()
         {
 
-            return View( new UserNew {});
+            return View(new UserNew { });
         }
 
         // POST: User/Create
         [HttpPost]
+        [SelectedTab("User Records")]
         public ActionResult Create(UserNew form)
         {
-           //check if user ID and Euid already exists in the database
-            if(Database.Session.Query<User>().Any(u => u.Id == form.Id))
+            //check if user ID and Euid already exists in the database
+            if (Database.Session.Query<User>().Any(u => u.Id == form.Id))
                 ModelState.AddModelError("Id", "ID must be unique");
             if (Database.Session.Query<User>().Any(e => e.Euid == form.Euid))
                 ModelState.AddModelError("Euid", "Euid must be unique");
@@ -86,6 +116,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // GET: User/Edit/5
         //get the is of the user and display user information for edit
+        [SelectedTab("User Records")]
         public ActionResult Edit(int id)
         {
             var editUser = Database.Session.Load<User>(id);
@@ -105,6 +136,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
+        [SelectedTab("User Records")]
         public ActionResult Edit(int id, UserEdit form)
         {
             var editUser = Database.Session.Get<User>(id);

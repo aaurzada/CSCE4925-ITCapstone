@@ -1,0 +1,92 @@
+﻿@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
+
+
+<h2>Book Report</h2>
+<p>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Filter
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Checked-in Books</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Checked-out Books</a></li>
+
+        </ul>
+    </div>
+    @*@using (Html.BeginForm())
+    {
+        <text>Available Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.isAvail))
+        <text>Checked-out Books</text>@Html.DropDownList("InStock", new SelectList(ViewBag.notAvail))
+        <input type="submit" value ="Filter"/> 
+    }*@
+
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("AssetNum")
+        </th>
+        <th>
+            @Html.DisplayName("ISBN")
+        </th>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Author")
+        </th>
+        <th>
+            @Html.DisplayName("CourseSection")
+        </th>
+        <th>
+            @Html.DisplayName("Year")
+        </th>
+        <th>
+            @Html.DisplayName("Edition")
+        </th>
+        <th>
+            @Html.DisplayName("Required")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRequired)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div class="form-group">
+
+    <input type="button" value="Print" class="btn btn-lg btn-default" onclick="window.print();" />
+
+</div>

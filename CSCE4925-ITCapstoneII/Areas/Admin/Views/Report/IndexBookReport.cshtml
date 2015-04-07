@@ -1,0 +1,82 @@
+﻿@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
+
+@{
+    ViewBag.Title = "IndexBookResult";
+}
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Book Reports</a></li>
+    <li role="presentation"><a href="#">Transaction Reports</a></li>
+</ul>
+@Html.Partial("_BookReport")
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("AssetNum")
+        </th>
+        <th>
+            @Html.DisplayName("ISBN")
+        </th>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Author")
+        </th>
+        <th>
+            @Html.DisplayName("CourseSection")
+        </th>
+        <th>
+            @Html.DisplayName("Year")
+        </th>
+        <th>
+            @Html.DisplayName("Edition")
+        </th>
+        <th>
+            @Html.DisplayName("Required")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRequired)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div class="form-group">
+    
+        <input type="button" value="Print" class="btn btn-lg btn-default" onclick="window.print();"/>
+    
+</div>*@
+@*<td>
+    <input type="button" value="print" onclick=" window.print(); " />
+</td>*@

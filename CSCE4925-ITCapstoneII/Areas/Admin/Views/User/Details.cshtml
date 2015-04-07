@@ -1,5 +1,4 @@
-﻿@model SQLSolutions.Areas.Admin.ViewModels.UserDetails
-
+﻿@model SQLSolutions.Areas.Admin.ViewModels.UserDetailsList
 @{
     ViewBag.Title = "Details";
 }
@@ -10,74 +9,48 @@
     <h4>User</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayName("First Name")
+        <dt>
+            @Html.DisplayName("Name")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Last Name")
-        </dt>
-
-        <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
 
-        <dt>
-            @Html.DisplayName("Books")
-        </dt>*@
         <dd>
             <table class="table">
                 <tr>
-                    <th>Asset Number</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Course</th>
+                    <th>Checkout Date</th>
                     <th>Due Date</th>
                 </tr>
-                 @foreach (var item in Model.UserTransactions)
-                   {
-                       <tr>
-                           <td>
-                               @Html.DisplayFor(modelItem => item.Id)
-                           </td>
-                           <td>
-                               @Html.DisplayFor(modelItem => item.UserId)
-                           </td>
-                           <td>
-                               @Html.DisplayFor(modelItem => item.BookAssetNumber)
-                           </td>
-                           <td>
-                               @Html.DisplayFor(modelItem => item.CheckoutDate)
-                           </td>
-                           <td>
-                               @Html.DisplayFor(modelItem => item.DueDate)
-                           </td>
-                       </tr>
-                    }
+
                 @foreach (var item in Model.UserBooks)
                 {
+
                     <tr>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AssetNum)
-                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Isbn)
+                            @Html.DisplayFor(modelItem => item.Author)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CourseSection)
                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckoutDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DueDate)
+                        </td>
                     </tr>
                 }
 
-    </table>
+            </table>
         </dd>
     </dl>
 </div>
