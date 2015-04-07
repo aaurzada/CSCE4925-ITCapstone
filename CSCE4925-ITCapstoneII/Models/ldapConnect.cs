@@ -29,8 +29,6 @@ namespace ConnectLDAP
                 // Create the new LDAP connection
                 ldapConnection = new LdapConnection(new LdapDirectoryIdentifier(ldapServer, true, false));
                 LdapSessionOptions options = ldapConnection.SessionOptions;
-                
-
                 ldapConnection.Credential = new NetworkCredential(userDN, password); //save username and password of user which will be bound later
                 ldapConnection.AuthType = AuthType.Basic;
                 ldapConnection.SessionOptions.ProtocolVersion = 3; //change protocol to match unt ldap protocol version 3
