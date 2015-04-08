@@ -1,10 +1,10 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.TransactionReportList
-
+<div id="transaction">
 <h2>Transaction Reports</h2>
 
 <table class="table">
     <tr>
-        
+
         <th>
             @Html.DisplayName("EUID")
         </th>
@@ -41,7 +41,7 @@
         <th>
             @Html.DisplayName("Edition")
         </th>
-        
+
         <th>
             @Html.DisplayName("ISBN")
         </th>
@@ -51,7 +51,7 @@
         <th>
             @Html.DisplayName("Required")
         </th>
-       
+
         <th></th>
     </tr>
 
@@ -109,3 +109,8 @@
     }
 
 </table>
+
+<p>
+    @Html.ActionLink("Export to Excel", "Export")
+</p>
+</div>

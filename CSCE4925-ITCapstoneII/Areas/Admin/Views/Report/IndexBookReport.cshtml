@@ -1,12 +1,21 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
-
 @{
-    ViewBag.Title = "IndexBookResult";
+    ViewBag.Title = "IndexBookReport";
 }
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Book Reports</a></li>
-    <li role="presentation"><a href="#">Transaction Reports</a></li>
+    <li role="presentation" class="active">
+        @Ajax.ActionLink("Book Report", "IndexBookReport", "Report", 
+            new AjaxOptions {UpdateTargetId = "books", InsertionMode = InsertionMode.Replace})
+    </li>
+    <li role="presentation"> @Ajax.ActionLink("Transaction Report", "_TransactionReport", "Report",
+                                 new AjaxOptions {UpdateTargetId = "transaction"})
+    </li>
 </ul>
-@Html.Partial("_BookReport")
 
+    @Html.Partial("_BookReport")  
+
+
+@*<div id="transaction">
+    @Html.Partial("_TransactionReport")
+</div>*@
 

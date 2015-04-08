@@ -24,17 +24,17 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int? Year { get; set; }
         public int? Edition { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MMMM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CheckoutDate { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MMMM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime DueDate { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MMMM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CheckInDate { get; set; }
         public string Isbn { get; set; }
         public int AssetNum { get; set; }
-        public bool IsRequired { get; set; }
+        public string IsRequired { get; set; }
 
     }
 
