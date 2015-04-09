@@ -14,9 +14,10 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
     public class TransactionReport
     {
+        public string Euid { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Euid { get; set; }
+        public string Isbn { get; set; }
         public string Email { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
@@ -32,7 +33,6 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CheckInDate { get; set; }
-        public string Isbn { get; set; }
         public int AssetNum { get; set; }
         public string IsRequired { get; set; }
 

@@ -1,142 +1,182 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.TransactionReportList
+@using SelectListItem = System.Web.WebPages.Html.SelectListItem
 
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Transaction Reports</h2>
-<form method="POST">
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="input-group">
-                <input type="text" class="form-control" name="searchValue" />
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                        Search
-                    </button>
-                </span>
-            </div>
-        </div>
-    </div>
-</form>
-@*<form role="search" method="get" id="searchform" action="">
-    <div class="row">
-        <div class="col-lg-2">
-            <a id="search-menu" href="#">Search</a>
-            <div id="search-form">
-                <div class="input-group">
 
-                    <input type="text" class="form-control" value="" name="searchName" id="s" />
+
+@*<form method="GET">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchValue"/>
                     <span class="input-group-btn">
-                        <button type="submit" id="searchsubmit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-default" type="submit">
+                            Search
+                        </button>
                     </span>
-                    </div>
                 </div>
             </div>
         </div>
-</form>*@
-    <table class="table" id="report">
+    </form>*@
+
+<div class="row">
+    @using (Html.BeginForm("TransactionReports", "Report", FormMethod.Get, new {@class = "Search-form"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>) ViewBag.Selected, new {@class = "form-control"})
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchValue"/>
+
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        Filter
+                    </button>
+                </span>
+                </div>
+            </div>
+        </div>
+        <input type="text" id="datepicker">
+    <input type="text" id="datepicker2">
+
+    <button class="btn btn-default" type="reset">
+        Reset
+    </button>
+    }
+</div>
+
+@*<form role="search" method="get" id="searchform" action="">
+        <div class="row">
+            <div class="col-lg-2">
+                <a id="search-menu" href="#">Search</a>
+                <div id="search-form">
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" value="" name="searchName" id="s" />
+                        <span class="input-group-btn">
+                            <button type="submit" id="searchsubmit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>*@
+<table class="table" id="report">
+    <tr>
+
+        <th>
+            @Html.DisplayName("EUID")
+        </th>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @Html.DisplayName("ISBN")
+        </th>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Author")
+        </th>
+        <th>
+            @Html.DisplayName("Course")
+        </th>
+        <th>
+            @Html.DisplayName("Checkout Date")
+        </th>
+        <th>
+            @Html.DisplayName("Due Date")
+        </th>
+        <th>
+            @Html.DisplayName("Checkin Date")
+        </th>
+        <th>
+            @Html.DisplayName("Year")
+        </th>
+        <th>
+            @Html.DisplayName("Edition")
+        </th>
+        <th>
+            @Html.DisplayName("Asset Num")
+        </th>
+        <th>
+            @Html.DisplayName("Required")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.TransactionReports)
+    {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Euid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
 
-            <th>
-                @Html.DisplayName("EUID")
-            </th>
-            <th>
-               @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Email")
-            </th>
-            <th>
-                @Html.DisplayName("ISBN")
-            </th>
-            <th>
-                @Html.DisplayName("Title")
-            </th>
-            <th>
-                @Html.DisplayName("Author")
-            </th>
-            <th>
-                @Html.DisplayName("Course")
-            </th>
-            <th>
-                @Html.DisplayName("Checkout Date")
-            </th>
-            <th>
-                @Html.DisplayName("Due Date")
-            </th>
-            <th>
-                @Html.DisplayName("Checkin Date")
-            </th>
-            <th>
-                @Html.DisplayName("Year")
-            </th>
-            <th>
-                @Html.DisplayName("Edition")
-            </th>
-            <th>
-                @Html.DisplayName("Asset Num")
-            </th>
-            <th>
-                @Html.DisplayName("Required")
-            </th>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckoutDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckInDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetNum)
+            </td>
+            <td>
+                @(item.IsRequired == "0" ? Html.DisplayName("No") : Html.DisplayFor(modelItem => item.IsRequired))
+            </td>
 
-            <th></th>
+
         </tr>
-
-        @foreach (var item in Model.TransactionReports)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Euid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Isbn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CourseSection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckoutDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DueDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckInDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Edition)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AssetNum)
-                </td>
-                <td>
-                    @(item.IsRequired == "0" ? Html.DisplayName("No") : Html.DisplayFor(modelItem => item.IsRequired))
-                </td>
+    }
 
 
-            </tr>
-        }
+</table>
+@if (!Model.TransactionReports.Any())
+{
+    @Html.DisplayName("No records were found")
+}
 
-    </table>
-    <p>
-        @Html.ActionLink("Export to Excel", "Export")
-    </p>
+<p>
+    @Html.ActionLink("Export to Excel", "Export")
+</p>

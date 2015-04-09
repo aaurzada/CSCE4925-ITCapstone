@@ -1,21 +1,103 @@
-﻿@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
-@{
-    ViewBag.Title = "IndexBookReport";
-}
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active">
-        @Ajax.ActionLink("Book Report", "IndexBookReport", "Report", 
-            new AjaxOptions {UpdateTargetId = "books", InsertionMode = InsertionMode.Replace})
-    </li>
-    <li role="presentation"> @Ajax.ActionLink("Transaction Report", "_TransactionReport", "Report",
-                                 new AjaxOptions {UpdateTargetId = "transaction"})
-    </li>
-</ul>
+﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+@model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
 
-    @Html.Partial("_BookReport")  
+<div id="books">
+    <h2>Book Reports</h2>
+    <p>
+
+        @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Get))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
+                </div>
+                <span>
+                    <button class="btn btn-default" type="submit">
+                        Filter
+                    </button>
+                </span>
+            </div>
+        }
 
 
-@*<div id="transaction">
-    @Html.Partial("_TransactionReport")
-</div>*@
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("AssetNum")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("CourseSection")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <div class="form-group">
+
+        <input type="button" value="Print" class="btn btn-lg btn-default" onclick=" window.print(); " />
+
+    </div>
+    <p>
+        @Html.ActionLink("Export to Excel", "Export")
+    </p>
+</div>
 

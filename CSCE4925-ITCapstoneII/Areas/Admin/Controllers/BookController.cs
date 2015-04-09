@@ -7,6 +7,7 @@ using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
 using SQLSolutions.Infrastructure;
 using SQLSolutions.Models;
+using PagedList;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
@@ -15,9 +16,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
     public class BookController : Controller
     {
         // GET: Admin/Book
-        public ActionResult Index(string searchBook)
+        public ActionResult Index(string searchBook, int page =1)
         {
-            var bookList = new BookIndex { Books = Database.Session.Query<Book>().ToList() };
+            var bookList = new BookIndex { Books = Database.Session.Query<Book>().ToList().ToPagedList(page, 5) };
            //searh book by title, ISBN, AssetNumber, course section, author
             if (!string.IsNullOrEmpty(searchBook))
             {
@@ -25,7 +26,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 {
                     Books = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook)
                         || b.Isbn.Contains(searchBook) || b.Author.Contains(searchBook)
-                        || b.AssetNum.ToString().Contains(searchBook) || b.CourseSection.ToString().Contains(searchBook)).ToList()
+                        || b.AssetNum.ToString().Contains(searchBook) 
+                        || b.CourseSection.ToString().Contains(searchBook)).ToList().ToPagedList(page, 5)
                 };
             }
             

@@ -123,3 +123,6 @@
     }
 
 </table>
+<div class="pagedList">
+    @Html.PagedListPager(Model.Books, page => Url.Action("Index", new {page}), PagedListRenderOptions.MinimalWithItemCountText)
+</div>
