@@ -170,7 +170,6 @@
     <Compile Include="Areas\Admin\ViewModels\Transaction.cs" />
     <Compile Include="Areas\Admin\ViewModels\User.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Infrastructure\Controllers\nonAdminController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
