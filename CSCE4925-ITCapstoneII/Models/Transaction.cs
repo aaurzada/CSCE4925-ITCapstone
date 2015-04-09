@@ -48,7 +48,7 @@ namespace SQLSolutions.Models
             });
             Property(x => x.CheckoutDate, x => x.NotNullable(true));
             Property(x => x.DueDate, x => x.NotNullable(true));
-            Property(x => x.CheckInDate, x => x.NotNullable(true));
+            Property(x => x.CheckInDate, x => x.NotNullable(false));
         }
     }
 }
