@@ -55,77 +55,105 @@
  
 </head>
 <body>
-    <header id="heading" class="hidden-print">
-        <div id="branding" class="header-main container hidden-xs" role="banner">
+<header id="heading" class="hidden-print">
+    <div id="branding" class="header-main container hidden-xs" role="banner">
 
-            <h1 id="site-name" class="logo col-sm-8">
-                <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
-            </h1>
-            <div id="UNT" class=" col-sm-4">
-                <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
-                    <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
-                </a>
+        <h1 id="site-name" class="logo col-sm-8">
+            <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
+        </h1>
+        <div id="UNT" class=" col-sm-4">
+            <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
+                <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
+            </a>
 
-            </div>
-        </div>
-    </header>
-    <nav id="main-nav" class="navigation" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1"></button>
-            </div>
-            <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
-                <div class="navbar-left">
-                    <ul class="menu nav navbar-nav">
-                        <li class="leaf"@*"first leaf active"*@>
-                            <a class="leaf" href="/">
-                                Checkout/Check-in
-                            </a>
-                        <li>
-                 
-                        <li class="@SelectedTabClass("Catalog Management")">
-                            @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
-                        </li>
-                        <li class="@SelectedTabClass("User Records")">
-                            @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
-                        </li>
-                        <li class="@SelectedTabClass("Reports")">
-                            @Html.ActionLink("Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar-right">
-                    <ul class="menu nav navbar-nav secondary">
-                        <li class="first leaf">
-                            <a title="" href="/Logout">
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div><!-- /.container -->
-    </nav>
-    <div class="main-container container">
-        <div id="site-content-region" class="row">
-            <div class="col-sm-12">
-                @RenderBody()
-
-
-
-            </div>
         </div>
     </div>
-<footer id="main-footer">
-        <div id="footer-content">
-            <div class="container">
-                SQL Solutions
+</header>
+<nav id="main-nav" class="navigation" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"></button>
+        </div>
+        <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
+            <div class="navbar-left">
+                <ul class="menu nav navbar-nav">
+                    <li class="leaf" @*"first leaf active"*@>
+                        <a class="leaf" href="/">
+                            Checkout/Check-in
+                        </a>
+                    <li>
+
+                    <li class="@SelectedTabClass("Catalog Management")">
+                        @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
+                    </li>
+                    <li class="@SelectedTabClass("User Records")">
+                        @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
+                    </li>
+                    <li class="dropdown @SelectedTabClass("Reports")">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Book Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })</li>
+                            <li>@Html.ActionLink("Transaction Reports", "TransactionReports", "Report", new { area = "admin" }, new { })</li>
+                        </ul>
+                    </li>
+                            @*<li class="@SelectedTabClass("Reports")">
+                                @Html.ActionLink("Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })
+                            </li>*@
+                        </ul>
+</div>
+            <div class="navbar-right">
+                <ul class="menu nav navbar-nav secondary">
+                    <li class="first leaf">
+                        <a title="" href="/Logout">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+    </div><!-- /.container -->
+</nav>
+<div class="main-container container">
+    <div id="site-content-region" class="row">
+        <div class="col-sm-12">
+            @RenderBody()
+
+
+
+        </div>
+    </div>
+</div>
+<footer id="main-footer">
+    <div id="footer-content">
+        <div class="container">
+            SQL Solutions
+        </div>
+    </div>
+</footer>
+    <script type="text/javascript">
+    var searchvisible = 0;
+    $("#search-menu").click(function (e) {
+        //This stops the page scrolling to the top on a # link.
+        e.preventDefault();
+        if (searchvisible === 0) {
+            //Search is currently hidden. Slide down and show it.
+            $("#search-form").slideDown(200);
+            $("#s").focus(); //Set focus on the search input field.
+            searchvisible = 1; //Set search visible flag to visible.
+        } else {
+            //Search is currently showing. Slide it back up and hide it.
+            $("#search-form").slideUp(200);
+            searchvisible = 0;
+        }
+    });
+    </script>
+
 </body>
+
+
 @Scripts.Render("~/admin/scripts")
+
 @RenderSection("Scripts", false)
 </html>

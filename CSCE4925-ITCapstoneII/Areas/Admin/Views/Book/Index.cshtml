@@ -61,6 +61,9 @@
         <th>
             @Html.DisplayName("Required")
         </th>
+        <th>
+            @Html.DisplayName("Available")
+        </th>
         <th></th>
     </tr>
 
@@ -92,6 +95,9 @@
                 @Html.DisplayFor(modelItem => item.IsRequired)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.InStock)
+            </td>
+            <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
@@ -117,3 +123,6 @@
     }
 
 </table>
+<div class="pagedList">
+    @Html.PagedListPager(Model.Books, page => Url.Action("Index", new {page}), PagedListRenderOptions.MinimalWithItemCountText)
+</div>

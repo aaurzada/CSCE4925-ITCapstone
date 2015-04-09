@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using PagedList;
 using SQLSolutions.Models;
 
 namespace SQLSolutions.Areas.Admin.ViewModels
 {
     public class BookIndex
     {
-        public IEnumerable<Book> Books { get; set; }
+        public IPagedList <Book> Books { get; set; }
     }
 
     // ? - Make integers nullable, to remove 0 from diplaying in the testbox
@@ -19,7 +20,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //Restrict to 4 numbers only
-        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        //[RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
         public int AssetNum { get; set; }
         [Required]
         //Restrict to 13 numbers only
@@ -45,6 +46,8 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int ? Edition { get; set; }
         [Required]
         public bool IsRequired { get; set; }
+
+        public bool InStock { get; set; }
     }
 
     public class BookEdit
@@ -80,5 +83,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         public bool IsRequired { get; set; }
+
+        public bool InStock { get; set; }
     }
 }
