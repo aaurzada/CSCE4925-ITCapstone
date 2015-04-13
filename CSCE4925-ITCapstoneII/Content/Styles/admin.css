@@ -175,7 +175,12 @@ color: inherit;
 #main-nav {
     background-color: #53544A;
 }
-
+#main-nav .dropdown-menu  {
+    background-color: #53544A;
+}
+ ul li:hover ul{
+        display: block; /* display the dropdown */
+    }
 #main-nav .container {
      padding: 0;
      position: relative;
@@ -263,6 +268,9 @@ li.leaf {
 
 /*end nav bar*/
 
+ 
+
+
 /*body*/
 #site-content-region {
     padding-top: 25px;
@@ -291,6 +299,10 @@ li.leaf {
     padding-left: 30px;
     padding-right: 30px;
 }
+/*to reduce the font size on the report section to fit on the page*/
+#report > tbody > tr > td  {
+     font-size: 12px;
+ }
 /*end body*/
 
 /*footer*/
@@ -310,3 +322,11 @@ li.leaf {
         }
 
 /*end footer*/
+
+ #search-form {
+            display: none;
+           
+            
+            
+        }
+ 

@@ -21,11 +21,21 @@
         <dd>
             <table class="table">
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Course</th>
-                    <th>Checkout Date</th>
-                    <th>Due Date</th>
+                    <th>
+                        @Html.DisplayName("Title")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Author")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Course")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Checkout Date")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Due Date")
+                    </th>
                 </tr>
 
                 @foreach (var item in Model.UserBooks)
