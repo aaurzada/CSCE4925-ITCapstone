@@ -27,7 +27,7 @@ namespace SQLSolutions.Models
         //email
         //[Display(Name = "Email")]
         public virtual String Email { get; set; }
-
+        
     }
 
     public class UserMap : ClassMapping<User>

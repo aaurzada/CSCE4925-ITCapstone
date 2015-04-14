@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ConnectLDAP
 {
+ 
     [DirectoryServicesPermission(SecurityAction.LinkDemand, Unrestricted = true)]
 
     public class LDAPConnect
