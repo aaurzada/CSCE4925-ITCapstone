@@ -186,7 +186,7 @@
     <Compile Include="Migrations\_005_AlterBookAndTransaction.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\ldapConnect.cs" />
-    <Compile Include="Controllers\Login.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\RolesUser.cs" />
     <Compile Include="Models\Transaction.cs" />

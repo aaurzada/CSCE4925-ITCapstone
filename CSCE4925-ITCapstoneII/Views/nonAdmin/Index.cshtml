@@ -3,6 +3,10 @@
 
 @{
     ViewBag.Title = "index";
+    if (Session["username"] == null || Session["isAdmin"] == "true")
+    {
+        Response.Redirect("~/Home/index");
+    }
 }
 
 <h2>User Index</h2>

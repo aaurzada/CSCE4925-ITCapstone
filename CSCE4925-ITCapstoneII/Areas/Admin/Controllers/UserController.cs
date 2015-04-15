@@ -24,6 +24,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // GET: User
         public ActionResult Index(string searchUser)
         {
+            checkSessionVars();
             //var userList = Database.Session.Query<User>().ToList();
             var userList = new UserIndex { Users = Database.Session.Query<User>().ToList() };
             //search user by last name and first name
@@ -185,6 +186,14 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //delete user from the database
             Database.Session.Delete(deleteUser);
             return RedirectToAction("Index");
+        }
+
+        public void checkSessionVars()//checks if session variables exist and user is admin
+        {
+            if (Session["username"] == null || Session["isAdmin"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
         }
     }
 }
