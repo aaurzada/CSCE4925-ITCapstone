@@ -5,11 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SQLSolutions.Infrastructure;
-using System;
-using System.Collections.Generic;
-
-using System.Web.Mvc;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -44,7 +39,7 @@ namespace SQLSolutions.Controllers
                 {
                     Session["username"] = user.euid; //store euid as session variable
                     Session["isAdmin"] = "false"; //store is admin as session id. Check at each page
-                    return RedirectToAction("Index", "nonAdmin");
+                    return RedirectToAction("User");
                 }
                 else if (IsValid(user.euid, user.password) == "notExists") //if username does not exist in user table then display does not exist
                 {
@@ -70,7 +65,7 @@ namespace SQLSolutions.Controllers
             { 
                 var connect = new LDAPConnect();
                 //CONNECT TO LDAP 
-        //        if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
+        //      if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
           //      {
                         int id = 0;
                         string strIsAdmin = "0";

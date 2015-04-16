@@ -58,13 +58,22 @@
                 @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
             </div>
         </div>
+        @Html.DropDownListFor(model => model.roleId, new SelectList(
+        new List<object>
+            {
+            new { value = "0" , text = "non-admin"  },
+            new { value = "1" , text = "admin" },
+            },
+            "value",
+            "text",
+            2))
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add User" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add User" class="btn btn-default" />
+                </div>
             </div>
-        </div>
-    </div>
+</div>
 }
 
 <div>

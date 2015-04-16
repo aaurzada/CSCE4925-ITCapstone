@@ -185,7 +185,7 @@
     <Compile Include="Migrations\_006_AlterCheckInDate.cs" />
     <Compile Include="Migrations\_005_AlterBookAndTransaction.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\ldapConnect.cs" />
+    <Compile Include="Controllers\ldapConnect.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\RolesUser.cs" />
@@ -300,11 +300,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\nonAdmin\Index.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\roles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
