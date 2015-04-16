@@ -67,26 +67,14 @@ namespace SQLSolutions.Controllers
                 //CONNECT TO LDAP 
         //      if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
           //      {
-                        int id = 0;
-                        string strIsAdmin = "0";
+                        bool boolIsAdmin = false;
+                     
                 
-                        var queryId = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.Id); //get users id number
-                        id = queryId.SingleOrDefault();
+                        var queryId = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.isAdmin); //get users id number
+                        boolIsAdmin = queryId.SingleOrDefault();
                                
-                        string connectionString = "Server=localhost;Database=sqlsolutions;UID=sqlsolutions;Password=Password01!";
-
-                        MySqlConnection connection = new MySqlConnection(connectionString); //create connection with connectionString
-                        connection.Open(); //open sql connection
-                        string query = "SELECT role_id FROM roles_user WHERE user_id = " + id;
-                        using (MySqlCommand command = new MySqlCommand(query, connection)) //run query command in mySQL
-                        {
-                            MySqlDataReader reader = command.ExecuteReader(); //reader reads data from sql query
-                            while (reader.Read()) //loops through all records query 
-                            {
-                                strIsAdmin = reader.GetString("role_id");  // get userId and store as string
-                            }
-                        }
-                        if (strIsAdmin == "1")
+                      
+                        if (boolIsAdmin == true)
                             isAdmin = true;
                         else
                             isAdmin = false;

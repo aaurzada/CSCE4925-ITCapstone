@@ -27,7 +27,8 @@ namespace SQLSolutions.Models
         //email
         //[Display(Name = "Email")]
         public virtual String Email { get; set; }
-        
+
+        public virtual bool isAdmin { get; set; }
     }
 
     public class UserMap : ClassMapping<User>
@@ -42,6 +43,7 @@ namespace SQLSolutions.Models
             Property(x => x.FirstName, x => x.NotNullable(true));
             Property(x => x.LastName, x => x.NotNullable(true));
             Property(x => x.Email, x => x.NotNullable(true));
+            Property(x => x.isAdmin, x => x.NotNullable(true));
 
         }
     }

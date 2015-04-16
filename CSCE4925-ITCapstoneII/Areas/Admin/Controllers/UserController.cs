@@ -108,7 +108,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Euid = form.Euid,
                 FirstName = form.FirstName,
                 LastName = form.LastName,
-                Email = form.Email
+                Email = form.Email,
+                isAdmin = form.isAdmin
             };
             //save user to the database
             Database.Session.Save(user);
@@ -131,7 +132,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Euid = editUser.Euid,
                 FirstName = editUser.FirstName,
                 LastName = editUser.LastName,
-                Email = editUser.Email
+                Email = editUser.Email,
+                isAdmin = editUser.isAdmin
             });
         }
 
@@ -162,6 +164,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             editUser.FirstName = form.FirstName;
             editUser.LastName = form.LastName;
             editUser.Email = form.Email;
+            editUser.isAdmin = form.isAdmin;
             //save update to the database
             Database.Session.Update(editUser);
 
