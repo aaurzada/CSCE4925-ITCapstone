@@ -1,116 +1,117 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.TransactionReportList
 <div id="transaction">
-<h2>Transaction Reports</h2>
 
-<table class="table">
-    <tr>
-
-        <th>
-            @Html.DisplayName("EUID")
-        </th>
-        <th>
-            @Html.DisplayName("First Name")
-        </th>
-        <th>
-            @Html.DisplayName("Last Name")
-        </th>
-        <th>
-            @Html.DisplayName("Email")
-        </th>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Author")
-        </th>
-        <th>
-            @Html.DisplayName("CourseSection")
-        </th>
-        <th>
-            @Html.DisplayName("Checkout Date")
-        </th>
-        <th>
-            @Html.DisplayName("Due Date")
-        </th>
-        <th>
-            @Html.DisplayName("Checkin Date")
-        </th>
-        <th>
-            @Html.DisplayName("Year")
-        </th>
-        <th>
-            @Html.DisplayName("Edition")
-        </th>
-
-        <th>
-            @Html.DisplayName("ISBN")
-        </th>
-        <th>
-            @Html.DisplayName("AssetNum")
-        </th>
-        <th>
-            @Html.DisplayName("Required")
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.TransactionReports)
-    {
+    <table class="table" id="report">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Euid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckoutDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckInDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssetNum)
-            </td>
+    <th>
+        @Html.DisplayName("EUID")
+    </th>
+    <th>
+        @Html.DisplayName("Name")
+    </th>
+    <th>
+        @Html.DisplayName("Email")
+    </th>
+    <th>
+        @Html.DisplayName("ISBN")
+    </th>
+    <th>
+        @Html.DisplayName("Title")
+    </th>
+    <th>
+        @Html.DisplayName("Author")
+    </th>
+    <th>
+        @Html.DisplayName("Course")
+    </th>
+    <th>
+        @Html.DisplayName("Checkout Date")
+    </th>
+    <th>
+        @Html.DisplayName("Due Date")
+    </th>
+    <th>
+        @Html.DisplayName("Checkin Date")
+    </th>
+    <th>
+        @Html.DisplayName("Year")
+    </th>
+    <th>
+        @Html.DisplayName("Edition")
+    </th>
+    <th>
+        @Html.DisplayName("Asset Num")
+    </th>
+    <th>
+        @Html.DisplayName("Required")
+    </th>
 
-        </tr>
-    }
+    <th></th>
+</tr>
 
-</table>
+@foreach (var item in Model.TransactionReports)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Euid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
 
-<p>
-    @Html.ActionLink("Export to Excel", "Export")
-</p>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isbn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseSection)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckoutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetNum)
+        </td>
+        <td>
+            @(item.IsRequired == "0" ? Html.DisplayName("No") : Html.DisplayFor(modelItem => item.IsRequired))
+        </td>
+
+
+    </tr>
+}
+
+    </table>
+
+    @*<div class="pagedList2" id="right" style=" float: right">
+        @Html.PagedListPager(Model.TransactionReports, page => Url.Action("TransactionReports", new { page }),
+            PagedListRenderOptions.MinimalWithItemCountText)
+    </div>*@
+
+    Page @(Model.TransactionReports.PageCount < Model.TransactionReports.PageNumber ? 0 : Model.TransactionReports.PageNumber) 
+    of @Model.TransactionReports.PageCount
+
+    @Html.PagedListPager(Model.TransactionReports, page => Url.Action("_TransactionReport",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

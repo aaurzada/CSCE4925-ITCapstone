@@ -165,10 +165,10 @@
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Pages.cs" />
     <Compile Include="Areas\Admin\ViewModels\Report.cs" />
     <Compile Include="Areas\Admin\ViewModels\Transaction.cs" />
     <Compile Include="Areas\Admin\ViewModels\User.cs" />
+    <Compile Include="Controllers\UserBookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,7 +195,8 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\transactionDetails.cs" />
+    <Compile Include="ViewModel\Index.cs" />
+    <Compile Include="ViewModel\TransactionDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -204,6 +205,21 @@
     <Content Include="Areas\Admin\Scripts\DatePicker.js" />
     <Content Include="Areas\Admin\Scripts\Forms.js" />
     <Content Include="Areas\Admin\Views\Report\_BookReport.cshtml" />
+    <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Images\UNTlogo.png" />
+    <Content Include="Content\Images\zone-branding.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Styles\admin.css" />
     <Content Include="Content\Styles\jquery-ui.css" />
@@ -268,7 +284,6 @@
     <Content Include="Areas\Admin\Views\Report\IndexBookReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\_TransactionReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
-    <Content Include="Areas\Admin\Views\Report\BookReport.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -300,7 +315,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\nonAdmin\Index.cshtml" />
+    <Content Include="Views\nonAdmin\Details.cshtml" />
+    <Content Include="Views\UserBook\BookDetails.cshtml" />
+    <Content Include="Views\UserBook\BookIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

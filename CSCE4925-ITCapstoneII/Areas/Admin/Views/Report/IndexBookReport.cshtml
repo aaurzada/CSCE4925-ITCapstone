@@ -1,103 +1,101 @@
 ﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
 @model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
 
-<div id="books">
-    <h2>Book Reports</h2>
-    <p>
 
-        @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Get))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary()
-            <div class="form-group">
-                <div class="col-md-3">
-                    @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
-                </div>
-                <span>
-                    <button class="btn btn-default" type="submit">
-                        Filter
-                    </button>
-                </span>
+<h2>Book Reports</h2>
+
+<div class="row">
+    @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <div class="col-md-3" style="padding-right: 5px;">
+                @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
             </div>
-        }
+            <span>
+                <button class="btn btn-default" type="submit">
+                    Filter
+                </button>
+            </span>
+            <div  style="float: right !important; font-size: 14px; padding-top: 7px; margin-right: 20px;">
+                @Html.ActionLink("Export to Excel", "Export")
+            </div>
+        </div>
+    }
 
-
-    </p>
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("AssetNum")
-            </th>
-            <th>
-                @Html.DisplayName("ISBN")
-            </th>
-            <th>
-                @Html.DisplayName("Title")
-            </th>
-            <th>
-                @Html.DisplayName("Author")
-            </th>
-            <th>
-                @Html.DisplayName("CourseSection")
-            </th>
-            <th>
-                @Html.DisplayName("Year")
-            </th>
-            <th>
-                @Html.DisplayName("Edition")
-            </th>
-            <th>
-                @Html.DisplayName("Required")
-            </th>
-            <th>
-                @Html.DisplayName("Available")
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.Books)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AssetNum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Isbn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CourseSection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Edition)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsRequired)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InStock)
-                </td>
-
-            </tr>
-        }
-
-    </table>
-    <div class="form-group">
-
-        <input type="button" value="Print" class="btn btn-lg btn-default" onclick=" window.print(); " />
-
-    </div>
-    <p>
-        @Html.ActionLink("Export to Excel", "Export")
-    </p>
 </div>
 
+
+<table class="table">
+    <tr>
+        <th class="row-bookreport-assetnum">
+            @Html.DisplayName("AssetNum")
+        </th>
+        <th class="row-bookreport-isbn">
+            @Html.DisplayName("ISBN")
+        </th>
+        <th class="row-bookreport-title">
+            @Html.DisplayName("Title")
+        </th>
+        <th class="row-bookreport-author">
+            @Html.DisplayName("Author")
+        </th>
+        <th class="row-bookreport-course">
+            @Html.DisplayName("Course")
+        </th>
+        <th class="row-bookreport-year">
+            @Html.DisplayName("Year")
+        </th>
+        <th class="row-bookreport-edition">
+            @Html.DisplayName("Edition")
+        </th>
+        <th class="row-bookreport-required">
+            @Html.DisplayName("Required")
+        </th>
+        <th class="row-bookreport-available">
+            @Html.DisplayName("Available")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRequired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStock)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+
+@Html.PagedListPager(Model.Books, page => Url.Action("IndexBookReport",
+                      new { page, selected = ViewBag.currentSelect}))

@@ -1,27 +1,27 @@
-﻿@model SQLSolutions.ViewModel.transactionDetailsList
+﻿@model SQLSolutions.ViewModel.TransactionDetailsList
 
 
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "Details";
 }
 
-<h2>User Index</h2>
+<h2>Checked out Books</h2>
 
 <table class="table"> @*table will display book info and checkout/duedate info to current user*@
     <tr>
-        <th>
+        <th class="row-user-details-title">
             @Html.DisplayName("Book Title")
         </th>
-        <th>
+        <th class="row-user-details-author">
             @Html.DisplayName("Author")
         </th>
-        <th>
+        <th class="row-user-details-course">
             @Html.DisplayName("Course Section")
         </th>
-        <th>
+        <th class="row-user-details-out">
             @Html.DisplayName("Check Out Date")
         </th>
-        <th>
+        <th class="row-user-details-due">
             @Html.DisplayName("Due Date")
         </th>
 

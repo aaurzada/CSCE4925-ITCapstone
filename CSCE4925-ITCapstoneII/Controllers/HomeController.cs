@@ -49,7 +49,7 @@ namespace SQLSolutions.Controllers
                     id = userId.Single();
                     TempData["userId"] = id;
                   
-                        return RedirectToAction("Index", "nonAdmin");
+                        return RedirectToAction("BookDetails", "Details");
                     
                 }
                 else if (user.IsValid(user.euid, user.password) == "notExists")

@@ -18,7 +18,7 @@ namespace SQLSolutions.Models
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter your password", AllowEmptyStrings = false)]
-        [Display(Name = "Password:")]
+        [Display(Name = "Password")]
         public virtual string password { get; set; } //may delete...dont actually need to store
 
         public String IsValid(string _username, string _password)
