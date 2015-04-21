@@ -3,6 +3,10 @@
 
 @{
     ViewBag.Title = "Details";
+    if (Session["username"] == null || Session["isAdmin"] == "false")
+    {
+        Response.Redirect("~/Home/index");
+    }
 }
 
 <h2>Transaction Reports</h2>

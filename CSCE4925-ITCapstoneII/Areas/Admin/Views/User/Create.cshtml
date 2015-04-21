@@ -1,6 +1,10 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.UserNew
 
 @{
+    if (Session["username"] == null || Session["isAdmin"] == "false")
+    {
+        Response.Redirect("~/Home/index");
+    }
     ViewBag.Title = "Create";
 }
 
@@ -54,13 +58,26 @@
                 @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
             </div>
         </div>
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add User" class="btn btn-default" />
+            @Html.LabelFor(model => model.isAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.isAdmin, new SelectList(
+                new List<object>
+                {
+                    new { value = false , text = "non-admin"  },
+                    new { value = true , text = "admin" },
+                },
+                "value",
+                "text",
+                2))
+            </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add User" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
 }
 
 <div>

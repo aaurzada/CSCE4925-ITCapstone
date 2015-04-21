@@ -30,6 +30,8 @@ namespace SQLSolutions
         protected void Application_BeginRequest()
         {
             Database.OpenSession();
+
+            
         }
 
         protected void Application_EndRequest()
