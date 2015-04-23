@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Edit";
+    if (Session["username"] == null || Session["isAdmin"] == "false")
+    {
+        Response.Redirect("~/Home/index");
+    }
 }
 
 <h2>Edit</h2>
@@ -51,6 +55,20 @@
             <div class="col-md-8">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.isAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.isAdmin, new SelectList(
+                new List<object>
+                {
+                    new { value = false , text = "non-admin"  },
+                    new { value = true , text = "admin" },
+                },
+                "value",
+                "text",
+                2))
             </div>
         </div>
 

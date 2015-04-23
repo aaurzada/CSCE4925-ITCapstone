@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -162,7 +163,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\checkInCheckOutController.cs" />
+    <Compile Include="Areas\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
     <Compile Include="Areas\Admin\ViewModels\Report.cs" />
@@ -184,11 +186,11 @@
     <Compile Include="Migrations\_004_UpdateISBNType.cs" />
     <Compile Include="Migrations\_006_AlterCheckInDate.cs" />
     <Compile Include="Migrations\_005_AlterBookAndTransaction.cs" />
+    <Compile Include="Migrations\_007_RemoveRolesTable.cs" />
+    <Compile Include="Migrations\_008_AddSysAdminAndLibAdmin.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\ldapConnect.cs" />
+    <Compile Include="Controllers\ldapConnect.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\RolesUser.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -272,7 +274,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Catalog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\checkIn\Catalog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Index.cshtml" />
@@ -284,6 +286,10 @@
     <Content Include="Areas\Admin\Views\Report\IndexBookReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\_TransactionReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\BookReport.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\checkOut.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\checkInBook.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -322,6 +328,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\roles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -347,9 +354,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62341</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>https://localhost:44300/</IISAppRootUrl>
+          <IISUrl>http://localhost:62341/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

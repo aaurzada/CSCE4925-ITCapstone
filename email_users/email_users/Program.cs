@@ -63,7 +63,7 @@ namespace ConsoleApplication1
             string subject = book_name + " is past due"; //Title of email
             //Message body of email sent to users
             string body = "Dear, " + users_name + " " + users_lastName + Environment.NewLine + Environment.NewLine + "NOTICE: You checked out the book '" + book_name + "' from the CSCE Library on " + checked_out + 
-                ". It was due back by " + due_date + ". Please return '" + book_name + "' to F220 at your earliest convenience.";
+                ". It was due back by " + due_date + ". Please return '" + book_name + "' to F201 at your earliest convenience.";
 
             var smtp = new SmtpClient
             {

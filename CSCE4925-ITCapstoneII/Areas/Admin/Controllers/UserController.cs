@@ -49,7 +49,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //check if user typed something in the search box
             if (!string.IsNullOrEmpty(searchUser))
             {
-                userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser)
+                userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) 
                     || u.FirstName.Contains(searchUser)).ToPagedList(pageNumber, pageSize)
                 };
             }
@@ -128,7 +128,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Euid = form.Euid,
                 FirstName = form.FirstName,
                 LastName = form.LastName,
-                Email = form.Email
+                Email = form.Email,
+                isAdmin = form.isAdmin
             };
             //save user to the database
             Database.Session.Save(user);
@@ -151,7 +152,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Euid = editUser.Euid,
                 FirstName = editUser.FirstName,
                 LastName = editUser.LastName,
-                Email = editUser.Email
+                Email = editUser.Email,
+                isAdmin = editUser.isAdmin
             });
         }
 
@@ -182,6 +184,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             editUser.FirstName = form.FirstName;
             editUser.LastName = form.LastName;
             editUser.Email = form.Email;
+            editUser.isAdmin = form.isAdmin;
             //save update to the database
             Database.Session.Update(editUser);
 
@@ -206,6 +209,14 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //delete user from the database
             Database.Session.Delete(deleteUser);
             return RedirectToAction("Index");
+        }
+
+        public void checkSessionVars()//checks if session variables exist and user is admin
+        {
+            if (Session["username"] == null || Session["isAdmin"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
         }
     }
 }

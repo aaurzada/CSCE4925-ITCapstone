@@ -1,6 +1,10 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.UserDetailsList
 @{
     ViewBag.Title = "Details";
+    if (Session["username"] == null || Session["isAdmin"] == "false")
+    {
+        Response.Redirect("~/Home/index");
+    }
 }
 
 <h2>Details</h2>

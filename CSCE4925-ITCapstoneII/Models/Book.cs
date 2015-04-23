@@ -13,12 +13,20 @@ namespace SQLSolutions.Models
     public class Book
     {
         // ? - Make integers nullable, to remove 0 from diplaying in the testbox
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid 4 digit Asset Number")]
+        [Display(Name = "Asset Number:")]
         public virtual int AssetNum { get; set; }
+         [Display(Name = "Isbn:")]
         public virtual string Isbn { get; set; }
+         [Display(Name = "Title:")]
         public virtual string Title { get; set; }
+         [Display(Name = "Author:")]
         public virtual string Author { get; set; }
+         [Display(Name = "Course/Section:")]
         public virtual string CourseSection { get; set; }
+         [Display(Name = "Year:")]
         public virtual int ? Year { get; set; }
+         [Display(Name = "Edition:")]
         public virtual int ? Edition { get; set; }
         public virtual bool IsRequired { get; set; }
         public virtual bool InStock { get; set; }

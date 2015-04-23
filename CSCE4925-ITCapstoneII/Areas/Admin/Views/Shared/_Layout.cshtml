@@ -56,29 +56,29 @@
 </head>
 <body>
 <div id="wrapper">
-    <header id="heading" class="hidden-print">
-        <div id="branding" class="header-main container hidden-xs" role="banner">
+<header id="heading" class="hidden-print">
+    <div id="branding" class="header-main container hidden-xs" role="banner">
 
-            <h1 id="site-name" class="logo col-sm-8">
-                <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
-            </h1>
-            <div id="UNT" class=" col-sm-4">
-                <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
-                    <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
-                </a>
+        <h1 id="site-name" class="logo col-sm-8">
+            <a id="logo-name-site" title="CSCE Library" href="/">CSCE Department Library</a>
+        </h1>
+        <div id="UNT" class=" col-sm-4">
+            <a id="unt-logo" class="pull-right" title="UNT | A Green Light to Greatness" href="http://www.unt.edu">
+                <img class="unt-lettermark img-responsive" alt="UNT Logo" src="@Url.Content("~/Content/Images/Untlogo.png")">
+            </a>
 
-            </div>
         </div>
-    </header>
+    </div>
+</header>
     <nav id="main-nav" class="hidden-print" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
+    <div class="container">
+        <div class="navbar-header">
                
                 <div class="navbar-text navbar-brand-centered visible-xs-block">
                     <a id="site-name-mobile" class="btn btn-link" title="Home" href="/">
                         CSCE Library
                     </a>
-                </div>
+        </div>
                 
                     @*<button id="main-nav-toggle" class="navbar-toggle btn btn-success 
                         btn-sm navbar-left collapsed" data-target="#primary-site-menu" data-toggle="collapse"
@@ -94,59 +94,58 @@
                 </div>
 
             <div id="primary-site-menu" class="navbar-collapse collapse" role="navigation" aria-expanded="false" style="height: 1px;">
-                <div class="navbar-left">
-                    <ul class="menu nav navbar-nav">
-                        <li class="leaf" @*"first leaf active"*@>
-                            <a class="leaf" href="/">
-                                Checkout/Check-in
-                            </a>
-                        <li>
+            <div class="navbar-left">
+                <ul class="menu nav navbar-nav">
+                    <li class="@SelectedTabClass("Checkout/Check-in")">
+                        @Html.ActionLink("Checkout/Check-in", "Index", "checkInCheckOut", new { area = "admin" }, new { })
+                    </li>
 
-                        <li class="@SelectedTabClass("Catalog Management")">
-                            @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
-                        </li>
-                        <li class="@SelectedTabClass("User Records")">
-                            @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
-                        </li>
-                        <li class="dropdown @SelectedTabClass("Reports")">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>@Html.ActionLink("Book Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })</li>
-                                <li>@Html.ActionLink("Transaction Reports", "TransactionReports", "Report", new { area = "admin" }, new { })</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar-right">
+                    <li class="@SelectedTabClass("Catalog Management")">
+                        @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
+                    </li>
+                    <li class="@SelectedTabClass("User Records")">
+                        @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
+                    </li>
+                    <li class="dropdown @SelectedTabClass("Reports")">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Book Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })</li>
+                            <li>@Html.ActionLink("Transaction Reports", "TransactionReports", "Report", new { area = "admin" }, new { })</li>
+                        </ul>
+                    </li>
+                        </ul>
+</div>
+            <div class="navbar-right">
 
-                    <ul class="menu nav navbar-nav secondary">
-                        <li class="first leaf">
-                            <a title="" href="/Logout">
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="menu nav navbar-nav secondary">
+                    <li class="first leaf">
+                    
+                        @Html.ActionLink("LOGOUT", "Index", "Home", new {area = "" }, null)
+                        
+          
+                    </li>
+                </ul>
             </div>
+        </div>
 
-        </div><!-- /.container -->
-    </nav>
-    <div class="main-container container">
-        <div id="site-content-region" class="row">
+    </div><!-- /.container -->
+</nav>
+<div class="main-container container">
+    <div id="site-content-region" class="row">
         <div class="col-sm-12">
             @RenderBody()
 
 
-            </div>
         </div>
     </div>
-    <footer id="main-footer">
-        <div id="footer-content">
-            <div class="container">
-                SQL Solutions
-            </div>
+</div>
+<footer id="main-footer">
+    <div id="footer-content">
+        <div class="container">
+            SQL Solutions
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 
 </body>
