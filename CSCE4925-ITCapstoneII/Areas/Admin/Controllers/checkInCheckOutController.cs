@@ -8,28 +8,22 @@ using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
-using SQLSolutions.Infrastructure;
-
 namespace SQLSolutions.Areas.Admin.Controllers
 {
     public class checkInCheckOutController : Controller
     {
-
         // GET: Admin/checkInCheckOut
-        [SelectedTab("Checkout/Check-in")]
         public ActionResult Index()
         {
             return View();
         }
 
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [SelectedTab("Checkout/Check-in")]
         public ActionResult Index(Transaction user)
         {
             if (Database.Session.Query<Book>().Any(b => b.AssetNum == user.BookAssetNumber))
             {
-
                 //book exists in book table
                 //query transaction table
                 Session["bookAssetNum"] = user.BookAssetNumber;
@@ -84,9 +78,10 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
 
             }
+            
             string date = "01/01/0001"; //sometimes database is defaulting null value to this
             DateTime defaultDate = Convert.ToDateTime(date);
-
+                 
             //check asset number typed in
             //if asset number is in transaction table and book is currently checked out display check in form
             //if asset number is in transaction table and book is not currently checked out display check out form
@@ -114,6 +109,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                     command2.ExecuteNonQuery();
                     Connection.Close();
                 }
+                Session["book_state"] = "";
                 Response.Write("<script>alert('Book has successfully been checked in.');</script>");
             }
             else if (Session["book_state"] == "checkOut")
@@ -135,10 +131,10 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         Edition = bookCheckOut.Edition,
                         IsRequired = bookCheckOut.IsRequired,
                         InStock = bookCheckOut.InStock
-                    });
+                    });     
                 }
 
-
+              
                 var checkOutDate = Request["checkOut"];
                 DateTime checkOut = Convert.ToDateTime(checkOutDate);
                 var dueDate = Request["dueDate"];
@@ -147,7 +143,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                     {
                         var bookCheckOut = Database.Session.Get<Book>((int)Session["bookAssetNum"]);
                         ModelState.AddModelError("", "Error: Book was not checked out. Due date was not entered. ");
-                        return View("checkOut", new Book
+                        return View("checkOut",new Book
                         {
                             AssetNum = bookCheckOut.AssetNum,
                             Isbn = bookCheckOut.Isbn,
@@ -159,7 +155,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                             IsRequired = bookCheckOut.IsRequired,
                             InStock = bookCheckOut.InStock
                         });
-
+                   
                     }
                 }
                 DateTime dueBack = Convert.ToDateTime(dueDate);
@@ -217,7 +213,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                             userId = (int)id;
                         }
                         Connection.Close();
-                        if (userId == 0)
+                        if(userId == 0)
                         {
                             var bookCheckOut = Database.Session.Get<Book>((int)Session["bookAssetNum"]);
                             ModelState.AddModelError("", "Error: Book was not checked out. The euid entered was not valid.");
@@ -242,17 +238,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         ////get all info for book with asset number
                         //string isbnNum = null;
                         int bookAssetNum = (int)Session["bookAssetNum"];
-                        // using (MySqlCommand command2 = new MySqlCommand("SELECT isbn FROM book WHERE assetNum = @bookAssetNum", Connection))
-                        // {
-                        //     command2.Parameters.AddWithValue("@bookAssetNum", bookAssetNum); //query current book asset number
-                        //     Connection.Open();
-                        //     MySqlDataReader myReader2 = command2.ExecuteReader();
-                        //     while (myReader2.Read())
-                        //     {
-                        //         var isbn = myReader2["isbn"];
-                        //         isbnNum = (string)isbn;
-                        //     }
-                        // }
+                  
                         //user exists. Run check out queries, create new transaction, set book inStock to false
                         using (MySqlCommand command3 = new MySqlCommand("INSERT INTO transaction (user_id, book_assetNum, checkoutDate, dueDate)VALUES(@user_id, @book_assetNum, @checkoutDate, @dueDate)", Connection2))
                         {
@@ -273,28 +259,29 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         }
 
                     }
-                    else
-                    {
-                        //user does not exist..return form
-                    }
+                    //else
+                    //{
+                    //    //user does not exist..return form
+                    //}
                 }
+                Session["book_state"] = "";
                 Response.Write("<script>alert('Book has successfully been checked out.');</script>");
             }
-            //if euid exists then get id
-            //make new transaction with euid, assetNum, checkOutDate, and dueDate
-            //mark book as isAvailable = false;
+                //if euid exists then get id
+                //make new transaction with euid, assetNum, checkOutDate, and dueDate
+                //mark book as isAvailable = false;
+               
+               return View("Index");
 
-            return View("Index");
+            }
+            //string sql = "UPDATE transaction SET checkInDate = @today WHERE book_assetNum = @assetNum AND checkInDate = @checkIn";
+            //MySqlCommand command = new MySqlCommand(sql, Connection); //run sql query to update transaction table where return date for asset number is null
+            
+            //Connection.Close();
+            //find book assetNum ..if inStock == 0 set to 1
+            //locate assetNum in transaction table where checkInDate is null or = 0001-01-01 and set checkInDate to today
 
+         
         }
-        //string sql = "UPDATE transaction SET checkInDate = @today WHERE book_assetNum = @assetNum AND checkInDate = @checkIn";
-        //MySqlCommand command = new MySqlCommand(sql, Connection); //run sql query to update transaction table where return date for asset number is null
-
-        //Connection.Close();
-        //find book assetNum ..if inStock == 0 set to 1
-        //locate assetNum in transaction table where checkInDate is null or = 0001-01-01 and set checkInDate to today
-
-
+     
     }
-
-}
