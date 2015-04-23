@@ -1,6 +1,15 @@
 ﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
 @model SQLSolutions.Areas.Admin.ViewModels.ReportBookList
 
+@{
+    ViewBag.Title = "Book Reports";
+    if (Session["username"] == null || Session["isAdmin"].Equals(false))
+    {
+        Response.Redirect("~/Home/index");
+    }
+}
+
+
 
 <h2>Book Reports</h2>
 

@@ -284,7 +284,6 @@
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Report\IndexBookReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
-    <Content Include="Areas\Admin\Views\Report\BookReport.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\checkOut.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\checkInBook.cshtml" />
