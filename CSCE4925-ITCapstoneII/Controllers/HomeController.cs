@@ -65,8 +65,8 @@ namespace SQLSolutions.Controllers
             { 
                 var connect = new LDAPConnect();
                 //CONNECT TO LDAP 
-        //      if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
-          //      {
+                if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
+                {
                         bool boolIsAdmin = false;
                      
                 
@@ -79,7 +79,7 @@ namespace SQLSolutions.Controllers
                         else
                             isAdmin = false;
                         accountExists = true; //account exists in User table 
-                //}        
+                }        
             }
             if (accountExists == true && isAdmin == true) //if account exists then return admin, nonadmin, or nonexists to homeController
             {
