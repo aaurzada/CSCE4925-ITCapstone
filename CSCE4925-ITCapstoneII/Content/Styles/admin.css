@@ -530,10 +530,7 @@ ul li:hover ul {
     color: #FFF;
 }
 
-/*#primary-site-menu {
-    padding-left: 30px;
-    padding-right: 30px;
-}*/
+
 #main-nav a {
     font-size: 13px;
     color: #FFF;
@@ -613,6 +610,13 @@ ul li:hover ul {
 
 
 /*body*/
+#check-inborder {
+     border-radius: 25px;
+    border: 2px solid  #00853f;
+    padding: 20px;
+    width: 500px;
+    height: 180px; 
+}
 #site-content-region {
     box-sizing: border-box;
     padding-top: 25px;
