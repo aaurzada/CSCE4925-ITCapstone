@@ -78,11 +78,9 @@
         <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
             <div class="navbar-left">
                 <ul class="menu nav navbar-nav">
-                    <li class="leaf" @*"first leaf active"*@>
-                        <a class="leaf" href="/">
-                            Checkout/Check-in
-                        </a>
-                    <li>
+                    <li class="@SelectedTabClass("Checkout/Check-in")">
+                        @Html.ActionLink("Checkout/Check-in", "Index", "checkInCheckOut", new { area = "admin" }, new { })
+                    </li>
 
                     <li class="@SelectedTabClass("Catalog Management")">
                         @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })

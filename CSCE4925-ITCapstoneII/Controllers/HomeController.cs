@@ -33,13 +33,13 @@ namespace SQLSolutions.Controllers
                     Session["username"] = user.euid; //store euid as session variable
                     Session["isAdmin"] = "true"; //store is admin as session id. Check at each page 
                     //check if admin and display pages accordingly
-                    return RedirectToAction("Index", "User", new { area = "admin" });//admin page displayed
+                    return RedirectToAction("Index", "checkInCheckOut", new { area = "admin" });//admin page displayed
                 }
                 else if (IsValid(user.euid, user.password) == "nonAdmin")
                 {
                     Session["username"] = user.euid; //store euid as session variable
                     Session["isAdmin"] = "false"; //store is admin as session id. Check at each page
-                    return RedirectToAction("User");
+                    return View("User");
                 }
                 else if (IsValid(user.euid, user.password) == "notExists") //if username does not exist in user table then display does not exist
                 {

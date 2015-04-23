@@ -162,7 +162,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\checkInCheckOutController.cs" />
+    <Compile Include="Areas\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
     <Compile Include="Areas\Admin\ViewModels\Pages.cs" />
@@ -204,6 +205,8 @@
     <Content Include="Areas\Admin\Scripts\DatePicker.js" />
     <Content Include="Areas\Admin\Scripts\Forms.js" />
     <Content Include="Areas\Admin\Views\Report\_BookReport.cshtml" />
+    <Content Include="Content\images\UNTlogo.png" />
+    <Content Include="Content\images\zone-branding.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Styles\admin.css" />
     <Content Include="Content\Styles\jquery-ui.css" />
@@ -256,7 +259,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Catalog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\checkIn\Catalog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Index.cshtml" />
@@ -269,6 +272,9 @@
     <Content Include="Areas\Admin\Views\Report\_TransactionReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
     <Content Include="Areas\Admin\Views\Report\BookReport.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\checkOut.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\checkInBook.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

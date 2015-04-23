@@ -18,6 +18,9 @@ namespace SQLSolutions.Models
         //foreign key of user id 
         public virtual int  UserId { get; set; }
         //foreign key of book id
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid 4 digit Asset Number")]
+        [DisplayName("Book Asset Number:")]
+        [Required]
         public virtual int BookAssetNumber { get; set; }
         //date book was checked out
         public virtual DateTime CheckoutDate { get; set; }

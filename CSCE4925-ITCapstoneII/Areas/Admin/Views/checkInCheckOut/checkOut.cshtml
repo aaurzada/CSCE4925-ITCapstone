@@ -1,0 +1,91 @@
+﻿@model SQLSolutions.Models.Book
+
+@{
+    if (Session["username"] == null || Session["isAdmin"] == "false")
+    {
+        Response.Redirect("~/Home/index");
+    }
+    ViewBag.Title = "Check Out Book";
+
+}
+
+<h2>Check Out</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", style = "width:100%", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssetNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AssetNum, new { htmlAttributes = new { @class = "form-control", style = "width:100%", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.AssetNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Isbn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Isbn, new { htmlAttributes = new { @class = "form-control", style="width:100%",@readonly="readonly" } })
+                @Html.ValidationMessageFor(model => model.Isbn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", style = "width:100%", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Euid: ")
+            </div>
+            <div class="control-label col-md-2">
+                @Html.TextBox("euid")
+
+            </div>
+
+        </div>           
+ 
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Check Out Date: ")
+             </div>
+             <div class="control-label col-md-2">
+                    @Html.TextBox("checkOut", DateTime.Now.ToShortDateString())
+             </div>
+            </div>
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Due Date: ")
+                
+            </div>
+            <div class="control-label col-md-2" >
+                <input type="text" name="dueDate" id="datepicker"><br>
+            </div>
+        </div>   
+           </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+       
+                    <input type="submit" value="Check Out" class="btn btn-default" />
+         
+            </div>
+        </div>
+  
+}
