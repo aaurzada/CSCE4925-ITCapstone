@@ -11,14 +11,33 @@ using PagedList;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
     [SelectedTab("Catalog Management")]
     public class BookController : Controller
     {
         // GET: Admin/Book
-        public ActionResult Index(string searchBook, int page =1)
+        public ActionResult Index(string searchBook, string currentFilter, int ? page)
         {
-            var bookList = new BookIndex { Books = Database.Session.Query<Book>().ToList().ToPagedList(page, 5) };
+            // currentFilter provides the view with the current filter string. currentFilter will maintain
+            // the filter settings during paging and it must be restored to the text box when the page is redisplayed. 
+            // If the search string is changed during paging, the page has to be reset to 1, because the new filter 
+            // can result in different data to display. The search string is changed when a value is entered in the 
+            // text box and the submit button is pressed. In that case, the searchString parameter is not null.
+            if (searchBook != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchBook = currentFilter;
+            }
+
+            ViewBag.currentFilter = searchBook;
+            //converts the book query to a single page of books in a collection type that supports paging
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            var bookList = new BookIndex { Books = Database.Session.Query<Book>().OrderBy(b => b.AssetNum).
+                                            ToPagedList(pageNumber, pageSize) };
            //searh book by title, ISBN, AssetNumber, course section, author
             if (!string.IsNullOrEmpty(searchBook))
             {
@@ -26,8 +45,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 {
                     Books = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook)
                         || b.Isbn.Contains(searchBook) || b.Author.Contains(searchBook)
-                        || b.AssetNum.ToString().Contains(searchBook) 
-                        || b.CourseSection.ToString().Contains(searchBook)).ToList().ToPagedList(page, 5)
+                        || b.AssetNum.ToString().Contains(searchBook)
+                        || b.CourseSection.ToString().Contains(searchBook)).ToPagedList(pageNumber, pageSize)
                 };
             }
             
@@ -50,6 +69,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: Admin/Book/Create
         [HttpPost]
         [SelectedTab("Catalog Management")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(BookNew form)
         {
             if (Database.Session.Query<Book>().Any(b => b.AssetNum == form.AssetNum))
@@ -71,7 +91,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Year = form.Year,
                 Edition = form.Edition,
                 IsRequired = form.IsRequired,
-                InStock = form.InStock
             };
             //save user to the database
             Database.Session.Save(book);
@@ -98,13 +117,13 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Year = bookEdit.Year,
                 Edition = bookEdit.Edition,
                 IsRequired = bookEdit.IsRequired,
-                InStock = bookEdit.InStock
             });
         }
 
         // POST: Admin/Book/Edit/5
         [HttpPost]
         [SelectedTab("Catalog Management")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, BookEdit form)
         {
             var bookEdit = Database.Session.Get<Book>(id);
@@ -127,7 +146,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
             bookEdit.Year = form.Year;
             bookEdit.Edition = form.Edition;
             bookEdit.IsRequired = form.IsRequired;
-            bookEdit.InStock = form.InStock;
 
             Database.Session.Update(bookEdit);
 
@@ -148,6 +166,11 @@ namespace SQLSolutions.Areas.Admin.Controllers
             if (bookDelete == null)
             {
                 return HttpNotFound();
+            }
+            //TODO finish 
+            if (!bookDelete.InStock)
+            {
+                return ViewBag.Error;
             }
             //delete book from the database
             Database.Session.Delete(bookDelete);

@@ -2,11 +2,11 @@
 
 @{
     ViewBag.Title = "Index";
-    if (Session["username"] == null || Session["isAdmin"] == "false")
+    if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
-    }
-    
+}
+
 }
 
 <h2> Books</h2>
@@ -18,18 +18,21 @@
 
 @*search bar*@
 
-<form method="GET">
-    <div class="row">
+<form method="POST">
+    <div class="row" id="search-group">
         <div class="col-lg-6">
             <div class="input-group">
-                <input type="search" class="form-control" name="searchBook" />
+                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new {@class = "form-control"})
+                @*<input type="search" class="form-control" name="searchBook"/>*@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
                         Search
                     </button>
                 </span>
             </div>
         </div>
+        @*add new book button*@
         <div class="btn-toolbar-right" id="btn-add-book">
             <a href="@Url.Action("Create")" class="btn btn-primary">
                 <i class="glyphicon glyphicon-plus"></i>
@@ -37,40 +40,40 @@
             </a>
         </div>
     </div>
-    @*<input type="search" name="searchBook" />
-        <input type="submit" value="Search By Name" />*@
+      
 </form>
+
 
 <table class="table">
     <tr>
-        <th>
+        <th class="row-assetnum">
             @Html.DisplayName("AssetNum")
         </th>
-        <th>
+        <th class="row-isbn">
             @Html.DisplayName("ISBN")
         </th>
-        <th>
+        <th class="row-title">
             @Html.DisplayName("Title")
         </th>
-        <th>
+        <th class="row-author">
             @Html.DisplayName("Author")
         </th>
-        <th>
-            @Html.DisplayName("CourseSection")
+        <th class="row-course">
+            @Html.DisplayName("Course")
         </th>
-        <th>
+        <th class="row-year">
             @Html.DisplayName("Year")
         </th>
-        <th>
+        <th class="row-edition">
             @Html.DisplayName("Edition")
         </th>
-        <th>
+        <th class="row-required">
             @Html.DisplayName("Required")
         </th>
-        <th>
+        <th class="row-available">
             @Html.DisplayName("Available")
         </th>
-        <th></th>
+        <th class="row-butns"></th>
     </tr>
 
     @foreach (var item in Model.Books)
@@ -104,20 +107,13 @@
                 @Html.DisplayFor(modelItem => item.InStock)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+
                 <div class="btn-group">
                     <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
 
-                    @*<a href="@Url.Action("Details", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
-                            <i class="glyphicon "></i>
-                            Details
-                        </a>*@
-                    @*call java script file (farms.js) from the scripts floder to display pop-up window*@
                     <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
                        data-post="Are you shure you want to delete @item.Title for the @item.CourseSection course?">
                         <i class="glyphicon glyphicon-remove"></i>
@@ -129,6 +125,13 @@
     }
 
 </table>
-<div class="pagedList">
-    @Html.PagedListPager(Model.Books, page => Url.Action("Index", new {page}), PagedListRenderOptions.MinimalWithItemCountText)
-</div>
+@*check if no records were found then display message*@
+@if (!Model.Books.Any())
+{
+    @Html.DisplayName("No records were found")
+}
+
+
+
+@Html.PagedListPager(Model.Books, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

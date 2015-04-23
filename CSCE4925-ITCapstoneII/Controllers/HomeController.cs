@@ -21,11 +21,11 @@ namespace SQLSolutions.Controllers
             Session.Abandon(); //destroy all session variables
             return View();
         }
-     
+
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Index(Login user)
-        { 
+        {
             if (ModelState.IsValid)
             {
                 if (IsValid(user.euid, user.password) == "admin") //given by view and sent to model IsValid function to check against user table and UNT auth
@@ -39,7 +39,7 @@ namespace SQLSolutions.Controllers
                 {
                     Session["username"] = user.euid; //store euid as session variable
                     Session["isAdmin"] = "false"; //store is admin as session id. Check at each page
-                    return View("User");
+                    return RedirectToAction("BookDetails", "UserBook");
                 }
                 else if (IsValid(user.euid, user.password) == "notExists") //if username does not exist in user table then display does not exist
                 {
@@ -65,21 +65,21 @@ namespace SQLSolutions.Controllers
             { 
                 var connect = new LDAPConnect();
                 //CONNECT TO LDAP 
-                if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
-                {
+               // if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
+                //{
                         bool boolIsAdmin = false;
                      
                 
                         var queryId = Database.Session.Query<User>().Where(u => u.Euid.Equals(_username)).Select(u => u.isAdmin); //get users id number
                         boolIsAdmin = queryId.SingleOrDefault();
-                               
-                      
+  
+      
                         if (boolIsAdmin == true)
                             isAdmin = true;
                         else
                             isAdmin = false;
                         accountExists = true; //account exists in User table 
-                }        
+                //}        
             }
             if (accountExists == true && isAdmin == true) //if account exists then return admin, nonadmin, or nonexists to homeController
             {

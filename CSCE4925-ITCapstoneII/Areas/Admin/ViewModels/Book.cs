@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -20,7 +21,8 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //Restrict to 4 numbers only
-        //[RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
         [Required]
         //Restrict to 13 numbers only
@@ -45,15 +47,17 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [RegularExpression(@"^[0-9\s]{1,4}$", ErrorMessage = "Please enter valid edition")]
         public int ? Edition { get; set; }
         [Required]
+        [DisplayName("Required")]
         public bool IsRequired { get; set; }
 
-        public bool InStock { get; set; }
+        //public bool InStock { get; set; }
     }
 
     public class BookEdit
     {
         [Required]
-        [RegularExpression(@"^[0-9\s]{6}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
 
         [Required]
@@ -82,8 +86,9 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int ? Edition { get; set; }
 
         [Required]
+        [DisplayName("Required")]
         public bool IsRequired { get; set; }
 
-        public bool InStock { get; set; }
+        //public bool InStock { get; set; }
     }
 }

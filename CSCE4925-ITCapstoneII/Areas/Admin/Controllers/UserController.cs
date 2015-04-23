@@ -10,6 +10,7 @@ using NHibernate.Context;
 using NHibernate.Criterion;
 using NHibernate.Linq;
 using NHibernate.Mapping;
+using PagedList;
 using SQLSolutions.Areas.Admin.ViewModels;
 using SQLSolutions.Infrastructure;
 using SQLSolutions.Migrations;
@@ -22,17 +23,35 @@ namespace SQLSolutions.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index(string searchUser)
+        public ActionResult Index(string searchUser,string currentFilter, int ? page)
         {
-            checkSessionVars();
-            //var userList = Database.Session.Query<User>().ToList();
-            var userList = new UserIndex { Users = Database.Session.Query<User>().ToList() };
+            // currentFilter provides the view with the current filter string. currentFilter will maintain
+            // the filter settings during paging and it must be restored to the text box when the page is redisplayed. 
+            // If the search string is changed during paging, the page has to be reset to 1, because the new filter 
+            // can result in different data to display. The search string is changed when a value is entered in the 
+            // text box and the submit button is pressed. In that case, the searchString parameter is not null.
+            if (searchUser != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchUser = currentFilter;
+            }
+
+            ViewBag.currentFilter = searchUser;
+            //converts the book query to a single page of books in a collection type that supports paging
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            
+            var userList = new UserIndex { Users = Database.Session.Query<User>().OrderBy(u => u.LastName).ToPagedList(pageNumber, pageSize) };
             //search user by last name and first name
             //check if user typed something in the search box
             if (!string.IsNullOrEmpty(searchUser))
             {
                 userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) 
-                    || u.FirstName.Contains(searchUser)).ToList() };
+                    || u.FirstName.Contains(searchUser)).ToPagedList(pageNumber, pageSize)
+                };
             }
 
             return View(userList);
@@ -62,8 +81,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                 Author = book.Author,
                                 CourseSection = book.CourseSection,
                                 DueDate = transaction.DueDate,
-                                CheckoutDate = transaction.CheckoutDate
-
+                                CheckoutDate = transaction.CheckoutDate,
+                                Isbn = book.Isbn,
+                                AssetNum = book.AssetNum
 
                             }).ToList();
             //convert userDetails entity to IEnumerable and pass it to the view
@@ -89,6 +109,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: User/Create
         [HttpPost]
         [SelectedTab("User Records")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserNew form)
         {
             //check if user ID and Euid already exists in the database
@@ -140,6 +161,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: User/Edit/5
         [HttpPost]
         [SelectedTab("User Records")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UserEdit form)
         {
             var editUser = Database.Session.Get<User>(id);

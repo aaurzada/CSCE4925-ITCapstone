@@ -55,6 +55,7 @@
  
 </head>
 <body>
+<div id="wrapper">
 <header id="heading" class="hidden-print">
     <div id="branding" class="header-main container hidden-xs" role="banner">
 
@@ -69,13 +70,30 @@
         </div>
     </div>
 </header>
-<nav id="main-nav" class="navigation" role="navigation">
+    <nav id="main-nav" class="hidden-print" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1"></button>
+               
+                <div class="navbar-text navbar-brand-centered visible-xs-block">
+                    <a id="site-name-mobile" class="btn btn-link" title="Home" href="/">
+                        CSCE Library
+                    </a>
         </div>
-        <div id="primary-site-menu" class="collapse navbar-collapse" role="navigation">
+                
+                    @*<button id="main-nav-toggle" class="navbar-toggle btn btn-success 
+                        btn-sm navbar-left collapsed" data-target="#primary-site-menu" data-toggle="collapse"
+                            type="button" aria-expanded="false">
+                        Menu
+                    </button>*@
+
+                <button type="button" class="navbar-toggle collapsed btn btn-success
+                        btn-md navbar-left collapsed" data-toggle="collapse" data-target="#primary-site-menu" aria-expanded="false">
+
+                    Menu
+                </button>
+                </div>
+
+            <div id="primary-site-menu" class="navbar-collapse collapse" role="navigation" aria-expanded="false" style="height: 1px;">
             <div class="navbar-left">
                 <ul class="menu nav navbar-nav">
                     <li class="@SelectedTabClass("Checkout/Check-in")">
@@ -95,12 +113,10 @@
                             <li>@Html.ActionLink("Transaction Reports", "TransactionReports", "Report", new { area = "admin" }, new { })</li>
                         </ul>
                     </li>
-                            @*<li class="@SelectedTabClass("Reports")">
-                                @Html.ActionLink("Reports", "IndexBookReport", "Report", new { area = "admin" }, new { })
-                            </li>*@
                         </ul>
 </div>
             <div class="navbar-right">
+
                 <ul class="menu nav navbar-nav secondary">
                     <li class="first leaf">
                     
@@ -120,7 +136,6 @@
             @RenderBody()
 
 
-
         </div>
     </div>
 </div>
@@ -131,23 +146,7 @@
         </div>
     </div>
 </footer>
-    <script type="text/javascript">
-    var searchvisible = 0;
-    $("#search-menu").click(function (e) {
-        //This stops the page scrolling to the top on a # link.
-        e.preventDefault();
-        if (searchvisible === 0) {
-            //Search is currently hidden. Slide down and show it.
-            $("#search-form").slideDown(200);
-            $("#s").focus(); //Set focus on the search input field.
-            searchvisible = 1; //Set search visible flag to visible.
-        } else {
-            //Search is currently showing. Slide it back up and hide it.
-            $("#search-form").slideUp(200);
-            searchvisible = 0;
-        }
-    });
-    </script>
+</div>
 
 </body>
 

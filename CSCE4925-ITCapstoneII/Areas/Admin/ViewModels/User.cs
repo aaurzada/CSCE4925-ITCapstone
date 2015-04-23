@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using FluentMigrator.Infrastructure;
+using PagedList;
 using SQLSolutions.Models;
 using System.ComponentModel;
 
@@ -14,7 +15,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 {
     public class UserIndex
     {
-        public IEnumerable<User> Users { get; set; }
+        public IPagedList <User> Users { get; set; }
     }
 
     public class UserNew
@@ -24,7 +25,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
         [DisplayName("Euid:")]
         [Required]
-        [RegularExpression(@"^[a-z0-9''\s]{8}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{9}$", ErrorMessage = "EUID should be no longer than 9 characters (letters and numbers only)")]
         public string Euid { get; set; }
         [DisplayName("First Name:")]
         [Required]
@@ -50,7 +51,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
         [DisplayName("Euid:")]
         [Required]
-        [RegularExpression(@"^[a-z0-9''\s]{8}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{9}$", ErrorMessage = "EUID should be no longer than 9 characters (letters and numbers only)")]
         public string Euid { get; set; }
         [DisplayName("First Name:")]
         [Required]
@@ -87,10 +88,13 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Author { get; set; }
         public string CourseSection { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat (DataFormatString = "{0:dd.MMMM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CheckoutDate { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MMMM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime DueDate { get; set; }
+
+        public string Isbn { get; set; }
+        public int AssetNum { get; set; }
     }
 }

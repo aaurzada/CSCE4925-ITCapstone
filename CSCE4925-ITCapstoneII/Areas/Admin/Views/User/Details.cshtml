@@ -1,7 +1,7 @@
 ﻿@model SQLSolutions.Areas.Admin.ViewModels.UserDetailsList
 @{
     ViewBag.Title = "Details";
-    if (Session["username"] == null || Session["isAdmin"] == "false")
+    if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
     }
@@ -25,19 +25,25 @@
         <dd>
             <table class="table">
                 <tr>
-                    <th>
+                    <th class="row-details-asset">
+                        @Html.DisplayName("Asset Number")
+                    </th>
+                    <th class="row-details-isbn">
+                        @Html.DisplayName("ISBN")
+                    </th>
+                    <th class="row-details-title">
                         @Html.DisplayName("Title")
                     </th>
-                    <th>
+                    <th class="row-details-author">
                         @Html.DisplayName("Author")
                     </th>
-                    <th>
+                    <th class="row-details-course">
                         @Html.DisplayName("Course")
                     </th>
-                    <th>
+                    <th class="row-details-out">
                         @Html.DisplayName("Checkout Date")
                     </th>
-                    <th>
+                    <th class="row-details-due">
                         @Html.DisplayName("Due Date")
                     </th>
                 </tr>
@@ -46,6 +52,12 @@
                 {
 
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Isbn)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
@@ -69,6 +81,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

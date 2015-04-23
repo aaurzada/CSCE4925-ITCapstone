@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SQLSolutions.ViewModel
 {
-    public class transactionDetails
+    public class TransactionDetails
     {
         //info to be used by controller and passed to view
         //title of book
@@ -23,12 +23,13 @@ namespace SQLSolutions.ViewModel
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
         public DateTime DueDate { get; set; }
+
     }
 
-    public class transactionDetailsList
+    public class TransactionDetailsList
     {
         //make IEnumerable to display list of info
-        public IEnumerable<transactionDetails> UserBooks { get; set; }
+        public IEnumerable<TransactionDetails> UserBooks { get; set; }
      
     }
 }

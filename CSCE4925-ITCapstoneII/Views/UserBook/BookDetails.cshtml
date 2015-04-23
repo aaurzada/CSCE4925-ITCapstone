@@ -1,0 +1,57 @@
+﻿@model SQLSolutions.ViewModel.TransactionDetailsList
+
+
+@{
+    ViewBag.Title = "BookDetails";
+}
+
+<h2>Checked out Books</h2>
+
+<table class="table">
+    @*table will display book info and checkout/duedate info to current user*@
+    <tr>
+        <th class="row-user-details-title">
+            @Html.DisplayName("Book Title")
+        </th>
+        <th class="row-user-details-author">
+            @Html.DisplayName("Author")
+        </th>
+        <th class="row-user-details-course">
+            @Html.DisplayName("Course Section")
+        </th>
+        <th class="row-user-details-out">
+            @Html.DisplayName("Check Out Date")
+        </th>
+        <th class="row-user-details-due">
+            @Html.DisplayName("Due Date")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @try
+    {
+        foreach (var item in Model.UserBooks) //display all checked out books of current user
+        {
+            int daysLeft = (item.DueDate - DateTime.Today).Days;
+            <tr style="@(daysLeft <= 0 ? "Background-color:red" : "")">
+                @*Any books passed due, highlight in red*@
+                <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                <td> @Html.DisplayFor(modelItem => item.Author) </td>
+                <td> @Html.DisplayFor(modelItem => item.CourseSection)</td>
+                <td> @Html.DisplayFor(modelItem => item.CheckoutDate)</td>
+                <td> @Html.DisplayFor(modelItem => item.DueDate)</td>
+            </tr>
+
+        }
+    }
+    catch //if query/connection fails then display connection failure
+    {
+        <tr>
+            <td>Connection failed.</td>
+        </tr>
+    }
+</table>
+
+
+
