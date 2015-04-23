@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
+    <Compile Include="Areas\Admin\Controllers\checkInCheckOutController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Admin\Scripts\DatePicker.js" />
+    <Content Include="Areas\Admin\Scripts\focusField.js" />
     <Content Include="Areas\Admin\Scripts\Forms.js" />
     <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -272,7 +274,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\checkIn\Catalog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Index.cshtml" />
