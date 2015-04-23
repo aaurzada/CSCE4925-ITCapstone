@@ -14,7 +14,7 @@ namespace SQLSolutions.ViewModel
         //book author
         public string Author { get; set; }
         //book course section 
-        public int CourseSection { get; set; }
+        public string CourseSection { get; set; }
         //the date the book was checked out
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:MMMM dd, yyyy}")]
