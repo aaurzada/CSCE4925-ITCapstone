@@ -163,8 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
-    <Compile Include="Areas\Admin\Controllers\checkInCheckOutController.cs" />
-    <Compile Include="Areas\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Book.cs" />
     <Compile Include="Areas\Admin\ViewModels\Report.cs" />
@@ -206,7 +205,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Admin\Scripts\DatePicker.js" />
     <Content Include="Areas\Admin\Scripts\Forms.js" />
-    <Content Include="Areas\Admin\Views\Report\_BookReport.cshtml" />
     <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -284,7 +282,6 @@
     <Content Include="Areas\Admin\Views\Book\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Report\IndexBookReport.cshtml" />
-    <Content Include="Areas\Admin\Views\Report\_TransactionReport.cshtml" />
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
     <Content Include="Areas\Admin\Views\Report\BookReport.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
@@ -321,9 +318,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\nonAdmin\Details.cshtml" />
     <Content Include="Views\UserBook\BookDetails.cshtml" />
     <Content Include="Views\UserBook\BookIndex.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

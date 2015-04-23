@@ -104,24 +104,22 @@
                 <div id="primary-site-menu" class="navbar-collapse collapse" role="navigation" aria-expanded="false" style="height: 1px;">
                     <div class="navbar-left">
                         <ul class="menu nav navbar-nav">
-                            <li class="leaf" @*"first leaf active"*@>
-                                <a class="leaf" href="/">
-                                    Home
-                                </a>
-                            <li>
+                            <li class="@SelectedTabClass("Home")">
+                                @Html.ActionLink("Home","BookDetails", "UserBook")
+                            </li>
+                           
                             <li class="leaf">
-                                <a title="" href="/Checkin">
-                                    Search
-                                </a>
+                            <li class="@SelectedTabClass("Search")">
+                                @Html.ActionLink("Search","BookIndex", "UserBook")
+                            </li>
+
                             </li>
                         </ul>
                     </div>
                     <div class="navbar-right">
                         <ul class="menu nav navbar-nav secondary">
                             <li class="first leaf">
-                                <a title="" href="/Logout">
-                                    Logout
-                                </a>
+                                @Html.ActionLink("Logout", "Index", "Home", new { area = "" }, null)
                             </li>
                         </ul>
                     </div>

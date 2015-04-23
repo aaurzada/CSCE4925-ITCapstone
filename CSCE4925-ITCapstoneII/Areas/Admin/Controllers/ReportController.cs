@@ -365,9 +365,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         }
                         transaction = transaction.AsQueryable()
                             .Where(
-                                    u =>u.CheckInDate.Year.ToString()
-                                    .IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
-                                    || u.CheckInDate == date)
+                                    u => u.CheckInDate == date)
                             .OrderByDescending(u => u.CheckInDate)
                             .ToList();
                         break;
@@ -378,13 +376,13 @@ namespace SQLSolutions.Areas.Admin.Controllers
                             .OrderByDescending(u => u.AssetNum)
                             .ToList();
                         break;
-                    case "12":
-                        date = null;
-                        transaction = transaction.AsQueryable()
-                            .Where(u => u.CheckInDate == date)
-                            .OrderByDescending(u => u.CheckInDate)
-                            .ToList();
-                        break;
+                    //case "12":
+                    //    date = null;
+                    //    transaction = transaction.AsQueryable()
+                    //        .Where(u => u.CheckInDate == date)
+                    //        .OrderByDescending(u => u.CheckInDate)
+                    //        .ToList();
+                    //    break;
 
                     default:
                         transaction = (from tr in transaction.AsQueryable()
@@ -410,6 +408,13 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
                 }
             }
+            if (selected == "12")
+            {
+                transaction = transaction.AsQueryable()
+                           .Where(u => u.CheckInDate == null)
+                           .OrderByDescending(u => u.CheckInDate)
+                           .ToList();
+            }
 
             if (begin != null && end != null)
             {
@@ -434,10 +439,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 TransactionReports = transaction.ToPagedList(pageNumber, pageSize)
             };
 
-            //if (Request.IsAjaxRequest())
-            //{
-            //    return PartialView("_TransactionReport");
-            //}
             return View(transactList);
 
         }

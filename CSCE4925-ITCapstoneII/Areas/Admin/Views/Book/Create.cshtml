@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
-    if (Session["username"] == null || Session["isAdmin"] == "false")
+    if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
     }

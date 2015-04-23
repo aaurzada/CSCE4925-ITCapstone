@@ -47,7 +47,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public DateTime DueDate { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime CheckInDate { get; set; }
+        public DateTime ? CheckInDate { get; set; }
         public int AssetNum { get; set; }
         public string IsRequired { get; set; }
 

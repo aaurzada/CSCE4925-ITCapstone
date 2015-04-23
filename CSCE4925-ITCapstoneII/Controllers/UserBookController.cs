@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NHibernate.Linq;
 using PagedList;
 using SQLSolutions.Areas.Admin.ViewModels;
+using SQLSolutions.Infrastructure;
 using SQLSolutions.Models;
 using SQLSolutions.ViewModel;
 
@@ -14,14 +15,15 @@ namespace SQLSolutions.Controllers
     public class UserBookController : Controller
     {
        
-        // GET: Details/Details/5
-        public ActionResult Details()
+        [SelectedTab("Home")]
+        public ActionResult BookDetails()
         {
-            var user = TempData["userId"].ToString();
+            var user = Session["username"];
+            var getuser = Database.Session.Query<User>().Where(u => u.Euid.Equals(user.ToString())).Select(u => u.Id);
             var userBook = (from book in Database.Session.Query<Book>()
                             join transaction in Database.Session.Query<Transaction>()
                             on book.AssetNum equals transaction.BookAssetNumber
-                            where transaction.UserId.ToString() == user
+                            where transaction.UserId.ToString() == getuser.ToString()
                             select new TransactionDetails
                             {
 
@@ -42,6 +44,7 @@ namespace SQLSolutions.Controllers
         }
 
         // GET: User/Index
+        [SelectedTab("Search")]
         public ActionResult BookIndex(string searchBook, string currentFilter, int? page)
         {
             // currentFilter provides the view with the current filter string. currentFilter will maintain

@@ -11,7 +11,6 @@ using PagedList;
 
 namespace SQLSolutions.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
     [SelectedTab("Catalog Management")]
     public class BookController : Controller
     {
@@ -70,6 +69,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: Admin/Book/Create
         [HttpPost]
         [SelectedTab("Catalog Management")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(BookNew form)
         {
             if (Database.Session.Query<Book>().Any(b => b.AssetNum == form.AssetNum))
@@ -123,6 +123,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: Admin/Book/Edit/5
         [HttpPost]
         [SelectedTab("Catalog Management")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, BookEdit form)
         {
             var bookEdit = Database.Session.Get<Book>(id);

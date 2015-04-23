@@ -109,6 +109,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: User/Create
         [HttpPost]
         [SelectedTab("User Records")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserNew form)
         {
             //check if user ID and Euid already exists in the database
@@ -160,6 +161,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         // POST: User/Edit/5
         [HttpPost]
         [SelectedTab("User Records")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UserEdit form)
         {
             var editUser = Database.Session.Get<User>(id);

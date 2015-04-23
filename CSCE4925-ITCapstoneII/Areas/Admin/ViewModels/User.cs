@@ -25,7 +25,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
         [DisplayName("Euid:")]
         [Required]
-        [RegularExpression(@"^[a-z0-9''\s]{8}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{9}$", ErrorMessage = "EUID should be no longer than 9 characters (letters and numbers only)")]
         public string Euid { get; set; }
         [DisplayName("First Name:")]
         [Required]
@@ -51,7 +51,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int Id { get; set; }
         [DisplayName("Euid:")]
         [Required]
-        [RegularExpression(@"^[a-z0-9''\s]{8}$", ErrorMessage = "EUID should be no longer than 6 characters (letters and numbers only)")]
+        [RegularExpression(@"^[a-z0-9''\s]{9}$", ErrorMessage = "EUID should be no longer than 9 characters (letters and numbers only)")]
         public string Euid { get; set; }
         [DisplayName("First Name:")]
         [Required]
