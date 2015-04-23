@@ -2,7 +2,7 @@
 @using SelectListItem = System.Web.WebPages.Html.SelectListItem
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Transaction Reports";
     if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
