@@ -8,18 +8,23 @@ using NHibernate.Linq;
 using SQLSolutions.Areas.Admin.ViewModels;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
+using SQLSolutions.Infrastructure;
+
 namespace SQLSolutions.Areas.Admin.Controllers
 {
     public class checkInCheckOutController : Controller
     {
         // GET: Admin/checkInCheckOut
+        [SelectedTab("Checkout/Check In")]
         public ActionResult Index()
         {
-            return View();
+            return View(new Transaction());
         }
 
 
         [HttpPost]
+        [SelectedTab("Checkout/Check In")]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(Transaction user)
         {
             if (Database.Session.Query<Book>().Any(b => b.AssetNum == user.BookAssetNumber))
@@ -265,13 +270,14 @@ namespace SQLSolutions.Areas.Admin.Controllers
                     //}
                 }
                 Session["book_state"] = "";
+
                 Response.Write("<script>alert('Book has successfully been checked out.');</script>");
             }
                 //if euid exists then get id
                 //make new transaction with euid, assetNum, checkOutDate, and dueDate
                 //mark book as isAvailable = false;
-               
-               return View("Index");
+
+            return RedirectToAction("Index");
 
             }
             //string sql = "UPDATE transaction SET checkInDate = @today WHERE book_assetNum = @assetNum AND checkInDate = @checkIn";

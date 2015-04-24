@@ -1,4 +1,4 @@
-﻿function SetFocus() {
-    var input = document.getElementById("theFieldID");
-    input.focus();
-}
+﻿$(window.onload = function () {
+    var text = document.getElementById("theFieldID");
+    text.focus();
+});

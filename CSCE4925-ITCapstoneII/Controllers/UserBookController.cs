@@ -76,7 +76,7 @@ namespace SQLSolutions.Controllers
             {
                 bookList = new UserBookIndex
                 {
-                    UserBooks = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook) && b.InStock.Equals(true)
+                    UserBooks = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook) 
                         || b.Isbn.Contains(searchBook) && b.InStock.Equals(true) 
                         || b.Author.Contains(searchBook) && b.InStock.Equals(true)
                         || b.Isbn.ToString().Contains(searchBook) && b.InStock.Equals(true)

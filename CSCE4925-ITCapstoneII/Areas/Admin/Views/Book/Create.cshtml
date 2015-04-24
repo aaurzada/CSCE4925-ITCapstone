@@ -21,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AssetNum, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-xs-12 col-md-8">
-                @Html.EditorFor(model => model.AssetNum, new {htmlAttributes = new {@class = "form-control", @Value = "", @placeholder = "Four digit asset number"}})
+                @Html.EditorFor(model => model.AssetNum, new {htmlAttributes = new {@class = "form-control", @id="theFieldID", @Value = "", @placeholder = "Four digit asset number"}})
                 @Html.ValidationMessageFor(model => model.AssetNum, "", new {@class = "text-danger"})
             </div>
         </div>
