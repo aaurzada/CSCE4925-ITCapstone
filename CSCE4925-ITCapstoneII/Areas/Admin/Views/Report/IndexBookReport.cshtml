@@ -13,21 +13,21 @@
 
 <h2>Book Reports</h2>
 
-<div class="row">
-    @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Post))
+<div class="row" id="search-group">
+    @using (Html.BeginForm("IndexBookReport", "Report", FormMethod.Get))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
         <div class="form-group">
-            <div class="col-md-3" style="padding-right: 5px;">
+            <div class="col-md-4">
                 @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
             </div>
             <span>
-                <button class="btn btn-default" type="submit">
+                <button class="btn btn-default col-md-1" type="submit">
                     Filter
                 </button>
             </span>
-            <div  style="float: right !important; font-size: 14px; padding-top: 7px; margin-right: 20px;">
+            <div class="col-md-offset-5 col-md-2">
                 @Html.ActionLink("Export to Excel", "Export")
             </div>
         </div>
@@ -35,34 +35,34 @@
 
 </div>
 
-
+<div class="table-container">
 <table class="table">
     <tr>
-        <th class="row-bookreport-assetnum">
+        <th>
             @Html.DisplayName("AssetNum")
         </th>
-        <th class="row-bookreport-isbn">
+        <th>
             @Html.DisplayName("ISBN")
         </th>
-        <th class="row-bookreport-title">
+        <th>
             @Html.DisplayName("Title")
         </th>
-        <th class="row-bookreport-author">
+        <th>
             @Html.DisplayName("Author")
         </th>
-        <th class="row-bookreport-course">
+        <th>
             @Html.DisplayName("Course")
         </th>
-        <th class="row-bookreport-year">
+        <th>
             @Html.DisplayName("Year")
         </th>
-        <th class="row-bookreport-edition">
+        <th>
             @Html.DisplayName("Edition")
         </th>
-        <th class="row-bookreport-required">
+        <th>
             @Html.DisplayName("Required")
         </th>
-        <th class="row-bookreport-available">
+        <th>
             @Html.DisplayName("Available")
         </th>
         <th></th>
@@ -103,6 +103,17 @@
     }
 
 </table>
+    </div>
+@*check if search returned any results, if not display the error message*@
+@if (!Model.Books.Any())
+{
+    @Html.DisplayName("No records were found")
+}
+else
+{
+    @Html.DisplayName("Found ") @Model.Books.TotalItemCount    @Html.DisplayName(" Results")
+}
+
 
 
 

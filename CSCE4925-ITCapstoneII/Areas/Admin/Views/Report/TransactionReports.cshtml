@@ -9,32 +9,34 @@
     }
 }
 
-<div>
+
     <h2>
         Transaction Reports
-        <div style="float: right; font-size: 14px; padding-top: 15px;">
-            @Html.ActionLink("Export to Excel", "Export")
-        </div>
+       
     </h2>
- </div>
 
-@using (Html.BeginForm("TransactionReports", "Report", FormMethod.Post))
+<div class="row" style="margin-right: 0;">
+    <div class=" col-md-1 col-md-offset-11">
+        @Html.ActionLink("Export to Excel", "Export")
+    </div>
+</div>
+@using (Html.BeginForm("TransactionReports", "Report", FormMethod.Get))
 {
     <div class="row" id="search-group">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
+        
 
         <div>
-            <div class="col-md-2" style="padding-right: 5px;">
+            <div class="col-md-2">
                 @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @id = "selectList", @class = "form-control" })
             </div>
-            <div class="col-md-4" style="padding-left: 0; padding-right: 30px;">
-
+            <div class="col-md-3" >
                 @Html.TextBox("searchValue", ViewBag.currentFilter as string, new { @class = "form-control", @placeholder = "Search" })
             </div>
         </div>
 
-        <div class=" col-md-2" style="padding-right: 5px;">
+        <div class=" col-md-2">
             @Html.TextBox("begin", ViewBag.currentBegin as string, new
                 {
                     @id = "datepicker",
@@ -44,7 +46,7 @@
                 })
        
         </div>
-        <div class="col-md-2" style="padding-left: 0;">
+        <div class="col-md-2" >
             @Html.TextBox("end", ViewBag.currentEnd as string, new
                     {
                         @id = "datepicker2",
@@ -55,12 +57,13 @@
 
         </div>
 
-        <button class="btn btn-default" type="submit">
+        <button class="btn btn-default col-md-1" type="submit">
             <i class="glyphicon glyphicon-search"></i>
             Search
         </button>
 
-        <a href="@Url.Action("TransactionReports")" class="btn btn-warning" style="float: right; margin-right: 17px;">
+        <a href="@Url.Action("TransactionReports")" class="btn btn-warning col-md-1 col-md-offset-1">
+            <i class="glyphicon glyphicon-refresh"></i>
             Reset
         </a>
     </div>
@@ -69,50 +72,50 @@
 
 
 
-
+<div class="table-container">
 <table class="table" id="report">
     <tr>
 
-        <th class="row-trans-id">
+        <th>
             @Html.DisplayName("EUID")
         </th>
-        <th class="row-trans-name">
+        <th>
             @Html.DisplayName("Name")
         </th>
-        <th class="row-trans-email">
+        <th>
             @Html.DisplayName("Email")
         </th>
-        <th class="row-trans-isbn">
+        <th>
             @Html.DisplayName("ISBN")
         </th>
-        <th class="row-trans-title">
+        <th>
             @Html.DisplayName("Title")
         </th>
-        <th class="row-trans-author">
+        <th>
             @Html.DisplayName("Author")
         </th>
-        <th class="row-trans-course">
+        <th>
             @Html.DisplayName("Course")
         </th>
-        <th class="row-trans-out">
+        <th>
             @Html.DisplayName("Checkout Date")
         </th>
-        <th class="row-trans-due">
+        <th>
             @Html.DisplayName("Due Date")
         </th>
-        <th class="row-trans-in">
+        <th>
             @Html.DisplayName("Checkin Date")
         </th>
-        <th class="row-trans-year">
+        <th>
             @Html.DisplayName("Year")
         </th>
-        <th class="row-trans-edition">
+        <th>
             @Html.DisplayName("Edition")
         </th>
-        <th class="row-trans-required">
+        <th>
             @Html.DisplayName("Required")
         </th>
-        <th class="row-trans-asset">
+        <th>
             @Html.DisplayName("Asset Num")
         </th>
         @*<th></th>*@
@@ -161,7 +164,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsRequired)
-                @*@(item.IsRequired == "0" ? Html.DisplayName("No") : Html.DisplayFor(modelItem => item.IsRequired))*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AssetNum)
@@ -172,12 +174,16 @@
 
 
 </table>
+ </div>
 @*check if search returned any results, if not display the error message*@
 @if (!Model.TransactionReports.Any())
 {
     @Html.DisplayName("No records were found")
 }
-
+else
+{
+    @Html.DisplayName("Found ") @Model.TransactionReports.TotalItemCount    @Html.DisplayName(" Results")
+}
 
 
     @*display pagination*@

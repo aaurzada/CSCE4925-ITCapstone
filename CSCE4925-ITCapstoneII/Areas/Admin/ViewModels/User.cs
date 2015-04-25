@@ -94,6 +94,8 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime DueDate { get; set; }
 
+        public DateTime ? CheckInDate { get; set; }
+
         public string Isbn { get; set; }
         public int AssetNum { get; set; }
     }
