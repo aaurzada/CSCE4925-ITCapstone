@@ -2,6 +2,13 @@
 
 @{
     ViewBag.Title = "Edit";
+    {
+        if (Session["username"] == null || Session["isAdmin"].Equals(false))
+        {
+            Response.Redirect("~/Home/index");
+        }
+    }
+
 }
 
 <h2>Edit</h2>

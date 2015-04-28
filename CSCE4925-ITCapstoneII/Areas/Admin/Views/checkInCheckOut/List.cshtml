@@ -2,6 +2,13 @@
 
 @{
     ViewBag.Title = "List";
+    {
+         if (Session["username"] == null || Session["isAdmin"].Equals(false))
+         {
+             Response.Redirect("~/Home/index");
+         }
+     }
+
 }
 
 <h2>Transaction Index</h2>
