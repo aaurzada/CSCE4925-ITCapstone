@@ -19,15 +19,15 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
         <div class="form-group">
-            <div class="col-md-4">
+            <div class="col-xs-6 col-md-4">
                 @Html.DropDownList("Selected", (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Selected, new { @class = "form-control" })
             </div>
             <span>
-                <button class="btn btn-default col-md-1" type="submit">
+                <button class="btn btn-default col-xs-2 col-md-1" type="submit">
                     Filter
                 </button>
             </span>
-            <div class="col-md-offset-5 col-md-2">
+            <div class=" col-md-offset-5  col-xs-4 col-md-2">
                 @Html.ActionLink("Export to Excel", "Export")
             </div>
         </div>
@@ -36,74 +36,74 @@
 </div>
 
 <div class="table-container">
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("AssetNum")
-        </th>
-        <th>
-            @Html.DisplayName("ISBN")
-        </th>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Author")
-        </th>
-        <th>
-            @Html.DisplayName("Course")
-        </th>
-        <th>
-            @Html.DisplayName("Year")
-        </th>
-        <th>
-            @Html.DisplayName("Edition")
-        </th>
-        <th>
-            @Html.DisplayName("Required")
-        </th>
-        <th>
-            @Html.DisplayName("Available")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Books)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssetNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-
+            <th>
+                @Html.DisplayName("AssetNum")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-    </div>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
 @*check if search returned any results, if not display the error message*@
 @if (!Model.Books.Any())
 {
@@ -115,7 +115,5 @@ else
 }
 
 
-
-
 @Html.PagedListPager(Model.Books, page => Url.Action("IndexBookReport",
-                      new { page, selected = ViewBag.currentSelect}))
+                      new { page, selected = ViewBag.currentSelect }))

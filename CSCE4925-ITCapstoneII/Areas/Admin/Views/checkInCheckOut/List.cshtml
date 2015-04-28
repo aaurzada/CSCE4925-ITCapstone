@@ -11,7 +11,7 @@
 <form method="GET">
     <div class="row" id="search-group">
         <div class="clearfix"></div>
-        <div class="col-md-6">
+        <div class="col-xs-8 col-md-6">
             <div class="input-group">
                 @Html.TextBox("searchT", ViewBag.currentFilter as string, new { @class = "form-control" })
                 <span class="input-group-btn">
@@ -55,7 +55,7 @@
             <th>
                 @Html.DisplayName("Due Date")
             </th>
-
+          
 
             <th></th>
         </tr>
@@ -93,7 +93,7 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                 </td>
             </tr>
         }
@@ -107,5 +107,5 @@
 }
 
 
-    @Html.PagedListPager(Model.TrasactList, page => Url.Action("List",
+@Html.PagedListPager(Model.TrasactList, page => Url.Action("List",
         new { page, currentFilter = ViewBag.CurrentFilter }))

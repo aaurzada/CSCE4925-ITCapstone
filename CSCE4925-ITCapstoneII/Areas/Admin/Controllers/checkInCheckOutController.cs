@@ -340,30 +340,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                                                    || u.FirstName.Contains(searchT) ||
                                                                    u.LastName.Contains(searchT)
                                                                    || u.Isbn.Contains(searchT)).ToList();
-                //transaction = (from book in Database.Session.Query<Book>()
-                //   join transact in Database.Session.Query<Transaction>()
-                //       on book.AssetNum equals transact.BookAssetNumber
-                //   join borrower in Database.Session.Query<User>()
-                //       on transact.UserId equals borrower.Id
-                //   where transact.CheckInDate == null
-                //   orderby transact.CheckoutDate
-                //       descending
-                //   select new Transactions
-                //   {
-                //       Id = transact.Id,
-                //       AssetNum = book.AssetNum,
-                //       Isbn = book.Isbn,
-                //       Title = book.Title,
-                //       Author = book.Author,
-                //       CourseSection = book.CourseSection,
-                //       Euid = borrower.Euid,
-                //       FirstName = borrower.FirstName,
-                //       LastName = borrower.LastName,
-                //       CheckoutDate = transact.CheckoutDate,
-                //       DueDate = transact.DueDate,
-
-
-                //   });
+               
             }
            
             const int pageSize = 5;
@@ -400,7 +377,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                       FirstName = borrower.FirstName,
                                       LastName = borrower.LastName,
                                       CheckoutDate = transact.CheckoutDate,
-                                      DueDate = transact.DueDate
+                                      DueDate = transact.DueDate,
+                                      CheckInDate = transact.CheckInDate
                                   }).SingleOrDefault();
                
             if (getTransaction == null)
@@ -421,6 +399,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 LastName = getTransaction.LastName,
                 CheckoutDate = getTransaction.CheckoutDate.ToShortDateString(),
                 DueDate = getTransaction.DueDate.ToShortDateString(),
+                CheckInDate = getTransaction.CheckInDate
 
             });
         }
@@ -444,7 +423,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                       DueDate = transact.DueDate,
                                       Id = transact.Id,
                                       UserId = transact.UserId,
-                                      BookAssetNumber = transact.BookAssetNumber
+                                      BookAssetNumber = transact.BookAssetNumber,
+                                      CheckInDate = transact.CheckInDate
 
                                   }).SingleOrDefault();
             if (getTransaction == null)
@@ -476,7 +456,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             transaction.Id = ts.Id;
             transaction.UserId = ts.UserId;
             transaction.BookAssetNumber = ts.BookAssetNumber;
-            transaction.CheckInDate = null;
+            transaction.CheckInDate = edit.CheckInDate;
         }
 
     }

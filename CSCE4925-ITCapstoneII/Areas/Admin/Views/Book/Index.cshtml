@@ -5,7 +5,7 @@
     if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
-}
+    }
 
 }
 
@@ -21,119 +21,119 @@
 <form method="GET">
     <div class="row" id="search-group">
         <div class="clearfix"></div>
-        <div class="col-md-6">
+        <div class="col-xs-8 col-md-6">
             <div class="input-group">
-                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new {@class = "form-control"})
+                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control" })
                 @*<input type="search" class="form-control" name="searchBook"/>*@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
+                        <i class="glyphicon glyphicon-search"></i>
                         Search
                     </button>
                 </span>
             </div>
         </div>
         @*add new book button*@
-        <div class="col-md-2 col-md-offset-4">
+        <div class=" col-md-offset-4 col-xs-4 col-md-2">
             <a href="@Url.Action("Create")" class="btn btn-primary">
                 <i class="glyphicon glyphicon-plus"></i>
                 Add New Book
             </a>
         </div>
     </div>
-      
+
 </form>
 
 <div class="table-container">
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("AssetNum")
-        </th>
-        <th>
-            @Html.DisplayName("ISBN")
-        </th>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Author")
-        </th>
-        <th>
-            @Html.DisplayName("Course")
-        </th>
-        <th>
-            @Html.DisplayName("Year")
-        </th>
-        <th>
-            @Html.DisplayName("Edition")
-        </th>
-        <th>
-            @Html.DisplayName("Required")
-        </th>
-        <th>
-            @Html.DisplayName("Available")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Books)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssetNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-            <td>
-
-                <div class="btn-group">
-                    <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-
-                    <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
-                       data-post="Are you sure you want to delete @item.Title for the @item.CourseSection course?">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        Delete
-                    </a>
-                </div>
-            </td>
+            <th>
+                @Html.DisplayName("AssetNum")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-    </div>
-    @*check if no records were found then display message*@
-    @if (!Model.Books.Any())
-    {
-        @Html.DisplayName("No records were found")
-    }
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit
+                        </a>
+
+                        <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
+                           data-post="Are you sure you want to delete @item.Title for the @item.CourseSection course?">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@*check if no records were found then display message*@
+@if (!Model.Books.Any())
+{
+    @Html.DisplayName("No records were found")
+}
 
 
 
-    @Html.PagedListPager(Model.Books, page => Url.Action("Index",
+@Html.PagedListPager(Model.Books, page => Url.Action("Index",
     new { page, currentFilter = ViewBag.CurrentFilter }))

@@ -7,7 +7,7 @@
 <h2>Book List</h2>
 <form method="GET">
     <div class="row" id="search-group">
-        <div class="col-lg-6">
+        <div class="col-xs-8 col-md-6 col-lg-6">
             <div class="input-group">
                 @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control" })
                 <span class="input-group-btn">
@@ -22,74 +22,74 @@
 
 </form>
 <div class="table-container">
-<table class="table">
-    <tr>
-
-        <th>
-            @Html.DisplayName("ISBN")
-        </th>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Author")
-        </th>
-        <th>
-            @Html.DisplayName("Course")
-        </th>
-        <th>
-            @Html.DisplayName("Year")
-        </th>
-        <th>
-            @Html.DisplayName("Edition")
-        </th>
-        <th>
-            @Html.DisplayName("Required")
-        </th>
-        <th>
-            @Html.DisplayName("Available")
-        </th>
-    </tr>
-
-    @foreach (var item in Model.UserBooks)
-    {
+    <table class="table">
         <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
         </tr>
-    }
 
-</table>
-    </div>
-    @*check if no records were found then display message*@
-    @if (!Model.UserBooks.Any())
-    {
-        @Html.DisplayName("No records were found")
-    }
+        @foreach (var item in Model.UserBooks)
+        {
+            <tr>
 
-    @Html.PagedListPager(Model.UserBooks, page => Url.Action("Index",
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+@*check if no records were found then display message*@
+@if (!Model.UserBooks.Any())
+{
+    @Html.DisplayName("No records were found")
+}
+
+@Html.PagedListPager(Model.UserBooks, page => Url.Action("Index",
     new { page, currentFilter = ViewBag.CurrentFilter }))
