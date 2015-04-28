@@ -49,6 +49,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
+
         [DisplayName("Euid:")]
         [Required]
         [RegularExpression(@"^[a-z0-9''\s]{6,9}$", ErrorMessage = "EUID should be no longer than 9 characters (letters and numbers only)")]

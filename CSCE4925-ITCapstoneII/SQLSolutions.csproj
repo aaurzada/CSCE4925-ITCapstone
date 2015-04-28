@@ -286,6 +286,9 @@
     <Content Include="Areas\Admin\Views\Report\TransactionReports.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\checkOut.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\checkInBook.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\List.cshtml" />
     <None Include="Properties\PublishProfiles\IT Capstone Web Server.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

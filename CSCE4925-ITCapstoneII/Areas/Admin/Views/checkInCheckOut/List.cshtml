@@ -1,0 +1,111 @@
+﻿@model SQLSolutions.Areas.Admin.ViewModels.TransactioList
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Transaction Index</h2>
+
+@*search bar*@
+
+<form method="GET">
+    <div class="row" id="search-group">
+        <div class="clearfix"></div>
+        <div class="col-md-6">
+            <div class="input-group">
+                @Html.TextBox("searchT", ViewBag.currentFilter as string, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("AssetNum")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Euid")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Checkout Date")
+            </th>
+            <th>
+                @Html.DisplayName("Due Date")
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.TrasactList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Euid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckoutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@*check if no records were found then display message*@
+@if (!Model.TrasactList.Any())
+{
+    @Html.DisplayName("No records were found")
+}
+
+
+    @Html.PagedListPager(Model.TrasactList, page => Url.Action("List",
+        new { page, currentFilter = ViewBag.CurrentFilter }))

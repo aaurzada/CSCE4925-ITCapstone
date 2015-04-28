@@ -186,7 +186,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                join borrower in Database.Session.Query<User>()
                                    on transact.UserId equals borrower.Id
                                orderby transact.CheckoutDate
-                                   descending
+                               descending 
                                select new TransactionReport
                                {
                                    Euid = borrower.Euid,
@@ -380,7 +380,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                     //    date = null;
                     //    transaction = transaction.AsQueryable()
                     //        .Where(u => u.CheckInDate == date)
-                    //        .OrderByDescending(u => u.CheckInDate)
+                    //        .OrderByDescendingDescending(u => u.CheckInDate)
                     //        .ToList();
                     //    break;
 

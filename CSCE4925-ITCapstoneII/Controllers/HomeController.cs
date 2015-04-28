@@ -63,9 +63,9 @@ namespace SQLSolutions.Controllers
             //--- ACCOUNT EXISTS IN OUR User TABLE---
             if (queryEuid != null) //if user exists in user table then check euid and password with ldap
             { 
-                var connect = new LDAPConnect();
+                //var connect = new LDAPConnect();
                 //CONNECT TO LDAP 
-                if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
+               // if (connect.useLDAP("uid=" + _username + ",ou=people,o=unt", _password))
                 {
                         bool boolIsAdmin = false;
                      
