@@ -91,5 +91,5 @@
     @Html.DisplayName("No records were found")
 }
 
-@Html.PagedListPager(Model.UserBooks, page => Url.Action("Index",
+@Html.PagedListPager(Model.UserBooks, page => Url.Action("BookIndex",
     new { page, currentFilter = ViewBag.CurrentFilter }))

@@ -404,7 +404,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 LastName = getTransaction.LastName,
                 CheckoutDate = getTransaction.CheckoutDate.ToShortDateString(),
                 DueDate = getTransaction.DueDate.ToShortDateString(),
-                CheckInDate = getTransaction.CheckInDate
 
             });
         }
@@ -423,13 +422,11 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                   where transact.Id.Equals(id) && transact.CheckInDate == null
                                   select new TransactionPost
                                   {
-                                      
                                       CheckoutDate = transact.CheckoutDate,
                                       DueDate = transact.DueDate,
                                       Id = transact.Id,
                                       UserId = transact.UserId,
-                                      BookAssetNumber = transact.BookAssetNumber,
-                                      CheckInDate = transact.CheckInDate
+                                      BookAssetNumber = transact.BookAssetNumber
 
                                   }).SingleOrDefault();
             if (getTransaction == null)
@@ -461,7 +458,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             transaction.Id = ts.Id;
             transaction.UserId = ts.UserId;
             transaction.BookAssetNumber = ts.BookAssetNumber;
-            transaction.CheckInDate = edit.CheckInDate;
+            transaction.CheckInDate = null;
         }
 
     }

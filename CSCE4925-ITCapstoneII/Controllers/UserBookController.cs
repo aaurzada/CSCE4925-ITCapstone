@@ -23,7 +23,8 @@ namespace SQLSolutions.Controllers
             var userBook = (from book in Database.Session.Query<Book>()
                             join transaction in Database.Session.Query<Transaction>()
                             on book.AssetNum equals transaction.BookAssetNumber
-                            where transaction.UserId.ToString() == getuser.ToString()
+                            where transaction.UserId.ToString() == getuser.ToString() &&
+                            transaction.CheckInDate == null
                             select new TransactionDetails
                             {
 
@@ -77,10 +78,10 @@ namespace SQLSolutions.Controllers
                 bookList = new UserBookIndex
                 {
                     UserBooks = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook) 
-                        || b.Isbn.Contains(searchBook) && b.InStock.Equals(true) 
-                        || b.Author.Contains(searchBook) && b.InStock.Equals(true)
-                        || b.Isbn.ToString().Contains(searchBook) && b.InStock.Equals(true)
-                        || b.CourseSection.ToString().Contains(searchBook) && b.InStock.Equals(true))
+                        || b.Isbn.Contains(searchBook) 
+                        || b.Author.Contains(searchBook) 
+                        || b.Isbn.ToString().Contains(searchBook) 
+                        || b.CourseSection.ToString().Contains(searchBook))
                         .ToPagedList(pageNumber, pageSize)
                 };
             }

@@ -21,7 +21,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //Restrict to 4 numbers only
-        [RegularExpression(@"^(?!0{4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^(?!0{1,4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number. Asset Number cannot start with 0")]
         [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
         [Required]
@@ -56,7 +56,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     public class BookEdit
     {
         [Required]
-        [RegularExpression(@"^(?!0{4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^(?!0{1,4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number. Asset Number cannot start with 0")]
         [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
 
@@ -89,6 +89,6 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [DisplayName("Required")]
         public bool IsRequired { get; set; }
 
-        //public bool InStock { get; set; }
+        public bool InStock { get; set; }
     }
 }

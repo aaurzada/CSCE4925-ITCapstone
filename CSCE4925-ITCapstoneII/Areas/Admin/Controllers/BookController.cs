@@ -91,6 +91,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 Year = form.Year,
                 Edition = form.Edition,
                 IsRequired = form.IsRequired,
+                InStock = true
             };
             //save user to the database
             Database.Session.Save(book);
