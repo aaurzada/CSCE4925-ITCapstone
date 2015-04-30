@@ -101,19 +101,19 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 DateTime today = new DateTime();
                 today = DateTime.Today;
                 MySqlConnection Connection = new MySqlConnection("Server=localhost;Database=sqlsolutions;User Id=sqlsolutions;Password=Password01!");
-
-                using (MySqlCommand command = new MySqlCommand("UPDATE transaction SET checkInDate = @today WHERE book_assetNum = @assetNum AND checkInDate = @checkIn OR checkInDate IS NULL", Connection))
+                int bookAssetNum = Convert.ToInt32(Session["bookAssetNum"].ToString());
+                using (MySqlCommand command = new MySqlCommand("UPDATE transaction SET checkInDate = @today WHERE book_assetNum = @assetNum AND checkInDate IS NULL", Connection))
                 {
                     command.Parameters.AddWithValue("@today", today.Date); //todays date
-                    command.Parameters.AddWithValue("@assetNum", Session["bookAssetNum"]); //asset Number sent by form
-                    command.Parameters.AddWithValue("@checkIn", defaultDate);
+                    command.Parameters.AddWithValue("@assetNum", bookAssetNum); //asset Number sent by form
+                //    command.Parameters.AddWithValue("@checkIn", defaultDate);
                     Connection.Open();
                     command.ExecuteNonQuery();
                     Connection.Close();
                 }
                 using (MySqlCommand command2 = new MySqlCommand("UPDATE book SET inStock = true WHERE assetNum = @asset_num", Connection))
                 {
-                    command2.Parameters.AddWithValue("@asset_num", Session["bookAssetNum"]);
+                    command2.Parameters.AddWithValue("@asset_num", bookAssetNum);
                     Connection.Open();
                     command2.ExecuteNonQuery();
                     Connection.Close();
@@ -277,10 +277,15 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
                 Response.Write("<script>alert('Book has successfully been checked out.');</script>");
             }
+            else
+            {
+                ModelState.AddModelError("", "Book does not exist");
+                return View();
+            }
             //if euid exists then get id
             //make new transaction with euid, assetNum, checkOutDate, and dueDate
             //mark book as isAvailable = false;
-
+          
             return RedirectToAction("Index");
 
         }
