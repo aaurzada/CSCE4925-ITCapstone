@@ -24,6 +24,8 @@ namespace SQLSolutions.ViewModel
         [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
         public DateTime DueDate { get; set; }
 
+        public DateTime ? CheckInDate { get; set; }
+
     }
 
     public class TransactionDetailsList
