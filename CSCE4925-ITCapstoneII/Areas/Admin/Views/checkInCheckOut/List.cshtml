@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "List";
     {
-         if (Session["username"] == null || Session["isAdmin"].Equals(false))
-         {
-             Response.Redirect("~/Home/index");
-         }
-     }
+        if (Session["username"] == null || Session["isAdmin"].Equals(false))
+        {
+            Response.Redirect("~/Home/index");
+        }
+    }
 
 }
 
@@ -62,7 +62,7 @@
             <th>
                 @Html.DisplayName("Due Date")
             </th>
-          
+
 
             <th></th>
         </tr>
@@ -100,7 +100,12 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new {id = item.CheckInDate})" class="btn btn-xs btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit
+                        </a>
+                    </div>
                 </td>
             </tr>
         }

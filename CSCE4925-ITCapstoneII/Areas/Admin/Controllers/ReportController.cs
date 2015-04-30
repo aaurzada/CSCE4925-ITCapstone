@@ -438,7 +438,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
                 TransactionReports = transaction.ToPagedList(pageNumber, pageSize)
             };
-
+            
             return View(transactList);
 
         }
@@ -453,7 +453,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             grid.DataSource = TempData["list"];
             grid.DataBind();
             Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachement; filename = ExportedTransactioReport.xlsx");
+            Response.AddHeader("content-disposition", "attachement; filename = ExportedTransactioReport.xls");
             Response.ContentType = "application/excel";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htmlTextWriter = new HtmlTextWriter(sw);
