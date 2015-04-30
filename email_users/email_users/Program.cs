@@ -38,9 +38,10 @@ namespace ConsoleApplication1
                         string lastName = reader.GetString("lastName"); // get user's last name 
                         string bookName = reader.GetString("title"); // get title of book that is past due
                         string email = reader.GetString("email"); // get email of user
-                        string checkedOut = reader.GetString("checkoutDate"); //get check out transaction date of book
-                        string dueDate = reader.GetString("dueDate"); //get due date of book from transaction table
-                    
+                        DateTime checkedOutDate = reader.GetDateTime("checkoutDate"); //get check out transaction date of book
+                        DateTime dueDateDate = reader.GetDateTime("dueDate"); //get due date of book from transaction table
+                        string checkedOut = checkedOutDate.ToShortDateString();
+                        string dueDate = dueDateDate.ToShortDateString();
                         //Console.WriteLine("id = " + userId + "euid = " + firstName+ "email = " + email);
                         send_email(email, firstName, lastName, bookName, checkedOut, dueDate);
                     }
