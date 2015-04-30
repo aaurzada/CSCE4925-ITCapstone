@@ -5,7 +5,7 @@
     if (Session["username"] == null || Session["isAdmin"].Equals(false))
     {
         Response.Redirect("~/Home/index");
-}
+    }
 
 }
 
@@ -18,113 +18,115 @@
 
 @*search bar*@
 
-<form method="POST">
+<form method="GET">
     <div class="row" id="search-group">
-        <div class="col-lg-6">
+        <div class="clearfix"></div>
+        <div class="col-xs-8 col-md-6">
             <div class="input-group">
-                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new {@class = "form-control"})
+                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control" })
                 @*<input type="search" class="form-control" name="searchBook"/>*@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
+                        <i class="glyphicon glyphicon-search"></i>
                         Search
                     </button>
                 </span>
             </div>
         </div>
         @*add new book button*@
-        <div class="btn-toolbar-right" id="btn-add-book">
+        <div class=" col-md-offset-4 col-xs-4 col-md-2">
             <a href="@Url.Action("Create")" class="btn btn-primary">
                 <i class="glyphicon glyphicon-plus"></i>
                 Add New Book
             </a>
         </div>
     </div>
-      
+
 </form>
 
-
-<table class="table">
-    <tr>
-        <th class="row-assetnum">
-            @Html.DisplayName("AssetNum")
-        </th>
-        <th class="row-isbn">
-            @Html.DisplayName("ISBN")
-        </th>
-        <th class="row-title">
-            @Html.DisplayName("Title")
-        </th>
-        <th class="row-author">
-            @Html.DisplayName("Author")
-        </th>
-        <th class="row-course">
-            @Html.DisplayName("Course")
-        </th>
-        <th class="row-year">
-            @Html.DisplayName("Year")
-        </th>
-        <th class="row-edition">
-            @Html.DisplayName("Edition")
-        </th>
-        <th class="row-required">
-            @Html.DisplayName("Required")
-        </th>
-        <th class="row-available">
-            @Html.DisplayName("Available")
-        </th>
-        <th class="row-butns"></th>
-    </tr>
-
-    @foreach (var item in Model.Books)
-    {
+<div class="table-container">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssetNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-            <td>
-
-                <div class="btn-group">
-                    <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-
-                    <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
-                       data-post="Are you shure you want to delete @item.Title for the @item.CourseSection course?">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        Delete
-                    </a>
-                </div>
-            </td>
+            <th>
+                @Html.DisplayName("AssetNum")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new {id = item.AssetNum})" class="btn btn-xs btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit
+                        </a>
+
+                        <a href="@Url.Action("Delete", new {id = item.AssetNum})" class="btn btn-xs btn-danger"
+                           data-post="Are you sure you want to delete @item.Title for the @item.CourseSection course?">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 @*check if no records were found then display message*@
 @if (!Model.Books.Any())
 {

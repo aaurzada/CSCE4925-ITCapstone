@@ -45,12 +45,12 @@ namespace SQLSolutions.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
             
             var userList = new UserIndex { Users = Database.Session.Query<User>().OrderBy(u => u.LastName).ToPagedList(pageNumber, pageSize) };
-            //search user by last name and first name
+            //search user by last name and first name and euid
             //check if user typed something in the search box
             if (!string.IsNullOrEmpty(searchUser))
             {
                 userList = new UserIndex { Users = Database.Session.Query<User>().Where(u => u.LastName.Contains(searchUser) 
-                    || u.FirstName.Contains(searchUser)).ToPagedList(pageNumber, pageSize)
+                    || u.FirstName.Contains(searchUser) || u.Euid.Contains(searchUser)).ToPagedList(pageNumber, pageSize)
                 };
             }
 
@@ -73,7 +73,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             var userBook = (from book in Database.Session.Query<Book>()
                             join transaction in Database.Session.Query<Transaction>() 
                             on book.AssetNum equals transaction.BookAssetNumber
-                            where transaction.UserId == id
+                            where transaction.UserId == id && book.InStock.Equals(false) && transaction.CheckInDate == null
                             select new UserDetails
                             {
 
@@ -82,10 +82,11 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                 CourseSection = book.CourseSection,
                                 DueDate = transaction.DueDate,
                                 CheckoutDate = transaction.CheckoutDate,
+                                CheckInDate = transaction.CheckInDate,
                                 Isbn = book.Isbn,
                                 AssetNum = book.AssetNum
 
-                            }).ToList();
+                            });
             //convert userDetails entity to IEnumerable and pass it to the view
             var result = new UserDetailsList
             {

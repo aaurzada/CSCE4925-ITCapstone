@@ -27,7 +27,7 @@ namespace SQLSolutions.Models
         //date book is due
         public virtual DateTime DueDate { get; set; }
 
-        public virtual DateTime CheckInDate { get; set; }
+        public virtual DateTime ? CheckInDate { get; set; }
 
     }
 

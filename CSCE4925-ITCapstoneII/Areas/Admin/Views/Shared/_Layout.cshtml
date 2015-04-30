@@ -104,7 +104,10 @@
                         @Html.ActionLink("Catalog Management", "Index", "Book", new { area = "admin" }, new { })
                     </li>
                     <li class="@SelectedTabClass("User Records")">
-                        @Html.ActionLink("User Records", "Index", "User", new { area = "admin" }, new { })
+                        @Html.ActionLink("User Records", "Index", "User", new {area = "admin"}, new {})
+                    </li>
+                    <li class="@SelectedTabClass("Transactions")">
+                        @Html.ActionLink("Transactions", "List", "checkInCheckOut", new { area = "admin" }, new { })
                     </li>
                     <li class="dropdown @SelectedTabClass("Reports")">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>

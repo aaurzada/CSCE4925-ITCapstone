@@ -21,7 +21,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //Restrict to 4 numbers only
-        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^(?!0{4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
         [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
         [Required]
@@ -32,7 +32,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Title { get; set; }
         [Required]
         //restrict to only upper and lower characters, only 100 chars allowed
-        [RegularExpression(@"^[a-zA-Z''\s]{1,100}", ErrorMessage = "Please enter valid First and Last name")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,100}", ErrorMessage = "Please enter valid First and Last name")]
         public string Author { get; set; }
         [Required]
         //Restrict to 15 characters
@@ -56,7 +56,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
     public class BookEdit
     {
         [Required]
-        [RegularExpression(@"^[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
+        [RegularExpression(@"^(?!0{4})[0-9\s]{4}$", ErrorMessage = "Please enter valid Asset Number")]
         [DisplayName("Asset Number")]
         public int AssetNum { get; set; }
 
@@ -69,7 +69,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
 
         [Required]
         //restrict to only upper and lower characters, 80 chars allows
-        [RegularExpression(@"^[a-zA-Z''\s]{1,100}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,100}", ErrorMessage = "Please use letters only")]
         public string Author { get; set; }
 
         [Required]

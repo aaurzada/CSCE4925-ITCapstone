@@ -50,8 +50,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="FluentMigrator">
-      <HintPath>..\packages\FluentMigrator.1.5.0.0\lib\40\FluentMigrator.dll</HintPath>
+    <Reference Include="FluentMigrator, Version=1.5.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentMigrator.1.5.1.0\lib\40\FluentMigrator.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
@@ -176,7 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\PagedData.cs" />
     <Compile Include="Infrastructure\SelectedTabAttribute.cs" />
     <Compile Include="Infrastructure\TransactionFilter.cs" />
     <Compile Include="Infrastructure\UseSSLAttribute.cs" />
@@ -279,7 +279,6 @@
     <Content Include="Areas\Admin\Views\Book\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Transactions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Report\IndexBookReport.cshtml" />
@@ -287,6 +286,8 @@
     <Content Include="Areas\Admin\Views\checkInCheckOut\Index.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\checkOut.cshtml" />
     <Content Include="Areas\Admin\Views\checkInCheckOut\checkInBook.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\checkInCheckOut\List.cshtml" />
     <None Include="Properties\PublishProfiles\IT Capstone Web Server.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

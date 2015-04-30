@@ -59,7 +59,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             {
                 new SelectListItem() {Text = "All Books", Value = "0", Selected = true},
                 new SelectListItem() {Text = "Available Books", Value = "1", Selected = false},
-                new SelectListItem() {Text = "Not Available Books", Value = "2", Selected = false}
+                new SelectListItem() {Text = "Unavailable Books", Value = "2", Selected = false}
             });
             //assign dropdown to the ViewBag
             ViewBag.Selected = ListItems;
@@ -186,7 +186,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                join borrower in Database.Session.Query<User>()
                                    on transact.UserId equals borrower.Id
                                orderby transact.CheckoutDate
-                                   descending
+                               descending 
                                select new TransactionReport
                                {
                                    Euid = borrower.Euid,
@@ -197,8 +197,8 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                    Author = book.Author,
                                    CourseSection = book.CourseSection,
                                    Year = book.Year,
-                                   DueDate = transact.DueDate,
-                                   CheckoutDate = transact.CheckoutDate,
+                                   DueDate = transact.DueDate.ToShortDateString(),
+                                   CheckoutDate = transact.CheckoutDate.ToShortDateString(),
                                    CheckInDate = transact.CheckInDate,
                                    Isbn = book.Isbn,
                                    AssetNum = book.AssetNum,
@@ -224,7 +224,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 new SelectListItem() {Text = "Check-in Date", Value = "10", Selected = false},
                 new SelectListItem() {Text = "Asset Number", Value = "11", Selected = false},
                 new SelectListItem() {Text = "--------------------"},
-                new SelectListItem() {Text = "Books Not Checked-In", Value = "12", Selected = false}
+                new SelectListItem() {Text = "Unavailable Books", Value = "12", Selected = false}
             });
             //assign dropdown to the viewbag to display it
             ViewBag.Selected = ListItems;
@@ -255,9 +255,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
                                        || u.Title.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
                                        || u.Isbn.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
                                        || u.Author.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
-                                       || u.CheckoutDate == date
+                                       || u.CheckoutDate.AsDateTime() == date
                                        || u.CheckInDate == date
-                                       || u.DueDate == date
+                                       || u.DueDate.AsDateTime() == date
                                        || u.AssetNum.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
                             .OrderByDescending(u => u.CheckoutDate)
                             .ToList();
@@ -331,9 +331,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         }
                         transaction = transaction.AsQueryable()
                             .Where(
-                                    u =>u.CheckoutDate.Year.ToString()
+                                    u =>u.CheckoutDate.AsDateTime().Year.ToString()
                                     .IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
-                                    || u.CheckoutDate == date)
+                                    || u.CheckoutDate.AsDateTime() == date)
                             .OrderByDescending(u => u.CheckoutDate)
                             .ToList();
                         break;
@@ -348,9 +348,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         }
                         transaction = transaction.AsQueryable()
                             .Where(
-                                u =>u.DueDate.Year.ToString()
+                                u =>u.DueDate.AsDateTime().Year.ToString()
                                     .IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
-                                    || u.DueDate == date)
+                                    || u.DueDate.AsDateTime() == date)
                             .OrderByDescending(u => u.DueDate)
                             .ToList();
                         break;
@@ -380,7 +380,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                     //    date = null;
                     //    transaction = transaction.AsQueryable()
                     //        .Where(u => u.CheckInDate == date)
-                    //        .OrderByDescending(u => u.CheckInDate)
+                    //        .OrderByDescendingDescending(u => u.CheckInDate)
                     //        .ToList();
                     //    break;
 
@@ -415,14 +415,14 @@ namespace SQLSolutions.Areas.Admin.Controllers
                            .OrderByDescending(u => u.CheckInDate)
                            .ToList();
             }
-
+            //filter by the begin date and end date
             if (begin != null && end != null)
             {
                 transaction = transaction.AsQueryable()
-                            .Where(u => u.CheckoutDate >= begin && u.CheckoutDate <= end
+                            .Where(u => u.CheckoutDate.AsDateTime() >= begin && u.CheckoutDate.AsDateTime() <= end
                                      || u.CheckInDate >= begin && u.CheckInDate <= end
-                                     || u.DueDate >= begin && u.DueDate <= end
-                                     || u.CheckoutDate >= begin && u.CheckoutDate <= end && u.CheckInDate == null)
+                                     || u.DueDate.AsDateTime() >= begin && u.DueDate.AsDateTime() <= end
+                                     || u.CheckoutDate.AsDateTime() >= begin && u.CheckoutDate.AsDateTime() <= end && u.CheckInDate == null)
                             .OrderByDescending(u => u.CheckoutDate)
                             .ToList();
             }

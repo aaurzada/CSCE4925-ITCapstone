@@ -41,10 +41,10 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public int? Edition { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime CheckoutDate { get; set; }
+        public string CheckoutDate { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime ? CheckInDate { get; set; }

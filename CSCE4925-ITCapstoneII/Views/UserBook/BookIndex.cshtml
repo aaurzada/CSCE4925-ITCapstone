@@ -5,12 +5,11 @@
 }
 
 <h2>Book List</h2>
-<form method="POST">
+<form method="GET">
     <div class="row" id="search-group">
-        <div class="col-lg-6">
+        <div class="col-xs-8 col-md-6 col-lg-6">
             <div class="input-group">
                 @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control" })
-                @*<input type="search" class="form-control" name="searchBook"/>*@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
                         <i class="glyphicon glyphicon-search"></i>
@@ -22,69 +21,70 @@
     </div>
 
 </form>
-
-<table class="table">
-    <tr>
-        
-        <th class="user-row-isbn">
-            @Html.DisplayName("ISBN")
-        </th>
-        <th class="user-row-title">
-            @Html.DisplayName("Title")
-        </th>
-        <th class="user-row-author">
-            @Html.DisplayName("Author")
-        </th>
-        <th class="user-row-course">
-            @Html.DisplayName("Course")
-        </th>
-        <th class="user-row-year">
-            @Html.DisplayName("Year")
-        </th>
-        <th class="user-row-edition">
-            @Html.DisplayName("Edition")
-        </th>
-        <th class="user-row-required">
-            @Html.DisplayName("Required")
-        </th>
-        <th class="user-row-available">
-            @Html.DisplayName("Available")
-        </th>
-    </tr>
-
-    @foreach (var item in Model.UserBooks)
-    {
+<div class="table-container">
+    <table class="table">
         <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseSection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRequired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-           
-        </tr>
-    }
 
-</table>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Course")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Required")
+            </th>
+            <th>
+                @Html.DisplayName("Available")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.UserBooks)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
 @*check if no records were found then display message*@
 @if (!Model.UserBooks.Any())
 {
