@@ -5,6 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -26,7 +27,6 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
     public class ReportController : Controller
     {
-
         // GET: Admin/Report
         [SelectedTab("Reports")]
         public ActionResult IndexBookReport(string currentSelect, int? page, string selected = null)
@@ -232,11 +232,12 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchValue))
             {
+                DateTime? date;
                 switch (selected)
                 {
                     case "0":
 
-                        DateTime? date;
+                       
                         //check if searchValue is in DateTime format
                         if (searchValue.IsDateTime())
                         {
@@ -365,7 +366,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
                         }
                         transaction = transaction.AsQueryable()
                             .Where(
-                                    u => u.CheckInDate == date)
+                                    u =>u.CheckInDate.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0
+                                        && u.CheckInDate !=null
+                                    || u.CheckInDate == date && date != null)
                             .OrderByDescending(u => u.CheckInDate)
                             .ToList();
                         break;
@@ -376,13 +379,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
                             .OrderByDescending(u => u.AssetNum)
                             .ToList();
                         break;
-                    //case "12":
-                    //    date = null;
-                    //    transaction = transaction.AsQueryable()
-                    //        .Where(u => u.CheckInDate == date)
-                    //        .OrderByDescendingDescending(u => u.CheckInDate)
-                    //        .ToList();
-                    //    break;
+                    
 
                     default:
                         transaction = (from tr in transaction.AsQueryable()
@@ -432,7 +429,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             TempData["list"] = transaction;
             //add transaction object to list of ViewModels.TransactionReports 
 
-
+            
             var transactList = new TransactionReportList()
             {
 
@@ -453,8 +450,9 @@ namespace SQLSolutions.Areas.Admin.Controllers
             grid.DataSource = TempData["list"];
             grid.DataBind();
             Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachement; filename = ExportedTransactioReport.xls");
-            Response.ContentType = "application/excel";
+            Response.ContentEncoding = Encoding.UTF8;
+            Response.AddHeader("content-disposition", "attachement; filename = Report.xls");
+            Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htmlTextWriter = new HtmlTextWriter(sw);
             grid.RenderControl(htmlTextWriter);
