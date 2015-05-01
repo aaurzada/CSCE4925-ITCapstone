@@ -168,11 +168,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            //TODO finish 
-            if (!bookDelete.InStock)
-            {
-                return ViewBag.Error;
-            }
+           
             //delete book from the database
             Database.Session.Delete(bookDelete);
             return RedirectToAction("Index");
