@@ -41,7 +41,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
             ViewBag.currentFilter = searchUser;
             //converts the book query to a single page of books in a collection type that supports paging
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             
             var userList = new UserIndex { Users = Database.Session.Query<User>().OrderBy(u => u.LastName).ToPagedList(pageNumber, pageSize) };

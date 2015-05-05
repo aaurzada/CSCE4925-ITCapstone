@@ -34,7 +34,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
             //store selected value in the dropdown menu to return correct page
             ViewBag.currentSelect = selected;
             //specify how many entries to display on the page
-            const int pageSize = 15;
+            const int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var bookList = (from books in Database.Session.Query<Book>()
@@ -138,7 +138,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
         [SelectedTab("Reports")]
         public ActionResult TransactionReports(string currentFilter, string currentSelect, string currentBegin, string
             currentEnd, int? page, DateTime? begin,
-            DateTime? end, string selected = null, string searchValue = null)
+            DateTime? end, string ex, string selected = null, string searchValue = null)
         {
             // currentFilter provides the view with the current filter string. currentFilter will maintain
             // the filter settings during paging and it must be restored to the text box when the page is redisplayed. 
@@ -177,7 +177,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
             //converts the book query to a single page of books in a collection type that supports paging
             //pageSize specifies number of entries that will be displayed on the page
-            int pageSize = 4;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var transaction = (from book in Database.Session.Query<Book>()
@@ -424,12 +424,13 @@ namespace SQLSolutions.Areas.Admin.Controllers
                             .ToList();
             }
 
-            
+         
+
             //create temdata to pass to the Export method
             TempData["list"] = transaction;
-            //add transaction object to list of ViewModels.TransactionReports 
 
-            
+
+            //add transaction object to list of ViewModels.TransactionReports 
             var transactList = new TransactionReportList()
             {
 
@@ -443,8 +444,10 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
 
         //create method to export report to excel file
-        public void Export()
+        public void Export ()
         {
+
+            
 
             var grid = new GridView();
             grid.DataSource = TempData["list"];

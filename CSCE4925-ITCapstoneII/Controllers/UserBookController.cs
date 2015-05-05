@@ -14,7 +14,7 @@ namespace SQLSolutions.Controllers
 {
     public class UserBookController : Controller
     {
-       
+        //displays the list of books that were checked out by the logged in user
         [SelectedTab("Home")]
         public ActionResult BookDetails()
         {
@@ -44,7 +44,7 @@ namespace SQLSolutions.Controllers
             return View(details);
         }
 
-        // GET: User/Index
+        // GET: displays list of library books, provides search option
         [SelectedTab("Search")]
         public ActionResult BookIndex(string searchBook, string currentFilter, int? page)
         {
@@ -80,7 +80,6 @@ namespace SQLSolutions.Controllers
                     UserBooks = Database.Session.Query<Book>().Where(b => b.Title.Contains(searchBook) 
                         || b.Isbn.Contains(searchBook) 
                         || b.Author.Contains(searchBook) 
-                        || b.Isbn.ToString().Contains(searchBook) 
                         || b.CourseSection.ToString().Contains(searchBook))
                         .ToPagedList(pageNumber, pageSize)
                 };

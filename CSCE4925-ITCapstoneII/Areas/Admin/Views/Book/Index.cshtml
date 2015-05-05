@@ -23,7 +23,8 @@
         <div class="clearfix"></div>
         <div class="col-xs-8 col-md-6">
             <div class="input-group">
-                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control" })
+                @Html.TextBox("searchBook", ViewBag.currentFilter as string, new { @class = "form-control", 
+                                                                                   @placeholder = "Search by Asset number, ISBN, Course number, Title, Author" })
                 @*<input type="search" class="form-control" name="searchBook"/>*@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">

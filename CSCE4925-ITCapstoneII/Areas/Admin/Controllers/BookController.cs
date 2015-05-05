@@ -33,7 +33,7 @@ namespace SQLSolutions.Areas.Admin.Controllers
 
             ViewBag.currentFilter = searchBook;
             //converts the book query to a single page of books in a collection type that supports paging
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var bookList = new BookIndex { Books = Database.Session.Query<Book>().OrderBy(b => b.AssetNum).

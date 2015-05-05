@@ -344,11 +344,12 @@ namespace SQLSolutions.Areas.Admin.Controllers
                 transaction = transaction.AsQueryable().Where(u => u.Euid.Contains(searchT)
                                                                    || u.FirstName.Contains(searchT) ||
                                                                    u.LastName.Contains(searchT)
-                                                                   || u.Isbn.Contains(searchT)).ToList();
+                                                                   || u.Isbn.Contains(searchT)
+                                                                   || u.AssetNum.ToString().Contains(searchT)).ToList();
                
             }
            
-            const int pageSize = 5;
+            const int pageSize = 10;
             int pageNumber = (page ?? 1);
             var list = new TransactioList
             {
