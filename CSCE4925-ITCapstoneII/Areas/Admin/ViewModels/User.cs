@@ -30,12 +30,12 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [DisplayName("First Name:")]
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
         [DisplayName("Last Name:")]
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
         [DisplayName("Email:")]
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
@@ -57,12 +57,12 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         [DisplayName("First Name:")]
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,40}", ErrorMessage = "Please use letters only")]
         public string FirstName { get; set; }
         [DisplayName("Last Name:")]
         [Required]
         //restrict to only upper and lower characters
-        [RegularExpression(@"^[a-zA-Z''\s]{1,40}", ErrorMessage = "Please use letters only")]
+        [RegularExpression(@"^[a-zA-Z''\s_.-]{1,40}", ErrorMessage = "Please use letters only")]
         public string LastName { get; set; }
         [DisplayName("Email:")]
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]

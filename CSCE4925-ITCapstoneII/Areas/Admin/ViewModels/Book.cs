@@ -36,7 +36,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Author { get; set; }
         [Required]
         //Restrict to 15 characters
-        [RegularExpression(@"^[a-zA-Z0-9\s]{1,15}", ErrorMessage = "Please enter valid Course Number")]
+        [RegularExpression(@"^[0-9\s_.-]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public  string CourseSection { get; set; }
         [Required]
         //Restrict to 4 numbers
@@ -73,7 +73,7 @@ namespace SQLSolutions.Areas.Admin.ViewModels
         public string Author { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-Z0-9\s]{1,15}", ErrorMessage = "Please enter valid Course Number")]
+        [RegularExpression(@"^[0-9\s_.-]{1,15}", ErrorMessage = "Please enter valid Course Number")]
         public string CourseSection { get; set; }
 
         [Required]

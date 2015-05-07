@@ -15,20 +15,23 @@
     <div class="row" id="search-group">
         <div class="col-xs-8 col-md-6">
             <div class="input-group">
-                @Html.TextBox("searchUser", ViewBag.currentFilter as string, new { @class = "form-control", @placeholder = "Search by EUID, Name"})
+                @Html.TextBox("searchUser", ViewBag.currentFilter as string, new {@class = "form-control", @placeholder = "Search by EUID, Name"})
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
-                        <i class="glyphicon glyphicon-search"></i>
+                      
                         Search
                     </button>
                 </span>
             </div>
-
         </div>
+        <a href="@Url.Action("Index")" class="btn btn-warning  col-md-1">
+            
+            Reset
+        </a>
         @*button that redirestc to the add user page*@
-        <div class="col-md-offset-4 col-xs-4 col-md-2 ">
+        <div class="col-md-offset-3 col-xs-3 col-md-1 ">
             <a href="@Url.Action("Create")" class="btn btn-primary">
-                <i class="glyphicon glyphicon-plus"></i>
+            
                 Add User
             </a>
         </div>
@@ -72,18 +75,18 @@
                 <td>
                     <div class="btn-group" id="user-btn-group">
                         <a href="@Url.Action("Edit", new {id = item.Id})" class="btn btn-xs btn-primary">
-                            <i class="glyphicon glyphicon-edit"></i>
+                           
                             Edit
                         </a>
 
                         <a href="@Url.Action("Details", new {id = item.Id})" class="btn btn-xs btn-primary">
-                            <i class="glyphicon "></i>
+                           
                             Details
                         </a>
                         @*call java script file (farms.js) from the scripts floder to display pop-up window*@
                         <a href="@Url.Action("Delete", new {id = item.Id})" class="btn btn-xs btn-danger"
-                           data-post="Are you sure you want to delete @item.FirstName @item.LastName account?">
-                            <i class="glyphicon glyphicon-remove"></i>
+                           data-post="Are you sure you want to delete @item.FirstName @item.LastName account? PLEASE MAKE SURE THAT BOOKS CHECKED OUT BY THAT USER ARE CHECKED IN">
+                            
                             Delete
                         </a>
                     </div>

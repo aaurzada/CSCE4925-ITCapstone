@@ -209,17 +209,18 @@ namespace SQLSolutions.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            
             //delete user from the database
             Database.Session.Delete(deleteUser);
             return RedirectToAction("Index");
         }
 
-        public void checkSessionVars()//checks if session variables exist and user is admin
-        {
-            if (Session["username"] == null || Session["isAdmin"] == null)
-            {
-                RedirectToAction("Index", "Home");
-            }
-        }
+        //public void checkSessionVars()//checks if session variables exist and user is admin
+        //{
+        //    if (Session["username"] == null || Session["isAdmin"] == null)
+        //    {
+        //        RedirectToAction("Index", "Home");
+        //    }
+        //}
     }
 }

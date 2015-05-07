@@ -69,7 +69,7 @@ namespace SQLSolutions.Controllers
 
             var bookList = new UserBookIndex
             {
-                UserBooks = Database.Session.Query<Book>().Where(b => b.InStock.Equals(true)).OrderBy(b => b.CourseSection).
+                UserBooks = Database.Session.Query<Book>().OrderBy(b => b.CourseSection).
                  ToPagedList(pageNumber, pageSize)
             };
             //searh book by title, ISBN, AssetNumber, course section, author
